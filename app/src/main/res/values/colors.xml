@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="theme_main_color">#ff86e4fd</color>
+    <color name="statusBarColor">@color/theme_main_color</color>
+    <color name="default_toast_color">#bb000000</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="line_gray_drak">#ffe4e4e4</color>
+    <color name="main_text_gray">#ff666666</color>
+    <color name="main_text_gray_light">#ff999999</color>
+    <color name="background_tab_pressed">#6633b5e5</color>
+    <color name="red">#ffff0000</color>
+
+</resources>

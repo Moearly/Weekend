@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fitsSystemWindows="true"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <include android:id="@+id/topbar" layout="@layout/toolbar_main" />
+    <com.martn.weekend.view.PagerSlidingTabStrip
+        android:id="@+id/tabs"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip"
+        android:layout_marginLeft="@dimen/screen_margin"
+        android:layout_marginTop="2.0dip"
+        android:layout_marginRight="@dimen/screen_margin"
+        android:layout_below="@id/topbar" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/tabs" />
+    <TextView
+        android:textSize="@dimen/main_font_l"
+        android:textColor="@color/main_text_gray"
+        android:id="@+id/tv_error"
+        android:background="@drawable/bg_frame_corner_gray"
+        android:paddingLeft="10.0dip"
+        android:paddingTop="5.0dip"
+        android:paddingRight="10.0dip"
+        android:paddingBottom="5.0dip"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="重新加载"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/theme_main_color"
+    android:paddingLeft="@dimen/screen_margin"
+    android:paddingRight="@dimen/screen_margin"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/toolbar_height">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_centerVertical="true"
+        android:id="@+id/iv_user_head"
+        android:layout_width="@dimen/head_size_s"
+        android:layout_height="@dimen/head_size_s" />
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_title_fxzhoumo"
+        android:layout_centerInParent="true"
+        />
+    <ImageView
+        android:id="@+id/iv_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20.0dip"
+        android:src="@drawable/img_search_new"
+        android:layout_toLeftOf="@+id/iv_message"
+        android:layout_centerVertical="true" />
+    <ImageView
+        android:id="@+id/iv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_message_new"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_unread_tip"
+        android:visibility="invisible"
+        android:layout_width="@dimen/point_size"
+        android:layout_height="@dimen/point_size"
+        android:src="@color/red"
+        android:layout_alignTop="@+id/iv_message"
+        android:layout_alignRight="@+id/iv_message" />
+</RelativeLayout>
