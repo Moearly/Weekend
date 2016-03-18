@@ -68,13 +68,6 @@ public class QMusicRequestManager {
 	/**
 	 * Use a custom L2 cache,support LRU
 	 * 
-	 * @param context
-	 * @param uniqueName
-	 * @param diskCacheSize
-	 * @param memCacheSize
-	 * @param compressFormat
-	 * @param quality
-	 * @param type
 	 */
 	private QMusicRequestManager(final Context context, final int diskCacheSize, final int memCacheSize) {
 		// ============L2 Cache=============

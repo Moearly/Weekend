@@ -5,7 +5,8 @@ import java.util.Map;
 
 import com.android.volley.NetworkResponse;
 
-import cz.msebera.android.httpclient.HttpEntity;
+import org.apache.http.HttpEntity;
+
 
 public class QMusicNetworkResponse extends NetworkResponse {
 	HttpEntity entity;

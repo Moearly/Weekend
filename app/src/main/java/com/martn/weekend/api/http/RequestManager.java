@@ -4,7 +4,7 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.martn.zeaapp.base.BaseApplication;
+import com.qmusic.base.BaseApplication;
 import com.socks.library.KLog;
 
 /**

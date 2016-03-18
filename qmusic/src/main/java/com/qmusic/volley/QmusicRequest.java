@@ -26,18 +26,23 @@ import java.util.Map;
 import android.text.TextUtils;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Cache.Entry;
+import com.android.volley.Cache;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
+import com.android.volley.RetryPolicy;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.loopj.android.http.AsyncHttpClient;
 
-import cz.msebera.android.httpclient.HttpEntity;
-import cz.msebera.android.httpclient.NameValuePair;
-import cz.msebera.android.httpclient.client.entity.UrlEncodedFormEntity;
-import cz.msebera.android.httpclient.message.BasicNameValuePair;
+import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.message.BasicNameValuePair;
+
 
 /**
  * A request for retrieving a T type response body at a given URL that also
@@ -55,11 +60,16 @@ public abstract class QmusicRequest<T> extends Request<T> {
 	private static String userAgent = "qmusic_1.0";
 	private final Listener<T> mListener;
 
+	private String body;
+	private HttpEntity entity;
+	private Map<String, String> headers;
 	private Map<String, String> params;
 
 	public QmusicRequest(int method, String url, Listener<T> listener, ErrorListener errorListener) {
 		super(method, url, errorListener);
 		mListener = listener;
+		this.headers = new HashMap();
+
 	}
 
 	@Override
@@ -70,32 +80,45 @@ public abstract class QmusicRequest<T> extends Request<T> {
 	@Override
 	abstract protected Response<T> parseNetworkResponse(NetworkResponse response);
 
-	@Override
-	public String getBodyContentType() {
-		return PROTOCOL_CONTENT_TYPE;
-	}
+//	@Override
+//	public String getBodyContentType() {
+//		return PROTOCOL_CONTENT_TYPE;
+//	}
 
 	@Override
 	public byte[] getBody() throws AuthFailureError {
 		try {
+			ByteArrayOutputStream bos;
 			if (params != null) {
-				List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+				List<NameValuePair> pairs = new ArrayList();
 				for (Map.Entry<String, String> e : params.entrySet()) {
-					String key = e.getKey();
-					String value = e.getValue();
+					String key = (String) e.getKey();
+					String value = (String) e.getValue();
 					if (value != null) {
 						pairs.add(new BasicNameValuePair(key, value));
 					}
 				}
-				ByteArrayOutputStream bos = new ByteArrayOutputStream();
-				HttpEntity entity = new UrlEncodedFormEntity(pairs, PROTOCOL_CHARSET);
+				bos = new ByteArrayOutputStream();
+				new UrlEncodedFormEntity(pairs, PROTOCOL_CHARSET).writeTo(bos);
+				return bos.toByteArray();
+			} else if (entity != null) {
+				bos = new ByteArrayOutputStream();
 				entity.writeTo(bos);
 				return bos.toByteArray();
+			} else {
+				if (!TextUtils.isEmpty(body)) {
+					StringEntity reqEntity = new StringEntity(body, PROTOCOL_CHARSET);
+					bos = new ByteArrayOutputStream();
+					reqEntity.writeTo(bos);
+					return bos.toByteArray();
+				}
+				return null;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			return null;
 		}
-		return null;
+
 	}
 
 	@Override
@@ -107,16 +130,12 @@ public abstract class QmusicRequest<T> extends Request<T> {
 		this.params = params;
 	}
 
-	@Override
-	public Map<String, String> getHeaders() throws AuthFailureError {
-		Map<String, String> headers;
-		if (TextUtils.isEmpty(userAgent)) {
-			headers = super.getHeaders();
-		} else {
-			headers = new HashMap<String, String>();
-			headers.put("User-Agent", userAgent);
-		}
-		return headers;
+	public void setEntity(HttpEntity entity) {
+		this.entity = entity;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
 	}
 
 	public static String getUserAgent() {
@@ -127,8 +146,8 @@ public abstract class QmusicRequest<T> extends Request<T> {
 		userAgent = agent;
 	}
 
-	public static Entry parseCacheHeaders(String url, NetworkResponse response) {
-		Entry entry = HttpHeaderParser.parseCacheHeaders(response);
+	public static Cache.Entry parseCacheHeaders(String url, NetworkResponse response) {
+		Cache.Entry entry = HttpHeaderParser.parseCacheHeaders(response);
 		// Note modify the cache policy here
 		if ("about:blank".equals(url)) {
 			entry.ttl = entry.ttl + 60 * 60 * 1000;// 60 mins
@@ -136,4 +155,10 @@ public abstract class QmusicRequest<T> extends Request<T> {
 		}
 		return entry;
 	}
+
+	@Override
+	public RetryPolicy getRetryPolicy() {
+		return new DefaultRetryPolicy(AsyncHttpClient.DEFAULT_SOCKET_TIMEOUT, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+	}
+
 }

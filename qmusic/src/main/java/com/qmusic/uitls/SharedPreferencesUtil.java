@@ -1,9 +1,9 @@
-package com.martn.weekend.utility;
+package com.qmusic.uitls;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import com.martn.weekend.base.BaseApplication;
+import com.qmusic.base.BaseApplication;
 
 import java.util.Hashtable;
 

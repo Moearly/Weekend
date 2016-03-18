@@ -2,10 +2,10 @@ package com.martn.weekend.api;
 
 import android.content.Context;
 
-import com.martn.zeaapp.api.http.JsonCallback;
-import com.martn.zeaapp.api.http.JsonParams;
-import com.martn.zeaapp.api.http.client.PassportClient;
-import com.martn.zeaapp.utils.CipherUtils;
+import com.martn.weekend.api.http.JsonCallback;
+import com.martn.weekend.api.http.JsonParams;
+import com.martn.weekend.api.http.client.PassportClient;
+
 
 /**
  * Title: ZeaApp
@@ -43,8 +43,8 @@ public class PassportApi {
      */
     public static void Login(Context context, String passwd, String account,JsonCallback callback) {
         JsonParams params = new JsonParams();
-        params.put("password", CipherUtils.AESEncrypt(passwd));
-        params.put("username", CipherUtils.AESEncrypt(account));
+//        params.put("password", CipherUtils.AESEncrypt(passwd));
+//        params.put("username", CipherUtils.AESEncrypt(account));
         PassportClient.post(RE_LOGIN, params, context, callback);
     }
 

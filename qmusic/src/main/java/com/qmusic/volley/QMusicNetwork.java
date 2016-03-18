@@ -28,13 +28,14 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.ByteArrayPool;
 import com.android.volley.toolbox.HttpStack;
 
-import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.HttpEntity;
-import cz.msebera.android.httpclient.HttpResponse;
-import cz.msebera.android.httpclient.HttpStatus;
-import cz.msebera.android.httpclient.StatusLine;
-import cz.msebera.android.httpclient.client.utils.DateUtils;
-import cz.msebera.android.httpclient.conn.ConnectTimeoutException;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.StatusLine;
+import org.apache.http.conn.ConnectTimeoutException;
+import org.apache.http.impl.cookie.DateUtils;
+
 
 public class QMusicNetwork implements Network {
 	protected static final boolean DEBUG = VolleyLog.DEBUG;

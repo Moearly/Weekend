@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import com.martn.weekend.MainActivity;
 import com.martn.weekend.R;
 import com.martn.weekend.utility.ViewUtils;
+import com.qmusic.base.BaseApplication;
 import com.umeng.analytics.MobclickAgent;
 
 

@@ -6,13 +6,16 @@
 
     <color name="theme_main_color">#ff86e4fd</color>
     <color name="statusBarColor">@color/theme_main_color</color>
-    <color name="default_toast_color">#bb000000</color>
 
+    <color name="main_text_black">#ff333333</color>
     <color name="transparent">#00000000</color>
     <color name="line_gray_drak">#ffe4e4e4</color>
     <color name="main_text_gray">#ff666666</color>
     <color name="main_text_gray_light">#ff999999</color>
     <color name="background_tab_pressed">#6633b5e5</color>
     <color name="red">#ffff0000</color>
+    <color name="bg_splash">#fff4f4f6</color>
+
+    <color name="gray_666666">#ff666666</color>
 
 </resources>

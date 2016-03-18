@@ -8,4 +8,12 @@
     <dimen name="head_size">46.0dip</dimen>
     <dimen name="head_size_s">42.0dip</dimen>
     <dimen name="point_size">5.0dip</dimen>
+    <dimen name="dp_15">15dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_0.5">0.5dp</dimen>
+    <dimen name="font_size_4">11sp</dimen>
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="main_font_lll">12dp</dimen>
+    <dimen name="main_font">15sp</dimen>
 </resources>

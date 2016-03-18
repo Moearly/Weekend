@@ -1,14 +1,18 @@
-package com.martn.weekend.utility;
+package com.qmusic.uitls;
 
+import android.app.ActivityManager;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.v4.content.ContextCompat;
+import android.text.SpannableString;
+import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
+
 
 import com.github.johnpersano.supertoasts.SuperToast;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -41,7 +45,7 @@ public class AppUtils {
     public static Typeface typefaceLatoRegular = null;
     public static Typeface typefaceLatoHairline = null;
     public static Typeface typefaceLatoLight = null;
-
+    public static Typeface typefaceZiTiRegular = null;
     private static Random random;
 
     private static String lastColor0, lastColor1, lastColor2;
@@ -56,6 +60,8 @@ public class AppUtils {
 
     public static void init(Context context) {
 
+        typefaceZiTiRegular = Typeface.createFromAsset(
+                context.getAssets(), "fonts/ziti.otf");
 //        typefaceLatoRegular = Typeface.createFromAsset(
 //                context.getAssets(), "fonts/Lato-Regular.ttf");
 //        typefaceLatoHairline = Typeface.createFromAsset(
@@ -81,6 +87,35 @@ public class AppUtils {
 //        addColors[2] = "bg_yellow";
 
     }
+    public static SpannableString getSpanString(String info, int start, int end, float size, boolean isBold, int foregroundColor, int backgroundColor) {
+        SpannableString spanString = new SpannableString(info);
+        if (size > 0.0f) {
+            spanString.setSpan(new RelativeSizeSpan(size), start, end, 33);
+        }
+        if (isBold) {
+            spanString.setSpan(new StyleSpan(1), start, end, 33);
+        }
+        spanString.setSpan(new ForegroundColorSpan(foregroundColor), start, end, 33);
+        spanString.setSpan(new BackgroundColorSpan(backgroundColor), start, end, 33);
+        return spanString;
+    }
+
+
+    public static final ActivityManager.RunningAppProcessInfo getCurProcess(Context context) {
+        final int pid = android.os.Process.myPid();
+        final ActivityManager mActivityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        final List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = mActivityManager.getRunningAppProcesses();
+        ActivityManager.RunningAppProcessInfo result = null;
+        for (ActivityManager.RunningAppProcessInfo appProcess : runningAppProcesses) {
+            if (appProcess.pid == pid) {
+                result = appProcess;
+                break;
+            }
+        }
+        return result;
+    }
+
+
 
     public static String getExceptionString(Exception e) {
         String errorString = e.toString() + "\r\n";

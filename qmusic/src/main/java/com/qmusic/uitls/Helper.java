@@ -1,10 +1,10 @@
-package com.martn.weekend.utility;
+package com.qmusic.uitls;
 
 import android.graphics.Color;
 
 import com.github.johnpersano.supertoasts.SuperToast;
-import com.martn.weekend.R;
-import com.martn.weekend.base.BaseApplication;
+import com.qmusic.R;
+import com.qmusic.base.BaseApplication;
 
 /**
  * Title: EnjoyTime
@@ -15,9 +15,9 @@ import com.martn.weekend.base.BaseApplication;
  * @author MartnLei MartnLei_163_com
  * @version V1.0
  */
-public class CusToast {
-    private static CusToast ourInstance = new CusToast();
-    private CusToast() {
+public class Helper {
+    private static Helper ourInstance = new Helper();
+    private Helper() {
     }
 
     /**
@@ -34,7 +34,7 @@ public class CusToast {
     }
 
     public static void showToast(String text) {
-        showToast(text,R.color.default_toast_color);//默认使用系统主题颜色
+        showToast(text, R.color.default_toast_color);//默认使用系统主题颜色
     }
 
     public static void showToast(String text, int color) {

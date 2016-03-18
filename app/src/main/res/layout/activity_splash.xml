@@ -1,16 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.martn.weekend.SplashActivity">
-
-    <TextView
+    android:background="@color/bg_splash"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <ImageView
+        android:id="@+id/splash_imageview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        />
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true">
+        <TextView
+            android:textSize="@dimen/main_font_lll"
+            android:textColor="@color/main_text_black"
+            android:id="@+id/tv_time"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3S"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+        <TextView
+            android:textSize="@dimen/font_size_4"
+            android:textColor="@color/main_text_gray"
+            android:id="@+id/tv_skip"
+            android:background="@drawable/bg_frame_corner_gray_bg_white"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_5"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_2"
+            android:text="跳过"
+            android:layout_toLeftOf="@+id/tv_time"
+            android:layout_alignParentTop="true" />
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/iv_mid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60.0dip"
+        android:src="@drawable/img_splash_text"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_splash_icon"
+        android:layout_above="@+id/tv_version"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:textSize="@dimen/font_size_4"
+        android:textColor="@color/main_text_black"
+        android:id="@+id/tv_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.0dip"
+        android:layout_marginBottom="20.0dip"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

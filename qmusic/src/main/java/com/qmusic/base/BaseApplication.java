@@ -1,4 +1,4 @@
-package com.martn.weekend.base;
+package com.qmusic.base;
 
 import android.annotation.SuppressLint;
 import android.app.Application;

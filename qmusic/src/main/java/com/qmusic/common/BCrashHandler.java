@@ -18,7 +18,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.qmusic.MyApplication;
+import com.qmusic.base.BaseApplication;
 import com.qmusic.uitls.BLog;
 
 public class BCrashHandler implements UncaughtExceptionHandler {
@@ -72,7 +72,7 @@ public class BCrashHandler implements UncaughtExceptionHandler {
 			@Override
 			public void run() {
 				Looper.prepare();
-				Toast.makeText(MyApplication.getContext(), msg, Toast.LENGTH_SHORT).show();
+				Toast.makeText(BaseApplication.context(), msg, Toast.LENGTH_SHORT).show();
 				Looper.loop();
 			}
 		}.start();

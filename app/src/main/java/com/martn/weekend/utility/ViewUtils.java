@@ -2,7 +2,7 @@ package com.martn.weekend.utility;
 
 import android.util.DisplayMetrics;
 
-import com.martn.weekend.base.BaseApplication;
+import com.qmusic.base.BaseApplication;
 
 
 /**
