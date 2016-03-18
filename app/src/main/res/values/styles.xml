@@ -58,5 +58,39 @@
         <item name="android:background">@color/theme_main_color</item>
     </style>
 
+    <style name="MyEditTextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:textSize">@dimen/main_font_l</item>
+        <item name="android:textColor">@color/main_text_black</item>
+        <item name="android:textColorHint">@color/main_text_hint_gray</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:paddingLeft">20.0dip</item>
+        <item name="android:paddingTop">10.0dip</item>
+        <item name="android:paddingRight">20.0dip</item>
+        <item name="android:paddingBottom">10.0dip</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:drawablePadding">@dimen/dp_10</item>
+    </style>
+
+
+
+    <style name="MyBlueBtnStyle">
+        <item name="rv:rv_textPressColor">@color/white_pressed</item>
+        <item name="rv:rv_isRippleEnable">true</item>
+        <item name="rv:rv_backgroundColor">@color/blue</item>
+        <item name="rv_backgroundPressColor">@color/blue_pressed</item>
+        <item name="android:textSize">@dimen/font_size_46</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="MyWhiteBtnStyle">
+        <item name="rv:rv_isRippleEnable">true</item>
+        <item name="rv:rv_backgroundColor">@color/white</item>
+        <item name="rv:rv_strokeColor">@color/blue</item>
+        <item name="rv:rv_strokePressColor">@color/blue_pressed</item>
+        <item name="rv:rv_strokeWidth">1dp</item>
+        <item name="android:textSize">@dimen/font_size_46</item>
+        <item name="android:textColor">@color/main_text_blue</item>
+        <item name="android:gravity">center</item>
+    </style>
 
 </resources>

@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Weekend</string>
     <string name="tip_double_click_exit">再按一下就要退出app了</string>
+    <string name="input_mobile">请输入手机号码</string>
+    <string name="input_password">请输入登陆密码</string>
+    <string name="login">登陆</string>
+    <string name="regist">注册</string>
+    <string name="forget_password_q">忘记密码?</string>
+    <string name="message_login">短信登陆</string>
+    <string name="wrong_mobile">手机号码输入有误</string>
 
 </resources>

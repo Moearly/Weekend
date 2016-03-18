@@ -3,6 +3,7 @@ package com.martn.weekend;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -80,7 +81,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(View.inflate(this, R.layout.activity_main, null));
         ButterKnife.bind(this);
         initView();
         getShowPages();

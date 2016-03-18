@@ -5,7 +5,7 @@ import java.text.NumberFormat;
 /**
  * Title: EnjoyTime
  * Package: com.martn.enjoytime.utility
- * Description: ("请描述功能")
+ * Description: ("格式化--校验相关")
  * Date 2016/3/8 16:34
  *
  * @author MartnLei MartnLei_163_com
@@ -34,5 +34,14 @@ public class FormatUtils {
         formater.setMaximumFractionDigits(0);
         return formater.format(val);
     }
+
+
+    public static boolean isMobile(String mobile) {
+        if (mobile != null && mobile.startsWith("1") && mobile.length() == 11) {
+            return true;
+        }
+        return false;
+    }
+
 
 }

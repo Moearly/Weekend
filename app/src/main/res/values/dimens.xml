@@ -16,4 +16,13 @@
     <dimen name="dp_2">2dp</dimen>
     <dimen name="main_font_lll">12dp</dimen>
     <dimen name="main_font">15sp</dimen>
+    <dimen name="dp_20">20dp</dimen>
+    <dimen name="font_size_36">12.0sp</dimen>
+    <dimen name="font_size_60">19.0sp</dimen>
+    <dimen name="font_size_52">18.0sp</dimen>
+    <dimen name="font_size_46">17.0sp</dimen>
+    <dimen name="font_size_42">16.0sp</dimen>
+    <dimen name="font_size_40">14.0sp</dimen>
+    <dimen name="font_size_30">11.0sp</dimen>
+    <dimen name="title_font_size">19sp</dimen>
 </resources>

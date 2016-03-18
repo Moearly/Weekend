@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <EditText
+        android:id="@+id/et_mobile"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/screen_margin"
+        android:layout_marginTop="40.0dip"
+        android:layout_marginRight="@dimen/screen_margin"
+        android:hint="@string/input_mobile"
+        android:maxLength="11"
+        android:inputType="number"
+        style="@style/MyEditTextStyle" />
+    <ImageView
+        android:id="@+id/line_mobile_bottom"
+        android:background="@color/line_gray"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5.0dip"
+        android:layout_below="@id/et_mobile"
+        android:layout_alignLeft="@id/et_mobile"
+        android:layout_alignRight="@id/et_mobile" />
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20.0dip"
+        android:hint="@string/input_password"
+        android:layout_below="@id/line_mobile_bottom"
+        android:layout_alignLeft="@id/et_mobile"
+        android:layout_alignRight="@id/et_mobile"
+        android:inputType="textPassword"
+        style="@style/MyEditTextStyle" />
+    <ImageView
+        android:id="@+id/line_password_bottom"
+        android:background="@color/line_gray"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5.0dip"
+        android:layout_below="@+id/et_password"
+        android:layout_alignLeft="@id/et_password"
+        android:layout_alignRight="@id/et_password" />
+    <com.flyco.roundview.RoundTextView
+        android:onClick="onClick"
+        android:id="@+id/tv_login"
+        android:layout_below="@id/line_password_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="36dp"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="20.0dip"
+        android:layout_marginRight="@dimen/dp_20"
+        android:text="@string/login"
+        android:clickable="true"
+        style="@style/MyBlueBtnStyle"
+        />
+
+    <com.flyco.roundview.RoundTextView
+        android:onClick="onClick"
+        android:id="@+id/tv_regist"
+        android:layout_below="@id/tv_login"
+        android:layout_width="fill_parent"
+        android:layout_height="36dp"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="20.0dip"
+        android:layout_marginRight="@dimen/dp_20"
+        android:text="@string/regist"
+        android:clickable="true"
+        style="@style/MyWhiteBtnStyle"
+        />
+
+
+    <TextView
+        android:textSize="@dimen/font_size_36"
+        android:textColor="@color/main_text_blue"
+        android:id="@+id/tv_forget_password"
+        android:paddingTop="10.0dip"
+        android:paddingBottom="10.0dip"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forget_password_q"
+        android:layout_below="@id/tv_regist"
+        android:layout_alignLeft="@id/tv_regist"
+        android:onClick="onClick" />
+    <TextView
+        android:textSize="@dimen/font_size_36"
+        android:textColor="@color/main_text_blue"
+        android:id="@+id/tv_message_login"
+        android:paddingTop="10.0dip"
+        android:paddingBottom="10.0dip"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message_login"
+        android:layout_below="@id/tv_regist"
+        android:layout_alignRight="@id/tv_regist"
+        android:onClick="onClick" />
+    <TextView
+        android:textSize="@dimen/font_size_40"
+        android:textColor="@color/main_text_gray"
+        android:id="@+id/tv_login_wx"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40.0dip"
+        android:text="微信登录"
+        android:drawableTop="@drawable/img_login_wx"
+        android:drawablePadding="@dimen/dp_5"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClick" />
+    <TextView
+        android:textSize="@dimen/font_size_40"
+        android:textColor="@color/main_text_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20.0dip"
+        android:text="第三方账号快速登录"
+        android:layout_above="@id/tv_login_wx"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

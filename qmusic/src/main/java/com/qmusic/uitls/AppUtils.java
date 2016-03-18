@@ -3,6 +3,7 @@ package com.qmusic.uitls;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
@@ -127,6 +128,10 @@ public class AppUtils {
             }
         }
         return errorString;
+    }
+
+    public static String getPhoneInfo() {
+        return Build.MODEL;
     }
 
 

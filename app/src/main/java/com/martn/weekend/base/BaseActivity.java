@@ -1,6 +1,7 @@
 package com.martn.weekend.base;
 
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -8,17 +9,20 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.martn.weekend.MainActivity;
 import com.martn.weekend.R;
 import com.martn.weekend.utility.ViewUtils;
 import com.qmusic.base.BaseApplication;
+import com.qmusic.uitls.AppUtils;
 import com.umeng.analytics.MobclickAgent;
 
 
@@ -38,9 +42,10 @@ public class BaseActivity extends AppCompatActivity {
     protected BaseActivity activity;
     //自定义的进度加载器
     //private LoadingFragment mLoading;
-
+    private ProgressDialog mLoading;
     private LinearLayout rootLayout;
     protected Toolbar toolbar;
+    protected TextView title;
 
     /**
      * 初始化appbar显示
@@ -51,10 +56,19 @@ public class BaseActivity extends AppCompatActivity {
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
+            title = (TextView) findViewById(R.id.tv_title);
         }
         //BlackTech.enableApiSwitch(this.toolbar, this);
+    }
+
+    protected void setTitle(String t) {
+        if (title != null) {
+            title.setTypeface(AppUtils.typefaceZiTiRegular);
+            title.setText(t);
+        }
     }
 
     public void comeOnBaby(Class pClass) {
@@ -144,39 +158,33 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-//    /**
-//     * 显示加载
-//     */
-//    public void showLoading() {
-//
-//        try {
-//            if (mLoading == null) {
-//                mLoading = LoadingFragment.newInstance();
-//            }
-//
-//            if (!mLoading.isAdded()) {
-//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                transaction.remove(mLoading).commitAllowingStateLoss();
-//                mLoading.show(getSupportFragmentManager(), "loading");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    /**
+     * 显示加载
+     */
+    public void showLoading() {
+        if (mLoading == null) {
+            mLoading = new ProgressDialog(this);
+        }
+        if (!mLoading.isShowing()) {
+            mLoading.setMessage("请稍候...");
+            mLoading.show();
+        }
+
+    }
 
 
-//    /**
-//     * 关闭加载
-//     */
-//    public void dismissLoading() {
-//
-//        try {
-//            if ((mLoading != null) && (mLoading.isAdded()))
-//                mLoading.dismiss();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    /**
+     * 关闭加载
+     */
+    public void dismissLoading() {
+
+        try {
+            if (mLoading != null)
+                mLoading.dismiss();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     protected boolean getBooleanExtra(String key) {
