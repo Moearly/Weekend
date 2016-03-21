@@ -66,7 +66,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void setTitle(String t) {
         if (title != null) {
-            title.setTypeface(AppUtils.typefaceZiTiRegular);
+            title.setTypeface(AppUtils.getTypefaceZiTi());
             title.setText(t);
         }
     }

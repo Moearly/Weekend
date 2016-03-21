@@ -7,11 +7,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.martn.weekend.base.BaseActivity;
+import com.qmusic.db.UserPreference;
+import com.martn.weekend.request.IUserCenterServlet;
 import com.martn.weekend.request.IUserServlet;
+import com.qmusic.result.ToUserCenterModel;
 import com.martn.weekend.utility.FormatUtils;
-import com.qmusic.uitls.AppUtils;
+import com.qmusic.common.Common;
 import com.qmusic.uitls.Helper;
+import com.socks.library.KLog;
 
 import org.json.JSONObject;
 
@@ -35,12 +40,44 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     EditText etPassword;
     @Bind(R.id.tv_login_wx)
     TextView tvLoginWx;
-    private Response.ErrorListener errorListener;
-    private Response.Listener<JSONObject> loginListener;
+    private Response.ErrorListener errorListener = new Response.ErrorListener() {
+        public void onErrorResponse(VolleyError error) {
+//            Common.WX_CODE = CoinPacketExtension.NAMESPACE;
+            dismissLoading();
+//            Utils.showToaseNetError();
+        }
+    };
+
+    private Response.Listener<JSONObject> loginListener = new Response.Listener<JSONObject>() {
+        public void onResponse(JSONObject response) {
+            KLog.json(response.toString());
+            if (response == null || !"success".equals(response.optString("code"))) {
+                dismissLoading();
+            } else {
+                Common.isRefresh = true;
+                IUserCenterServlet.sendToUserCenter(toUserCenterListener, errorListener);
+            }
+            //Common.WX_CODE = CoinPacketExtension.NAMESPACE;
+            Helper.showToast(response.optString("description"));
+        }
+    };
+    ;
     //    private EditText mobileET;
 //    private EditText passwordET;
     //private ProgressDialog pglog;
-    private Response.Listener<JSONObject> toUserCenterListener;
+    private Response.Listener<JSONObject> toUserCenterListener = new Response.Listener<JSONObject>() {
+        public void onResponse(JSONObject response) {
+            KLog.json(response.toString());
+            if (response != null && "success".equals(response.optString("code"))) {
+                UserPreference.getInstance(ctx).save(new ToUserCenterModel(response).getResult(), getPassword(), getMobile());
+                //EMChatManager.getInstance().login(LocalUserInfo.getInstance().getUserHuanxinUsername(), LocalUserInfo.getInstance().getUserHuanxinPassword(), new EMLoginCallBack());
+//                setResult(2);
+//                finish();
+            }
+            Helper.showToast(response.optString("description"));
+            dismissLoading();
+        }
+    };
     private Response.Listener<JSONObject> weixinLoginListener;
 
     @Override
@@ -71,14 +108,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 //                RegistAndSetupPwdAndBoundActivity.startActivityForResult(this, 4);
                 break;
             case R.id.tv_login_wx /*2131493065*/:
-                IWXAPI api = WXAPIFactory.createWXAPI(this, WXCommon.APP_ID);
-                api.registerApp(WXCommon.APP_ID);
-                Req req = new Req();
-                req.scope = "snsapi_base,snsapi_userinfo";
-                req.state = "sm.xue";
-                api.sendReq(req);
-            case R.id.topbar_left_textview /*2131493401*/:
-                finish();
+//                IWXAPI api = WXAPIFactory.createWXAPI(this, WXCommon.APP_ID);
+//                api.registerApp(WXCommon.APP_ID);
+//                Req req = new Req();
+//                req.scope = "snsapi_base,snsapi_userinfo";
+//                req.state = "sm.xue";
+//                api.sendReq(req);
+//            case R.id.topbar_left_textview /*2131493401*/:
+//                finish();
             default:
         }
     }

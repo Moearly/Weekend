@@ -1,5 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+
     <!-- Base application theme. -->
     <style name="AppThemeMain" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -21,18 +22,24 @@
 
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-        <item name="android:windowTranslucentStatus" tools:targetApi="21">true</item>
-        <item name="android:navigationBarColor" tools:targetApi="21">@color/accent_material_light</item>
-        <item name="android:windowContentOverlay">@null</item>
 
+        <item name="android:windowTranslucentStatus" tools:targetApi="21">true</item>
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/theme_main_color</item>
+        <item name="android:windowContentOverlay">@null</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
+        <!-- Toolbar Theme / Apply white arrow -->
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="actionBarTheme">@style/AppTheme.ActionBarTheme</item>
+
         <!-- Material Theme -->
-        <item name="colorPrimary">@color/primary_material_light</item>
-        <item name="colorPrimaryDark">@color/theme_main_color</item>
-        <item name="android:windowBackground">@color/background_material_light</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/theme_main_color</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@color/main_bg</item>
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="21">true</item>
+        <item name="toolbarStyle">@style/Toolbar</item>
 
     </style>
 
@@ -41,22 +48,26 @@
     <!--<item name="colorControlNormal">@android:color/white</item>-->
     <!--</style>-->
 
-    <style name="Platform.AppCompat" parent="@android:style/Theme">
 
-    </style>
-
-
-    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="color">@color/white</item>
-    </style>
-
-    <style name="Toolbar">
+    <style name="Toolbar" parent="Widget.AppCompat.Toolbar">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:background">@color/theme_main_color</item>
     </style>
+
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/white</item>
+        <item name="spinBars">true</item>
+    </style>
+
+    <style name="AppTheme.ActionBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- White arrow -->
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
 
     <style name="MyEditTextStyle" parent="@android:style/Widget.EditText">
         <item name="android:textSize">@dimen/main_font_l</item>
@@ -74,20 +85,22 @@
 
 
     <style name="MyBlueBtnStyle">
-        <item name="rv:rv_textPressColor">@color/white_pressed</item>
-        <item name="rv:rv_isRippleEnable">true</item>
-        <item name="rv:rv_backgroundColor">@color/blue</item>
+        <item name="rv_cornerRadius">4dp</item>
+        <item name="rv_textPressColor">@color/white_pressed</item>
+        <item name="rv_isRippleEnable">true</item>
+        <item name="rv_backgroundColor">@color/blue</item>
         <item name="rv_backgroundPressColor">@color/blue_pressed</item>
         <item name="android:textSize">@dimen/font_size_46</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:gravity">center</item>
     </style>
     <style name="MyWhiteBtnStyle">
-        <item name="rv:rv_isRippleEnable">true</item>
-        <item name="rv:rv_backgroundColor">@color/white</item>
-        <item name="rv:rv_strokeColor">@color/blue</item>
-        <item name="rv:rv_strokePressColor">@color/blue_pressed</item>
-        <item name="rv:rv_strokeWidth">1dp</item>
+        <item name="rv_cornerRadius">4dp</item>
+        <item name="rv_isRippleEnable">true</item>
+        <item name="rv_backgroundColor">@color/white</item>
+        <item name="rv_strokeColor">@color/blue</item>
+        <item name="rv_strokePressColor">@color/blue_pressed</item>
+        <item name="rv_strokeWidth">1dp</item>
         <item name="android:textSize">@dimen/font_size_46</item>
         <item name="android:textColor">@color/main_text_blue</item>
         <item name="android:gravity">center</item>

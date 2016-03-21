@@ -16,9 +16,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.martn.weekend.request.IUserCenterServlet;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.qmusic.base.BaseApplication;
 import com.qmusic.bean.ShowPageBean;
 import com.qmusic.common.Common;
+import com.qmusic.db.UserPreference;
+import com.qmusic.result.ToUserCenterModel;
 import com.qmusic.uitls.AppUtils;
 import com.qmusic.uitls.SharedPreferencesUtil;
 import com.socks.library.KLog;
@@ -50,16 +55,26 @@ public class SplashActivity extends AppCompatActivity {
     private int defaultTime = 3000;
 
     private Response.Listener<JSONObject> toUserCenterListener = new Response.Listener<JSONObject>() {
+        @Override
         public void onResponse(JSONObject response) {
             KLog.e("toUserCenterListener : " + response);
             if (response != null && "success".equals(response.optString("code"))) {
-                //LocalUserInfo.getInstance().save(SplashActivity.this, new ToUserCenterModel(response).getResult(), CoinPacketExtension.NAMESPACE, LocalUserInfo.getInstance().getMobile());
+                UserPreference.getInstance(SplashActivity.this).save( new ToUserCenterModel(response).getResult(), "", UserPreference.getInstance(SplashActivity.this).getMobile());
+                KLog.e("user_info_get_success");
                 //EMChatManager.getInstance().login(LocalUserInfo.getInstance().getUserHuanxinUsername(), LocalUserInfo.getInstance().getUserHuanxinPassword(), new EMLoginCallBack());
             } else if ("error_1".equals(response.optString("code"))) {
-                //LocalUserInfo.getInstance().clean(SplashActivity.this);
+                UserPreference.getInstance(SplashActivity.this).clean();
             }
         }
     };
+
+    private Response.ErrorListener errorListener = new Response.ErrorListener() {
+
+        @Override
+        public void onErrorResponse(VolleyError error) {
+        }
+    };
+
 
     private ShowPageBean bean;//展示的活动
 
@@ -81,7 +96,7 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(AccessibilityNodeInfoCompat.ACTION_NEXT_HTML_ELEMENT, AccessibilityNodeInfoCompat.ACTION_NEXT_HTML_ELEMENT);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-        tvTime.setTypeface(AppUtils.typefaceZiTiRegular);
+        tvTime.setTypeface(AppUtils.getTypefaceZiTi());
         autoLogin();
         showSplash();
 
@@ -96,7 +111,7 @@ public class SplashActivity extends AppCompatActivity {
         if (isShowPage()) {
             try {
                 JSONArray jsonArr = new JSONObject(SharedPreferencesUtil.getStringSharedPreference(getApplicationContext(), Common.Key.KEY_SHOW_PAGES, "")).optJSONArray("showpage_arr");
-                KLog.e("showPages-----> jsonArr : " + jsonArr);
+                KLog.json(jsonArr.toString());
                 if (jsonArr != null) {
                     long nowTime = System.currentTimeMillis();
                     int type = -1;
@@ -247,13 +262,13 @@ public class SplashActivity extends AppCompatActivity {
 
 
     /**
-     * 自动登陆
+     * 自动登陆--其实就是获取用户的数据
      */
     private void autoLogin() {
-//        if (LocalUserInfo.getInstance().isLogin()) {
-//            LocalUserInfo.getInstance().loadLocalUserInfo(this, LocalUserInfo.getInstance().getLocalUserId(this));
-//            IUserCenterServlet.sendToUserCenter(toUserCenterListener, errorListener);
-//        }
+        if (UserPreference.getInstance(this).isLogin()) {
+            UserPreference.getInstance(this).loadLocalUserInfo(UserPreference.getInstance(this).getUserId());
+            IUserCenterServlet.sendToUserCenter(toUserCenterListener, errorListener);
+        }
     }
 
 

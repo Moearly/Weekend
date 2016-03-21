@@ -39,10 +39,20 @@ public class IRecommendServlet {
             QMusicJSONRequest request = new QMusicJSONRequest(1, BEnvironment.RECOMMEND_V2_SERVLET, listener, errorListener);
             request.setParams(params);
             QMusicRequestManager.getInstance().getRequestQueue().add(request);
-            KLog.e("", "url----->" + request.getUrl() + params);
+            KLog.e("url----->" + request.getUrl() + params);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
+
+    public static void tags(Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+        HashMap<String, String> params = new HashMap();
+        params.put("method", "getTags");
+        QMusicJSONRequest request = new QMusicJSONRequest(1, BEnvironment.RECOMMEND_V2_SERVLET, listener, errorListener);
+        request.setParams(params);
+        QMusicRequestManager.getInstance().getRequestQueue().add(request);
+        KLog.e("url----->" + request.getUrl() + params);
+    }
+
 
 }

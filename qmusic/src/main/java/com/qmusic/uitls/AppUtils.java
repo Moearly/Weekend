@@ -2,6 +2,7 @@ package com.qmusic.uitls;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.text.SpannableString;
@@ -9,9 +10,12 @@ import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
+import android.view.Display;
+import android.view.WindowManager;
 
 
 import com.github.johnpersano.supertoasts.SuperToast;
+import com.qmusic.base.BaseApplication;
 
 import java.util.List;
 import java.util.Random;
@@ -43,10 +47,10 @@ public class AppUtils {
     public static ForegroundColorSpan greenForegroundSpan;
     public static ForegroundColorSpan whiteForegroundSpan;
 
-    public static Typeface typefaceLatoRegular = null;
-    public static Typeface typefaceLatoHairline = null;
-    public static Typeface typefaceLatoLight = null;
-    public static Typeface typefaceZiTiRegular = null;
+//    public static Typeface typefaceLatoRegular = null;
+//    public static Typeface typefaceLatoHairline = null;
+//    public static Typeface typefaceLatoLight = null;
+//    public static Typeface typefaceZiTiRegular = null;
     private static Random random;
 
     private static String lastColor0, lastColor1, lastColor2;
@@ -57,12 +61,16 @@ public class AppUtils {
 
 
     public static final int ADD_COLOR_COUNT = 3;
+    private static int screenHeight;
+    private static int screenWidth;
+    public static final int SCREEN_HEIGHT = 101;
+    public static final int SCREEN_WIDTH = 100;
 
 
     public static void init(Context context) {
-
-        typefaceZiTiRegular = Typeface.createFromAsset(
-                context.getAssets(), "fonts/ziti.otf");
+//
+//        typefaceZiTiRegular = Typeface.createFromAsset(
+//                context.getAssets(), "fonts/ziti.otf");
 //        typefaceLatoRegular = Typeface.createFromAsset(
 //                context.getAssets(), "fonts/Lato-Regular.ttf");
 //        typefaceLatoHairline = Typeface.createFromAsset(
@@ -87,6 +95,11 @@ public class AppUtils {
 //        addColors[1] = "bg_purple";
 //        addColors[2] = "bg_yellow";
 
+    }
+
+    public static Typeface getTypefaceZiTi() {
+        return Typeface.createFromAsset(
+                BaseApplication.context().getAssets(), "fonts/ziti.otf");
     }
     public static SpannableString getSpanString(String info, int start, int end, float size, boolean isBold, int foregroundColor, int backgroundColor) {
         SpannableString spanString = new SpannableString(info);
@@ -129,6 +142,44 @@ public class AppUtils {
         }
         return errorString;
     }
+
+    public static int getScreenWidth() {
+        if (screenWidth > 0) {
+            return screenWidth;
+        }
+        screenWidth = getScreenDimens(SCREEN_WIDTH);
+        return screenWidth;
+    }
+
+    public static int getScreenHeight() {
+        if (screenHeight > 0) {
+            return screenHeight;
+        }
+        screenHeight = getScreenDimens(SCREEN_HEIGHT);
+        return screenHeight;
+    }
+
+
+    public static int getScreenDimens(int type) {
+        Display display;
+        Point size;
+        if (type == SCREEN_WIDTH) {
+            display = ((WindowManager) BaseApplication.context().getSystemService("window")).getDefaultDisplay();
+            size = new Point();
+            display.getSize(size);
+            return size.x;
+        } else if (type != SCREEN_HEIGHT) {
+            return 0;
+        } else {
+            display = ((WindowManager) BaseApplication.context().getSystemService("window")).getDefaultDisplay();
+            size = new Point();
+            display.getSize(size);
+            return size.y;
+        }
+    }
+
+
+
 
     public static String getPhoneInfo() {
         return Build.MODEL;

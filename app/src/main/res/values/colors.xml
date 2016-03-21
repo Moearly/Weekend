@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/theme_main_color</color>
+    <color name="colorPrimaryDark">@color/blue_pressed</color>
+    <color name="colorAccent">@color/white</color>
+
+    <color name="main_bg">@color/white</color>
 
     <color name="theme_main_color">@color/blue</color>
     <color name="statusBarColor">@color/theme_main_color</color>

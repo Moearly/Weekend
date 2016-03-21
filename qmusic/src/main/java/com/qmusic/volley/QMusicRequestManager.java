@@ -194,7 +194,7 @@ public class QMusicRequestManager {
 		HttpStack stack;
 		if (trusted) {
 			if (Build.VERSION.SDK_INT >= 9) {
-				stack = new HurlStack();
+				stack = new QMusicHurlStack();
 			} else {
 				stack = new HttpClientStack(AndroidHttpClient.newInstance(BConstants.APP_NAME));
 			}
@@ -204,7 +204,7 @@ public class QMusicRequestManager {
 			SSLSocketFactory sf = sslContext.getSocketFactory();
 			HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier);
 			HttpsURLConnection.setDefaultSSLSocketFactory(sf);
-			stack = new HurlStack();
+			stack = new QMusicHurlStack();
 		} else {
 			HttpParams httpParams = new BasicHttpParams();
 			// httpParams.setParameter(CoreProtocolPNames.PROTOCOL_VERSION,

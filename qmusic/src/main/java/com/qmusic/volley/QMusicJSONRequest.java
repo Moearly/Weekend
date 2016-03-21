@@ -8,10 +8,13 @@ import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.qmusic.app.App;
+import com.qmusic.base.BaseApplication;
 import com.qmusic.common.Common;
+import com.qmusic.db.UserPreference;
 import com.qmusic.uitls.BLog;
 import com.qmusic.uitls.SharedPreferencesUtil;
 import com.qmusic.volley.cache.utils.L;
+import com.socks.library.KLog;
 
 import java.io.UnsupportedEncodingException;
 import org.json.JSONObject;
@@ -66,16 +69,16 @@ public class QMusicJSONRequest extends QmusicRequest<JSONObject> {
         if (response.headers.containsKey("Set-Cookie")) {
             for (String s : ((String) response.headers.get("Set-Cookie")).split(";")) {
                 if (s.indexOf("JSESSIONID") > -1) {
-                    L.e("JSESSIONID get : " + s);
-                    L.e("JSESSIONID save : " + s);
-                    SharedPreferencesUtil.saveStringSharedPreference(App.context(), Common.Key.TOKEN, s);
+                    KLog.i("JSESSIONID get : " + s);
+                    KLog.i("JSESSIONID save : " + s);
+                    UserPreference.getInstance(BaseApplication.context()).saveToken(s);
                 } else if (s.indexOf(Common.Key.CITY) > -1) {
                     Common.isRefresh = true;
-                    SharedPreferencesUtil.saveStringSharedPreference(App.context(), Common.Key.CITY, s.replaceAll("city=", ""));
+                    UserPreference.getInstance(BaseApplication.context()).setUserCity(s.replaceAll(Common.Key.CITY+"=", ""));
                 }
             }
         }
-        BLog.e("", "url------> response : " + str);
+        KLog.e("", "url------> response : " + str);
         return responseJSON;
     }
 }

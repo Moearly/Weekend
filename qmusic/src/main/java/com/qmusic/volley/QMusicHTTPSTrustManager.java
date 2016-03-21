@@ -11,6 +11,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import com.qmusic.uitls.BLog;
+import com.socks.library.KLog;
 
 public class QMusicHTTPSTrustManager implements X509TrustManager {
 	private static final X509Certificate[] _AcceptedIssuers = new X509Certificate[] {};
@@ -73,7 +74,7 @@ public class QMusicHTTPSTrustManager implements X509TrustManager {
 
 			@Override
 			public boolean verify(String urlHostName, SSLSession session) {
-				BLog.d("RequestImageManager", "" + urlHostName + " vs. " + session.getPeerHost());
+				KLog.d("RequestImageManager", "" + urlHostName + " vs. " + session.getPeerHost());
 				return true;
 			}
 

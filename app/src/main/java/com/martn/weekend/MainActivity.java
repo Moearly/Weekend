@@ -1,6 +1,9 @@
 package com.martn.weekend;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -9,15 +12,28 @@ import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.martn.weekend.adapter.MainPagerNewAdapter;
 import com.martn.weekend.base.BaseActivity;
 import com.martn.weekend.request.IRecommendServlet;
-import com.martn.weekend.result.TagsResult;
+import com.martn.weekend.request.IUserCenterServlet;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.qmusic.base.BaseApplication;
+import com.qmusic.bean.LocalNewsBean;
+import com.qmusic.db.UserPreference;
+import com.qmusic.result.TagsResult;
 import com.martn.weekend.view.PagerSlidingTabStrip;
 import com.qmusic.common.Common;
+import com.qmusic.uitls.AppUtils;
+import com.qmusic.uitls.Helper;
 import com.qmusic.uitls.SharedPreferencesUtil;
 import com.socks.library.KLog;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -52,14 +68,80 @@ public class MainActivity extends BaseActivity {
     TextView tvError;
     TagsResult tagsResult;
 
-    Response.ErrorListener errorListener = new Response.ErrorListener() {
-        public void onErrorResponse(VolleyError error) {
-            //Utils.dissmissProgressDialog(MainActivity.this.pglog);
-            //Utils.showToast("\u670d\u52a1\u5668\u5f02\u5e38\uff0c\u8bf7\u7a0d\u540e\u518d\u8bd5");
-            if (tagsResult == null || tagsResult.tagList == null || tagsResult.tagList.isEmpty()) {
-                tvError.setVisibility(0);
+    private MainPagerNewAdapter mainPagerNewAdapter;
+    private RunHandler runHandler;
+
+    private class MyThread extends Thread {
+        private MyThread() {
+        }
+
+        public void run() {
+            while (true) {
+                try {
+                    IUserCenterServlet.getNewsCount(getNewsCountListener, errorListener);
+                    sleep(120000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private MyThread myThread;
+
+    private class RunHandler extends Handler {
+        private RunHandler() {
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            if (myThread == null) {
+                myThread = new MyThread();
+            }
+            if (myThread.isInterrupted() || !myThread.isAlive()) {
+                myThread.start();
+            }
+        }
+    }
+
+    private Response.Listener<JSONObject> getNewsCountListener = new Response.Listener<JSONObject>() {
+        @Override
+        public void onResponse(JSONObject response) {
+            if ("success".equals(response.optString("code"))) {
+                LocalNewsBean.getInstance().parse(response);
+            } else if ("error_1".equals(response.optString("code"))) {
+                UserPreference.getInstance(ctx).clean();
+                LocalNewsBean.getInstance().clean();
+            }
+            //刷新未读消息
+            refreshRed();
+        }
+    };
+
+    private Response.Listener<JSONObject> tagsListener = new Response.Listener<JSONObject>() {
+        @Override
+        public void onResponse(JSONObject response) {
+            KLog.json("tagsListener : ", response.toString());
+            tagsResult = new TagsResult(response);
+            if (tagsResult.success) {
+                setupView();
             } else {
-                tvError.setVisibility(8);
+                Helper.showToast(tagsResult.description);
+            }
+            dismissLoading();
+        }
+    };
+
+
+
+    private Response.ErrorListener errorListener = new Response.ErrorListener() {
+        public void onErrorResponse(VolleyError error) {
+            dismissLoading();
+            Helper.showToast("服务器异常，请稍后再试");
+            if (tagsResult == null || tagsResult.tagList == null || tagsResult.tagList.isEmpty()) {
+                tvError.setVisibility(View.VISIBLE);
+            } else {
+                tvError.setVisibility(View.GONE);
             }
         }
     };
@@ -70,10 +152,10 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void onResponse(JSONObject response) {
-            KLog.e("getShowPagesListener : " + response);
+            KLog.json(response.toString());
             if ("success".equals(response.optString("code"))) {
-                SharedPreferencesUtil.saveStringSharedPreference(MainActivity.this.getApplicationContext(), Common.Key.KEY_SHOW_PAGES, response.toString());
-                //downImage(response);
+                SharedPreferencesUtil.saveStringSharedPreference(BaseApplication.context(), Common.Key.KEY_SHOW_PAGES, response.toString());
+                downImage(response);
             }
         }
     };
@@ -84,15 +166,88 @@ public class MainActivity extends BaseActivity {
         setContentView(View.inflate(this, R.layout.activity_main, null));
         ButterKnife.bind(this);
         initView();
+        getNewsCount();
         getShowPages();
+        showLoading();
+        IRecommendServlet.tags(tagsListener, errorListener);
     }
+
+    private void getNewsCount() {
+        if (UserPreference.getInstance(ctx).isLogin()) {
+            if (runHandler == null) {
+                runHandler = new RunHandler();
+            }
+            runHandler.sendEmptyMessage(0);
+        }
+    }
+
 
     private void initView() {
 
     }
 
+    private void setupView() {
+        if (Common.isRefresh && mainPagerNewAdapter != null) {
+            this.mainPagerNewAdapter.onRefresh(this.tagsResult.tagList);
+            Common.isRefresh = false;
+        }
+        mainPagerNewAdapter = new MainPagerNewAdapter(getSupportFragmentManager(), tagsResult.tagList);
+        viewpager.setAdapter(mainPagerNewAdapter);
+        tabs.setViewPager(viewpager);
+        tabs.setUnderlineColorResource(R.color.blue);
+        tabs.setUnderlineHeight(2);
+        tabs.setDividerColorResource(R.color.transparent);
+        tabs.setTextColorResource(R.color.main_text_black);
+        tabs.setTextSize((int) (((double) AppUtils.getScreenWidth()) * 0.03d));
+        tabs.setTypeface(AppUtils.getTypefaceZiTi());
+    }
+
+
+
     private void getShowPages() {
         IRecommendServlet.findShowPageList(this.getShowPagesListener, this.errorListener);
     }
+
+    private void downImage(JSONObject json) {
+        JSONArray jsonArr = json.optJSONArray("showpage_arr");
+        if (jsonArr != null) {
+            for (int i = 0; i < jsonArr.length(); i++) {
+                ImageLoader.getInstance().loadImage(jsonArr.optJSONObject(i).optString("showpage_photo"), new ImageLoadingListener() {
+                    public void onLoadingStarted(String arg0, View arg1) {
+                    }
+
+                    public void onLoadingFailed(String arg0, View arg1, FailReason arg2) {
+                    }
+
+                    public void onLoadingComplete(String arg0, View arg1, Bitmap arg2) {
+                        try {
+                            ImageLoader.getInstance().getDiskCache().save(arg0, arg2);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    public void onLoadingCancelled(String arg0, View arg1) {
+                    }
+                });
+            }
+        }
+    }
+
+    public void refreshRed() {
+        runOnUiThread(new Runnable() {
+            public void run() {
+                //控制未读消息显示
+//                if (LocalNewsBean.getInstance().getAllNewsCount() > 0 || LocalNewsBean.getInstance().getUnreadMsgCountTotal() > 0) {
+//                    redIV.setVisibility(0);
+//                } else {
+//                    redIV.setVisibility(4);
+//                }
+            }
+        });
+    }
+
+
+
 
 }

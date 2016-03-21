@@ -36,7 +36,7 @@ public class Common {
         public static final int RESULT_LOGOUT_SUCCESS = 6;
         public static final int RESULT_PAY_SHARE_FRIEND_ZONE = 4001;
         public static final int RESULT_SETUP_SUCCESS = 8;
-        public static final String TOKEN = "token";
+//        public static final String TOKEN = "token";
     }
 
 }

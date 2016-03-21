@@ -30,7 +30,7 @@ public abstract class PluginManager {
 		}
 	}
 
-	public static final BasePlug getPlugin(String pluginName) {
+	public static BasePlug getPlugin(String pluginName) {
 		return plugins.get(pluginName);
 	}
 }
