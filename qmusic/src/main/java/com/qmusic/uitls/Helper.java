@@ -46,7 +46,7 @@ public class Helper {
         superToast.setTextSize(SuperToast.TextSize.SMALL);
         superToast.setText(text);
         superToast.setBackground(color);
-        superToast.getTextView().setTypeface(AppUtils.typefaceLatoLight);
+        superToast.getTextView().setTypeface(AppUtils.getTypefaceZiTi());
         superToast.show();
     }
 
