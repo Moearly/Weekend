@@ -163,7 +163,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(View.inflate(this, R.layout.activity_main, null));
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initView();
         getNewsCount();

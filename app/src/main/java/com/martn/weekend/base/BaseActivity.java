@@ -1,28 +1,20 @@
 package com.martn.weekend.base;
 
-import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.martn.weekend.MainActivity;
 import com.martn.weekend.R;
-import com.martn.weekend.utility.ViewUtils;
 import com.qmusic.base.BaseApplication;
-import com.qmusic.uitls.AppUtils;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
 
 
@@ -44,86 +36,39 @@ public class BaseActivity extends AppCompatActivity {
     //private LoadingFragment mLoading;
     private ProgressDialog mLoading;
     private LinearLayout rootLayout;
-    protected Toolbar toolbar;
-    protected TextView title;
+    private SystemBarTintManager tintManager;
 
-    /**
-     * 初始化appbar显示
-     */
-    private void initToolbar() {
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
-            title = (TextView) findViewById(R.id.tv_title);
-        }
-        //BlackTech.enableApiSwitch(this.toolbar, this);
-    }
-
-    protected void setTitle(String t) {
-        if (title != null) {
-            title.setTypeface(AppUtils.getTypefaceZiTi());
-            title.setText(t);
-        }
-    }
 
     public void comeOnBaby(Class pClass) {
         startActivity(new Intent(this, pClass));
     }
 
-    @Override
+    @SuppressLint({"InlinedApi"})
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.setContentView(R.layout.activity_base);
         //bug监听上传
-//        AppManager.getAppManager().addActivity(this);
         ctx = this;
         activity = this;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setStatusBar();
-        } else {
-            // do something for phones running an SDK before lollipop
-            View statusBarView = (View)findViewById(R.id.status_bar_view);
-            statusBarView.getLayoutParams().height = ViewUtils.getStatusBarHeight();
+        MobclickAgent.openActivityDurationTrack(false);
+        if (Build.VERSION.SDK_INT >= 19) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            if (tintManager == null) {
+                tintManager = new SystemBarTintManager(this);
+            }
+            tintManager.setStatusBarTintColor(getResources().getColor(R.color.blue));
+            tintManager.setStatusBarTintEnabled(true);
         }
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void setStatusBar() {
-        // Do something for lollipop and above versions
-        Window window = this.getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(ContextCompat.getColor(ctx, R.color.statusBarColor));
 
     }
 
-    @Override
-    public void setContentView(int layoutResID) {
-        rootLayout = ((LinearLayout) findViewById(R.id.root_layout));
-        if (rootLayout != null) {
-            View view = View.inflate(this, layoutResID, null);
-            rootLayout.addView(view, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
-            initToolbar();
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
+    public void onClick(View v) {
+        switch (v.getId()) {
+//            case R.id.topbar_left_textview /*2131493401*/:
+//                finish();
             default:
-                return super.onOptionsItemSelected(item);
         }
     }
-
 
 
     @Override
@@ -150,7 +95,6 @@ public class BaseActivity extends AppCompatActivity {
     public void onBackPressed() {
         //MainAc还开在---则启动mainAc
         if (!((BaseApplication) getApplication()).getIsMainOpened()) {
-
             startActivity(new Intent(this.ctx, MainActivity.class));
             finish();
         }
