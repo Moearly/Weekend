@@ -1,10 +1,13 @@
 package com.martn.weekend.request;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.baidu.location.BDLocation;
+import com.qmusic.app.App;
 import com.qmusic.common.BEnvironment;
 import com.qmusic.localplugin.BaiduMapPlug;
 import com.qmusic.localplugin.PluginManager;
+import com.qmusic.uitls.AppUtils;
 import com.qmusic.volley.QMusicJSONRequest;
 import com.qmusic.volley.QMusicRequestManager;
 import com.socks.library.KLog;
@@ -53,6 +56,35 @@ public class IRecommendServlet {
         QMusicRequestManager.getInstance().getRequestQueue().add(request);
         KLog.e("url----->" + request.getUrl() + params);
     }
+
+    /**
+     * 获取主页list数据
+     * @param pageIndex
+     * @param channelid
+     * @param tagid
+     * @param listener
+     * @param errorListener
+     */
+    public static void mains(int pageIndex, String channelid, int tagid, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+        try {
+            HashMap<String, String> params = new HashMap();
+            JSONObject json = new JSONObject();
+            json.put("nowx", AppUtils.getLatitude());
+            json.put("nowy", AppUtils.getLongitude());
+            json.put("pageindex", pageIndex);
+            json.put("channelid", channelid);
+            json.put("tag_id", tagid);
+            params.put("method", "mainV3");
+            params.put("servicestr", json.toString());
+            QMusicJSONRequest request = new QMusicJSONRequest(Request.Method.POST, BEnvironment.RECOMMEND_V2_SERVLET, listener, errorListener);
+            request.setParams(params);
+            QMusicRequestManager.getInstance().getRequestQueue().add(request);
+            KLog.e("url----->" + request.getUrl() + params);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

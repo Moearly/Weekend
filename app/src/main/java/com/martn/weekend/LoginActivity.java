@@ -1,5 +1,8 @@
 package com.martn.weekend;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -136,6 +139,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             return false;
         }
     }
+
+    public static void startActivityForResult(Context context) {
+        ((Activity) context).startActivityForResult(new Intent(context, LoginActivity.class), 1);
+    }
+
 
 
     private String getMobile() {

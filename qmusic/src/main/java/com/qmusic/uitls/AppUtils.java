@@ -2,6 +2,7 @@ package com.qmusic.uitls;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -14,8 +15,11 @@ import android.view.Display;
 import android.view.WindowManager;
 
 
+import com.baidu.location.BDLocation;
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.qmusic.base.BaseApplication;
+import com.qmusic.localplugin.BaiduMapPlug;
+import com.qmusic.localplugin.PluginManager;
 
 import java.util.List;
 import java.util.Random;
@@ -47,7 +51,11 @@ public class AppUtils {
     public static ForegroundColorSpan greenForegroundSpan;
     public static ForegroundColorSpan whiteForegroundSpan;
 
-//    public static Typeface typefaceLatoRegular = null;
+    private static int imgItemGuanggaoHeight;
+    private static int imgItemHeight;
+    private static int imgItemWidth;
+
+    //    public static Typeface typefaceLatoRegular = null;
 //    public static Typeface typefaceLatoHairline = null;
 //    public static Typeface typefaceLatoLight = null;
 //    public static Typeface typefaceZiTiRegular = null;
@@ -178,7 +186,54 @@ public class AppUtils {
         }
     }
 
+    public static int getImgItemHeight() {
+        if (imgItemHeight > 0) {
+            return imgItemHeight;
+        }
+        imgItemHeight = (int) (((double) getScreenHeight()) * 0.3d);
+        return imgItemHeight;
+    }
 
+    public static int getImgItemGuanggaoHeight() {
+        if (imgItemGuanggaoHeight > 0) {
+            return imgItemGuanggaoHeight;
+        }
+        imgItemGuanggaoHeight = (int) (((double) getScreenHeight()) * 0.23d);
+        return imgItemGuanggaoHeight;
+    }
+
+    public static int getImgItemWidth() {
+        if (imgItemWidth > 0) {
+            return imgItemWidth;
+        }
+        imgItemWidth = (int) (((double) getScreenHeight()) * 0.93d);
+        return imgItemWidth;
+    }
+
+    public static String getLatitude() {
+        BDLocation loc = ((BaiduMapPlug) PluginManager.getPlugin(BaiduMapPlug.class.getSimpleName())).getLocation();
+        return loc != null ? String.valueOf(loc.getLatitude()) : "";
+    }
+
+    public static String getLongitude() {
+        BDLocation loc = ((BaiduMapPlug) PluginManager.getPlugin(BaiduMapPlug.class.getSimpleName())).getLocation();
+        return loc != null ? String.valueOf(loc.getLongitude()) :"";
+    }
+
+
+
+    public static String getChannelName(Context context) {
+        String appKey = "";
+        try {
+            ApplicationInfo ai = context.getPackageManager().getApplicationInfo(context.getPackageName(), 128);
+            if (!(ai == null || ai.metaData == null)) {
+                appKey = ai.metaData.getString("UMENG_CHANNEL");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return appKey;
+    }
 
 
     public static String getPhoneInfo() {

@@ -25,4 +25,10 @@
     <color name="gray_666666">#ff666666</color>
     <color name="line_gray">#fff3f4f1</color>
     <color name="white_pressed">#fff8f8f8</color>
+    <color name="mian_text_red">#ffff6d85</color>
+
+    <color name="gplus_color_1">#ff3e802f</color>
+    <color name="gplus_color_2">#fff4b400</color>
+    <color name="gplus_color_3">#ff427fed</color>
+    <color name="gplus_color_4">#ffb23424</color>
 </resources>

@@ -15,6 +15,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 
 import com.martn.weekend.R;
+import com.socks.library.KLog;
 
 /**
  * Created by zhanglei on 15/7/20.
@@ -136,7 +137,7 @@ public class CircleRefreshLayout extends FrameLayout {
         mHeader.setOnViewAniDone(new AnimationView.OnViewAniDone() {
             @Override
             public void viewAniDone() {
-//                Log.i(TAG, "should invoke");
+                KLog.i(TAG, "should invoke");
                 mUpTopAnimator.start();
             }
         });

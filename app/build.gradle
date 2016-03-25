@@ -46,4 +46,5 @@ dependencies {
     compile project(':qmusic')
     compile project(path: ':volley')
     compile files('libs/locSDK_5.0.jar')
+    compile 'com.hannesdorfmann.smoothprogressbar:library:1.0.0'
 }
