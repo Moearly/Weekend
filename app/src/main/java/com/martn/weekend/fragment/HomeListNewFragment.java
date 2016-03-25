@@ -22,6 +22,7 @@ import com.martn.weekend.dialogs.CityNewDialog;
 import com.martn.weekend.request.IRecommendServlet;
 import com.martn.weekend.view.RefreshListView;
 import com.martn.weekend.view.circlerefresh.CircleRefreshLayout;
+import com.qmusic.app.App;
 import com.qmusic.common.Common;
 import com.qmusic.db.UserPreference;
 import com.qmusic.result.MainsResult;
@@ -66,11 +67,7 @@ public class HomeListNewFragment extends BaseFragment {
     int position;
 
     private CityNewDialog cityDialog;
-
     private HomeListNewAdapter adapter;
-
-//    private SmoothProgressBar loadMorePB;
-
     private MainsResult mainResult;//请求首页--返回数据、
 
 
@@ -80,7 +77,7 @@ public class HomeListNewFragment extends BaseFragment {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0:
-                    Common.isRefresh = true;
+                    App.isRefresh = true;
                     break;
             }
             registMoneyHandler.sendEmptyMessageDelayed(0, 3000);
@@ -257,7 +254,7 @@ public class HomeListNewFragment extends BaseFragment {
                         }
                     } else if (type == 1) {
                         KLog.e("course info----->" + adapter.getResult().tcrList.get(index).toString());
-                        // ActDetailActivity.startActivity(activity, adapter.getResult().tcrList.get(index).courseid);
+//                         ActDetailActivity.startActivity(activity, adapter.getResult().tcrList.get(index).courseid);
                     }
                 }
             }

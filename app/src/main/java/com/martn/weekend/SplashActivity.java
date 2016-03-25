@@ -266,7 +266,9 @@ public class SplashActivity extends AppCompatActivity {
      */
     private void autoLogin() {
         if (UserPreference.getInstance(this).isLogin()) {
+            //开始获取用户数据
             UserPreference.getInstance(this).loadLocalUserInfo(UserPreference.getInstance(this).getUserId());
+            KLog.i("start get User data---- userid："+UserPreference.getInstance(this).getUserId());
             IUserCenterServlet.sendToUserCenter(toUserCenterListener, errorListener);
         }
     }

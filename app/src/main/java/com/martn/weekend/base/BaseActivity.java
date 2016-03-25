@@ -56,10 +56,14 @@ public class BaseActivity extends AppCompatActivity {
             if (tintManager == null) {
                 tintManager = new SystemBarTintManager(this);
             }
-            tintManager.setStatusBarTintColor(getResources().getColor(R.color.blue));
+            tintManager.setStatusBarTintColor(getStatusBarColor());
             tintManager.setStatusBarTintEnabled(true);
         }
 
+    }
+
+    protected int getStatusBarColor() {
+        return getResources().getColor(R.color.blue);
     }
 
     public void onClick(View v) {

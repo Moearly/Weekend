@@ -74,7 +74,7 @@ public class QMusicJSONRequest extends QmusicRequest<JSONObject> {
                     KLog.i("JSESSIONID save : " + s);
                     UserPreference.getInstance(BaseApplication.context()).saveToken(s);
                 } else if (s.indexOf(Common.Key.CITY) > -1) {
-                    Common.isRefresh = true;
+                    App.isRefresh = true;
                     UserPreference.getInstance(BaseApplication.context()).setUserCity(s.replaceAll(Common.Key.CITY+"=", ""));
                 }
             }

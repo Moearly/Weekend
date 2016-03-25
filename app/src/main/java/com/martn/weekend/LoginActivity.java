@@ -12,12 +12,12 @@ import android.widget.TextView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.martn.weekend.base.BaseActivity;
+import com.qmusic.app.App;
 import com.qmusic.db.UserPreference;
 import com.martn.weekend.request.IUserCenterServlet;
 import com.martn.weekend.request.IUserServlet;
 import com.qmusic.result.ToUserCenterModel;
 import com.martn.weekend.utility.FormatUtils;
-import com.qmusic.common.Common;
 import com.qmusic.uitls.Helper;
 import com.socks.library.KLog;
 
@@ -57,7 +57,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             if (response == null || !"success".equals(response.optString("code"))) {
                 dismissLoading();
             } else {
-                Common.isRefresh = true;
+                App.isRefresh = true;
                 IUserCenterServlet.sendToUserCenter(toUserCenterListener, errorListener);
             }
             //Common.WX_CODE = CoinPacketExtension.NAMESPACE;

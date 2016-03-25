@@ -35,6 +35,7 @@ public class App extends BaseApplication {
     public static boolean DEBUG;
     private RefWatcher mRefWatcher;
     static Handler handler;
+    public static boolean isRefresh;
     public static final String TAG = App.class.getSimpleName();
 
     @Override

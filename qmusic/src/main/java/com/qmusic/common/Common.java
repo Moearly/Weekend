@@ -11,7 +11,7 @@ package com.qmusic.common;
  */
 public class Common {
 
-    public static boolean isRefresh;
+
 
 
     public class Key {

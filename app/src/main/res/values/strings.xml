@@ -11,4 +11,21 @@
     <string name="service_error_mit">服务器异常，请稍后再试</string>
     <string name="check_detail">查看详情></string>
 
+
+    <string name="joined_act">我的订单</string>
+    <string name="my_order">我的订单</string>
+    <string name="confirm">确定</string>
+    <string name="interest">兴趣</string>
+    <string name="attention_act">我的关注</string>
+    <string name="info_recommend_friend">分享有礼</string>
+    <string name="info_coupons">优惠券</string>
+    <string name="wallet">钱包</string>
+    <string name="info_setup">设置</string>
+    <string name="info_contact_service">联系客服</string>
+    <string name="info_i_will_release">我要发布</string>
+    <string name="info_like">喜欢的</string>
+    <string name="i_attention_user">已关注的用户</string>
+    <string name="attention_me_user">关注我的用户</string>
 </resources>
+
+
