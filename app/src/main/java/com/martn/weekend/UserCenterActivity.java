@@ -158,6 +158,7 @@ public class UserCenterActivity extends BaseActivity implements AdapterView.OnIt
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_close:
+                finish();
                 break;
             case R.id.iv_message:
                 break;

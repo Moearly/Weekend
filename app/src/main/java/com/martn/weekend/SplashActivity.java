@@ -19,7 +19,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.martn.weekend.request.IUserCenterServlet;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.qmusic.base.BaseApplication;
 import com.qmusic.bean.ShowPageBean;
 import com.qmusic.common.Common;
 import com.qmusic.db.UserPreference;
