@@ -1,5 +1,7 @@
 package com.martn.weekend;
 
+import android.os.Bundle;
+
 import com.martn.weekend.base.BaseActivity;
 
 /**
@@ -12,4 +14,11 @@ import com.martn.weekend.base.BaseActivity;
  * @version V1.0
  */
 public class ClassifyActivity extends BaseActivity{
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_classify);
+
+    }
 }
