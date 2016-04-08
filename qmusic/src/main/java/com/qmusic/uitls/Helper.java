@@ -17,6 +17,7 @@ import com.qmusic.base.BaseApplication;
  */
 public class Helper {
     private static Helper ourInstance = new Helper();
+
     private Helper() {
     }
 
