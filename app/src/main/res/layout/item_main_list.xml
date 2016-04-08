@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/screen_margin"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+    <RelativeLayout
+        android:id="@+id/rl_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip"
+        android:layout_below="@id/iv_image">
+        <View
+            android:id="@+id/white_weight_view"
+            android:layout_width="fill_parent"
+            android:layout_height="11.0dip" />
+        <TextView
+            android:textSize="@dimen/font_size_46"
+            android:textColor="@color/main_text_black"
+            android:ellipsize="end"
+            android:id="@+id/tv_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3.0dip"
+            android:layout_marginTop="3.0dip"
+            android:layout_marginRight="20.0dip"
+            android:maxLines="2"
+            android:layout_below="@id/white_weight_view"
+            android:lineSpacingExtra="3.0dip" />
+        <TextView
+            android:textSize="@dimen/font_size_36"
+            android:textColor="@color/main_text_gray"
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3.0dip"
+            android:layout_marginTop="6.0dip"
+            android:layout_below="@id/tv_title" />
+        <TextView
+            android:textSize="@dimen/font_size_36"
+            android:textColor="@color/main_text_gray"
+            android:id="@+id/tv_location"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3.0dip"
+            android:layout_marginTop="1.0dip"
+            android:layout_marginRight="3.0dip"
+            android:layout_below="@id/tv_date" />
+        <TextView
+            android:textSize="@dimen/font_size_30"
+            android:textColor="@color/mian_text_red"
+            android:id="@+id/tv_price"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18.0dip"
+            android:layout_marginBottom="@dimen/screen_margin"
+            android:layout_below="@id/tv_location"
+            android:layout_alignLeft="@id/tv_location" />
+        <TextView
+            android:textSize="@dimen/font_size_30"
+            android:textColor="@color/main_text_gray"
+            android:id="@+id/tv_old_price"
+            android:background="@drawable/line_delete"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9.0dip"
+            android:layout_marginBottom="1.7999878dip"
+            android:layout_toRightOf="@id/tv_price"
+            android:layout_alignBottom="@id/tv_price" />
+        <TextView
+            android:textSize="@dimen/font_size_30"
+            android:textColor="@color/main_text_gray"
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8.0dip"
+            android:layout_marginBottom="1.7999878dip"
+            android:layout_toRightOf="@id/tv_old_price"
+            android:layout_alignBottom="@id/tv_old_price" />
+        <TextView
+            android:textSize="@dimen/font_size_30"
+            android:textColor="@color/main_text_gray_light"
+            android:id="@+id/tv_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16.0dip"
+            android:layout_marginBottom="1.7999878dip"
+            android:layout_alignBottom="@id/tv_price"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <View
+        android:id="@+id/line"
+        android:background="@color/line_gray"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/line_height"
+        android:layout_below="@id/rl_info" />
+    <View
+        android:id="@+id/white_view"
+        android:layout_width="fill_parent"
+        android:layout_height="11.0dip"
+        android:layout_below="@id/iv_image" />
+    <TextView
+        android:textSize="@dimen/font_size_36"
+        android:textColor="@color/main_text_gray"
+        android:gravity="center"
+        android:id="@+id/tv_favnum"
+        android:background="#fff4f3f1"
+        android:paddingLeft="11.0dip"
+        android:paddingTop="5.0dip"
+        android:paddingRight="4.0dip"
+        android:paddingBottom="5.0dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/white_view"
+        android:layout_alignBottom="@id/white_view" />
+    <ImageView
+        android:id="@+id/iv_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="-10.0dip"
+        android:src="@drawable/img_balloon_yellow"
+        android:layout_toLeftOf="@id/tv_favnum"
+        android:layout_alignBottom="@id/white_view" />
+    <ImageView
+        android:id="@+id/iv_fav_line"
+        android:layout_width="3.0dip"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg_corner_blue_tr_br"
+        android:layout_toRightOf="@id/tv_favnum"
+        android:layout_alignTop="@id/tv_favnum"
+        android:layout_alignBottom="@id/white_view" />
+    <ImageView
+        android:id="@+id/iv_full"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_full"
+        android:scaleType="center"
+        android:layout_alignLeft="@id/iv_image"
+        android:layout_alignTop="@id/iv_image"
+        android:layout_alignRight="@id/iv_image"
+        android:layout_alignBottom="@id/iv_image" />
+</RelativeLayout>

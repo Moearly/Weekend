@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,19 +17,23 @@ import com.martn.weekend.adapter.MainPagerNewAdapter;
 import com.martn.weekend.base.BaseActivity;
 import com.martn.weekend.request.IRecommendServlet;
 import com.martn.weekend.request.IUserCenterServlet;
+import com.martn.weekend.utility.AnimateFirstDisplayListener;
+import com.martn.weekend.view.PagerSlidingTabStrip;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.qmusic.app.App;
 import com.qmusic.base.BaseApplication;
 import com.qmusic.bean.LocalNewsBean;
+import com.qmusic.common.BEnvironment;
+import com.qmusic.common.Common;
 import com.qmusic.db.UserPreference;
 import com.qmusic.result.TagsResult;
-import com.martn.weekend.view.PagerSlidingTabStrip;
-import com.qmusic.common.Common;
 import com.qmusic.uitls.AppUtils;
 import com.qmusic.uitls.Helper;
 import com.qmusic.uitls.SharedPreferencesUtil;
 import com.socks.library.KLog;
+import com.umeng.analytics.MobclickAgent;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -37,6 +42,7 @@ import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -70,10 +76,29 @@ public class MainActivity extends BaseActivity {
 
     private MainPagerNewAdapter mainPagerNewAdapter;
     private RunHandler runHandler;
+    private long nowTime;
+    private long lastTime;
+
+    @OnClick({R.id.iv_user_head,R.id.tv_error})
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_user_head:
+                if (UserPreference.getInstance(ctx).isLogin()) {
+                    UserCenterActivity.comeBaby(this);
+                    overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.slide_out_to_bottom);
+                    return;
+                }
+
+                break;
+            case R.id.tv_error:
+                tvError.setVisibility(View.INVISIBLE);
+                showLoading();
+                IRecommendServlet.tags(tagsListener, errorListener);
+
+        }
+    }
 
     private class MyThread extends Thread {
-        private MyThread() {
-        }
 
         public void run() {
             while (true) {
@@ -133,7 +158,6 @@ public class MainActivity extends BaseActivity {
     };
 
 
-
     private Response.ErrorListener errorListener = new Response.ErrorListener() {
         public void onErrorResponse(VolleyError error) {
             dismissLoading();
@@ -145,7 +169,6 @@ public class MainActivity extends BaseActivity {
             }
         }
     };
-
 
 
     private Response.Listener<JSONObject> getShowPagesListener = new Response.Listener<JSONObject>() {
@@ -163,13 +186,34 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(View.inflate(this, R.layout.activity_main, null));
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initView();
         getNewsCount();
         getShowPages();
         showLoading();
         IRecommendServlet.tags(tagsListener, errorListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IUserCenterServlet.getNewsCount(getNewsCountListener, errorListener);
+        refreshRed();
+
+        if (UserPreference.getInstance(ctx).isLogin()) {
+            ImageLoader.getInstance().displayImage(new StringBuilder(BEnvironment.SERVER_IMG_URL)
+                    .append(UserPreference.getInstance(ctx).getUserPhoto()).toString(), ivUserHead, AnimateFirstDisplayListener.getHeadOptions(), AnimateFirstDisplayListener.getListener());
+        } else {
+            ivUserHead.setImageResource(R.drawable.img_head_logout);
+        }
+
+        if (App.isRefresh) {
+            showLoading();
+            IRecommendServlet.tags(tagsListener, errorListener);
+        }
+
+
     }
 
     private void getNewsCount() {
@@ -187,9 +231,9 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setupView() {
-        if (Common.isRefresh && mainPagerNewAdapter != null) {
-            this.mainPagerNewAdapter.onRefresh(this.tagsResult.tagList);
-            Common.isRefresh = false;
+        if (App.isRefresh && mainPagerNewAdapter != null) {
+            mainPagerNewAdapter.onRefresh(tagsResult.tagList);
+            App.isRefresh = false;
         }
         mainPagerNewAdapter = new MainPagerNewAdapter(getSupportFragmentManager(), tagsResult.tagList);
         viewpager.setAdapter(mainPagerNewAdapter);
@@ -201,7 +245,6 @@ public class MainActivity extends BaseActivity {
         tabs.setTextSize((int) (((double) AppUtils.getScreenWidth()) * 0.03d));
         tabs.setTypeface(AppUtils.getTypefaceZiTi());
     }
-
 
 
     private void getShowPages() {
@@ -234,6 +277,23 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode != 4) {
+            return super.onKeyDown(keyCode, event);
+        }
+        nowTime = System.currentTimeMillis();
+        if (nowTime - lastTime >= 2000 || lastTime == 0) {
+            Helper.showToast(getString(R.string.tip_double_click_exit));
+            lastTime = nowTime;
+            return false;
+        }
+        MobclickAgent.onKillProcess(this);
+        finish();
+        return false;
+    }
+
     public void refreshRed() {
         runOnUiThread(new Runnable() {
             public void run() {
@@ -246,8 +306,6 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
-
-
 
 
 }

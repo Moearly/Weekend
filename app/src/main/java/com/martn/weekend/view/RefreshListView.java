@@ -37,6 +37,7 @@ public class RefreshListView extends ListView {
     void init() {
         this.handlerIndex = 0;
         this.finishRefreshHandler = new Handler() {
+            @Override
             public void handleMessage(Message msg) {
                 KLog.e("finishRefreshHandler : " + refreshLayout.getAniStatus().toString());
                 if (refreshLayout.isRefreshing()) {

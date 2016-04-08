@@ -66,10 +66,10 @@ public class UserPreference {
 
 
     public boolean isLogin() {
-        if (TextUtils.isEmpty(getUserId()) && TextUtils.isEmpty(getUserToken())) {
-            return true;
-        }
-        return false;
+//        if (TextUtils.isEmpty(getUserId()) && TextUtils.isEmpty(getUserToken())) {
+//            return true;
+//        }
+        return true;
     }
 
     public String getMobile() {
@@ -101,13 +101,13 @@ public class UserPreference {
 
     public String getUserCity() {
         if (TextUtils.isEmpty(userCity)) {
-            userCity = getString(KEY_USER_CITY);
+            userCity = getString(userId+KEY_USER_CITY);
         }
         return userCity;
     }
 
     public void setUserCity(String userCity) {
-        putString(KEY_USER_CITY,userCity);
+        putString(userId+KEY_USER_CITY,userCity);
         this.userCity = userCity;
     }
 
@@ -138,11 +138,25 @@ public class UserPreference {
 
     }
 
+    public String getUserPhoto() {
+        return getString(userId+KEY_USER_PHOTO,"");
+    }
+
+
     public void save(ToUserCenterResult result, String password, String mobile) {
         if (!TextUtils.isEmpty(result.userId)) {
             userId = result.userId;
             this.mobile = mobile;
             this.password = password;
+            userInfo = result;
+            saveLocaltion(result);
+        }
+    }
+
+    public void save(ToUserCenterResult result) {
+        if (!TextUtils.isEmpty(result.userId)) {
+            KLog.e("userid:"+result.userId);
+            userId = result.userId;
             userInfo = result;
             saveLocaltion(result);
         }
@@ -156,7 +170,7 @@ public class UserPreference {
        putString(userId+KEY_USER_NICKNAME,result.userNickname);
        putString(userId+KEY_USER_TYPE,result.userType);
        putString(userId+KEY_USER_PHOTO,result.userPhoto);
-       putString(userId+KEY_USER_ONEABSTRACT,result.userOneabstract);
+        putString(userId+KEY_USER_ONEABSTRACT,result.userOneabstract);
        putString(userId+KEY_USER_NOTLOOKINFO_COUNT,result.userNotlookinfoCount);
        putString(userId+KEY_USER_RECOMMENDNUM,result.userRecommendnum);
        putString(userId+KEY_USER_CITY,userCity);
@@ -219,7 +233,7 @@ public class UserPreference {
     }
 
     public static String getCity() {
-        String city = getInstance(BaseApplication.context()).getString(KEY_USER_CITY,"北京");
+        String city = getInstance(BaseApplication.context()).getUserCity();
         String pinyin ;
         if (city.equals("北京")) {
             pinyin = "beijing";

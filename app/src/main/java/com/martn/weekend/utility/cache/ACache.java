@@ -154,7 +154,7 @@ public class ACache {
 	public String getAsString(String key) {
 		File file = mCache.get(key);
 		if (!file.exists())
-			return null;
+			return "";
 		boolean removeFile = false;
 		BufferedReader in = null;
 		try {
@@ -168,11 +168,11 @@ public class ACache {
 				return Utils.clearDateInfo(readString);
 			} else {
 				removeFile = true;
-				return null;
+				return "";
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-			return null;
+			return "";
 		} finally {
 			if (in != null) {
 				try {

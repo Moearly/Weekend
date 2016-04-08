@@ -1,6 +1,7 @@
 package com.martn.weekend.base;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
@@ -28,6 +29,7 @@ public class BaseFragment extends Fragment {
     protected Activity activity;
     protected ImageLoader imageLoader = ImageLoader.getInstance();
 //    private LeiFuLoading loading;
+    private ProgressDialog mLoading;
 //    //文件缓存
     protected ACache mCache;
 
@@ -116,6 +118,33 @@ public class BaseFragment extends Fragment {
 //        }
 //    }
 
+    /**
+     * 显示加载
+     */
+    public void showLoading() {
+        if (mLoading == null) {
+            mLoading = new ProgressDialog(activity);
+        }
+        if (!mLoading.isShowing()) {
+            mLoading.setMessage("请稍候...");
+            mLoading.show();
+        }
+
+    }
+
+
+    /**
+     * 关闭加载
+     */
+    public void dismissLoading() {
+
+        try {
+            if (mLoading != null)
+                mLoading.dismiss();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

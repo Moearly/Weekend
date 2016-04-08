@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_root"
+    android:fitsSystemWindows="true"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <com.martn.weekend.view.circlerefresh.CircleRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="@dimen/screen_margin"
+        android:layout_marginRight="@dimen/screen_margin"
+        app:AniBackColor="#fff2f2f2"
+        app:AniForeColor="#ffffffff"
+        app:CircleSmaller="6">
+        <com.martn.weekend.view.RefreshListView
+            android:id="@+id/rf_list"
+            android:background="#ffffffff"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:divider="@color/transparent" />
+    </com.martn.weekend.view.circlerefresh.CircleRefreshLayout>
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        style="@android:style/Widget.ProgressBar.Small.Inverse" />
+    <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
+        android:id="@+id/spb_load_more"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_alignParentBottom="true"
+        style="@style/GradientProgressBar" />
+</RelativeLayout>

@@ -19,7 +19,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.martn.weekend.request.IUserCenterServlet;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.qmusic.base.BaseApplication;
 import com.qmusic.bean.ShowPageBean;
 import com.qmusic.common.Common;
 import com.qmusic.db.UserPreference;
@@ -266,7 +265,9 @@ public class SplashActivity extends AppCompatActivity {
      */
     private void autoLogin() {
         if (UserPreference.getInstance(this).isLogin()) {
+            //开始获取用户数据
             UserPreference.getInstance(this).loadLocalUserInfo(UserPreference.getInstance(this).getUserId());
+            KLog.i("start get User data---- userid："+UserPreference.getInstance(this).getUserId());
             IUserCenterServlet.sendToUserCenter(toUserCenterListener, errorListener);
         }
     }
