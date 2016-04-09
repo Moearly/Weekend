@@ -1,5 +1,6 @@
 package com.martn.weekend;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,7 +27,9 @@ import com.martn.weekend.view.NoScrollGridView;
 import com.qmusic.base.BaseApplication;
 import com.qmusic.localplugin.BaiduMapPlug;
 import com.qmusic.localplugin.PluginManager;
+import com.qmusic.uitls.AppUtils;
 import com.qmusic.uitls.Helper;
+import com.socks.library.KLog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +38,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import me.imid.swipebacklayout.lib.Utils;
 
 /**
  * Title: Weekend
@@ -119,6 +123,7 @@ public class ClassifyActivity extends BaseActivity implements AdapterView.OnItem
             SearchClassActivity.comeBady(ClassifyActivity.this, getTagName(), 0);
         }
     };
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -225,21 +230,42 @@ public class ClassifyActivity extends BaseActivity implements AdapterView.OnItem
                 overridePendingTransition(R.anim.slide_in_from_bottom, android.R.anim.fade_out);//17432577
                 break;
             case R.id.week_textview:
+                intent = new Intent();
+                intent.setClass(this, SearchByTagActivity.class);
+                intent.putExtra("coursetype", -1);
+                intent.putExtra("title", "本周末");
+                startActivity(intent);
                 break;
             case R.id.near_textview:
+                KLog.e("getLatitude : " + AppUtils.getLatitude());
+                ActMapActivity.comeBady(this);
                 break;
         }
     }
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        return false;
+        if (actionId != 3) {
+            return false;
+        }
+        SearchClassActivity.comeBady(this, getTagName(), 0);
+        return true;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        switch (parent.getId()) {
+            case R.id.hot_tag_gridview:
+                SearchByTagActivity.comeBady(this, hotTagResult.tagList.get(position).id,
+                        hotTagResult.tagList.get(position).name, 1,
+                        hotTagResult.tagList.get(position).id);
+            case R.id.classify_tag_gridview:
+                SearchByTagActivity.comeBady(this, classifyTagResult.tagList.get(position).id,
+                        classifyTagResult.tagList.get(position).name, 0, 0);
+            default:
+        }
     }
+
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
