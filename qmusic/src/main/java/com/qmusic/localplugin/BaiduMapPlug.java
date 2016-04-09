@@ -6,7 +6,7 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
-import com.qmusic.app.App;
+import com.qmusic.base.BaseApplication;
 import com.qmusic.common.IAsyncDataCallback;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -101,7 +101,7 @@ public class BaiduMapPlug extends BasePlug implements IAsyncDataCallback<BDLocat
     public void updateLocation(IAsyncDataCallback<BDLocation> callback, long millis, int repeat) {
         this.callbackList.put(callback, Integer.valueOf(repeat));
         if (System.currentTimeMillis() - this.lastupdateTime <= millis && this.location != null) {
-            App.post(new AnonymousClass1(callback));
+            BaseApplication.post(new AnonymousClass1(callback));
         }
         start();
     }

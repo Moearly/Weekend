@@ -1,4 +1,4 @@
-package com.qmusic.model;
+package com.martn.weekend.model;
 
 import android.support.v4.widget.ExploreByTouchHelper;
 import org.json.JSONObject;

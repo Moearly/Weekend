@@ -22,13 +22,11 @@ import com.martn.weekend.dialogs.CityNewDialog;
 import com.martn.weekend.request.IRecommendServlet;
 import com.martn.weekend.view.RefreshListView;
 import com.martn.weekend.view.circlerefresh.CircleRefreshLayout;
-import com.qmusic.app.App;
-import com.qmusic.common.Common;
-import com.qmusic.db.UserPreference;
-import com.qmusic.result.MainsResult;
+import com.martn.weekend.app.App;
+import com.martn.weekend.db.UserPreference;
+import com.martn.weekend.result.MainsResult;
 import com.qmusic.uitls.AppUtils;
 import com.qmusic.uitls.Helper;
-import com.qmusic.uitls.ObjectUtils;
 import com.qmusic.uitls.StringUtils;
 import com.socks.library.KLog;
 

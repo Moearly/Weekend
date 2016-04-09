@@ -3,13 +3,10 @@ package com.martn.weekend.request;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.baidu.location.BDLocation;
-import com.qmusic.app.App;
 import com.qmusic.common.BEnvironment;
 import com.qmusic.localplugin.BaiduMapPlug;
 import com.qmusic.localplugin.PluginManager;
 import com.qmusic.uitls.AppUtils;
-import com.qmusic.volley.QMusicJSONRequest;
-import com.qmusic.volley.QMusicRequestManager;
 import com.socks.library.KLog;
 
 import org.json.JSONException;
@@ -83,6 +80,34 @@ public class IRecommendServlet {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 获取展示的热点标签数据
+     * @param listener
+     * @param errorListener
+     */
+    public static void findHotSubjectForShow(Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+        HashMap<String, String> params = new HashMap();
+        params.put("method", "findHotSubjectForShow");
+        QMusicJSONRequest request = new QMusicJSONRequest(Request.Method.POST, BEnvironment.RECOMMEND_V2_SERVLET, listener, errorListener);
+        request.setParams(params);
+        QMusicRequestManager.getInstance().getRequestQueue().add(request);
+        KLog.e("url----->" + request.getUrl() + params);
+    }
+
+    /**
+     *
+     * @param listener
+     * @param errorListener
+     */
+    public static void findSubjectForShow(Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+        HashMap<String, String> params = new HashMap();
+        params.put("method", "findSubjectForShow");
+        QMusicJSONRequest request = new QMusicJSONRequest(Request.Method.POST, BEnvironment.RECOMMEND_V2_SERVLET, listener, errorListener);
+        request.setParams(params);
+        QMusicRequestManager.getInstance().getRequestQueue().add(request);
+        KLog.e("url----->" + request.getUrl() + params);
     }
 
 

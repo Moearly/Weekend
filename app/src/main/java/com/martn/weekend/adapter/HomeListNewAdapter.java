@@ -17,18 +17,15 @@ import com.martn.weekend.request.IUserCenterServlet;
 import com.martn.weekend.utility.AnimateFirstDisplayListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.qmusic.common.BEnvironment;
-import com.qmusic.db.UserPreference;
-import com.qmusic.model.FavFocusModel;
-import com.qmusic.model.TcrModel;
-import com.qmusic.result.MainsResult;
+import com.martn.weekend.db.UserPreference;
+import com.martn.weekend.model.FavFocusModel;
+import com.martn.weekend.model.TcrModel;
+import com.martn.weekend.result.MainsResult;
 import com.qmusic.uitls.AppUtils;
 import com.qmusic.uitls.Helper;
 import com.socks.library.KLog;
 
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Title: Weekend

@@ -8,8 +8,6 @@ import com.qmusic.common.BEnvironment;
 import com.qmusic.localplugin.BaiduMapPlug;
 import com.qmusic.localplugin.PluginManager;
 import com.qmusic.uitls.AppUtils;
-import com.qmusic.volley.QMusicJSONRequest;
-import com.qmusic.volley.QMusicRequestManager;
 import com.socks.library.KLog;
 
 import java.util.HashMap;

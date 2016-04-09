@@ -1,11 +1,12 @@
-package com.qmusic.volley;
+package com.martn.weekend.request;
 
 import com.android.volley.toolbox.HttpStack;
 import android.text.TextUtils;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.toolbox.HurlStack;
-import com.qmusic.db.UserPreference;
+import com.martn.weekend.db.UserPreference;
+import com.qmusic.volley.QMusicMultipartRequest;
+import com.qmusic.volley.QmusicRequest;
 import com.socks.library.KLog;
 
 import java.io.DataOutputStream;

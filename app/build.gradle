@@ -30,8 +30,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.0'
     //视图注入框架
     compile 'com.jakewharton:butterknife:7.0.1'
-    //友盟行为分析
-    compile 'com.umeng.analytics:analytics:5.5.3'
     //让activity具有滑动返回的效果
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
     //一个扩展原生控件支持圆角矩形框背景的库,可以减少相关shape资源文件使用.
@@ -42,7 +40,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile project(':qmusic')
     compile project(path: ':volley')
-    compile files('libs/locSDK_5.0.jar')
     compile 'com.hannesdorfmann.smoothprogressbar:library:1.0.0'
     compile files('libs/systembartint-1.0.3.jar')
 }

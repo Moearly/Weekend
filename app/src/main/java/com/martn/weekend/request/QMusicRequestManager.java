@@ -1,4 +1,4 @@
-package com.qmusic.volley;
+package com.martn.weekend.request;
 
 import java.io.File;
 
@@ -36,11 +36,17 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HttpClientStack;
 import com.android.volley.toolbox.HttpStack;
-import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageLoader.ImageCache;
 import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.qmusic.common.BConstants;
+import com.qmusic.volley.QMusicHTTPSTrustManager;
+import com.qmusic.volley.QMusicNetwork;
+import com.qmusic.volley.QMusicSSLSocketFactory;
+import com.qmusic.volley.QmusicRequest;
+import com.qmusic.volley.VolleyL1DiskLruImageCache;
+import com.qmusic.volley.VolleyL1MemoryLruImageCache;
+import com.qmusic.volley.VolleyL2DiskLruCache;
 
 public class QMusicRequestManager {
 	public static int L1CacheType = 0;

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.martn.weekend.R;
-import com.qmusic.db.UserPreference;
+import com.martn.weekend.db.UserPreference;
 
 
 /**

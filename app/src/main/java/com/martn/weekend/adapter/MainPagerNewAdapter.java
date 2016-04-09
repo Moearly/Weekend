@@ -7,7 +7,7 @@ import android.util.SparseArray;
 import android.view.ViewGroup;
 
 import com.martn.weekend.fragment.HomeListNewFragment;
-import com.qmusic.model.TagModel;
+import com.martn.weekend.model.TagModel;
 
 import java.util.List;
 

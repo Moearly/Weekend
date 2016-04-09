@@ -1,12 +1,13 @@
-package com.qmusic.model;
+package com.martn.weekend.model;
 
-import com.qmusic.result.FavFocusResult;
+
+import com.martn.weekend.result.FavFocusResult;
 
 import org.json.JSONObject;
 
 /**
  * Title: Weekend
- * Package: com.qmusic.model
+ * Package: com.martn.weekend.model
  * Description: ("喜欢关注--数目")
  * Date 2016/3/25 10:21
  *

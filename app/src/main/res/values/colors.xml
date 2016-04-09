@@ -32,4 +32,6 @@
     <color name="gplus_color_3">#ff427fed</color>
     <color name="gplus_color_4">#ffb23424</color>
     <color name="seach_bar_bg">#ff86e4fd</color>
+    <color name="text_yellow">#fffdf188</color>
+    <color name="text_black">#ff333333</color>
 </resources>

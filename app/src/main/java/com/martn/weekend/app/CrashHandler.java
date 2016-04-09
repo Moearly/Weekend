@@ -1,4 +1,4 @@
-//package com.qmusic.app;
+//package com.martn.weekend.app;
 //
 //import android.content.Context;
 //import android.content.pm.PackageInfo;

@@ -1,6 +1,7 @@
-package com.qmusic.result;
+package com.martn.weekend.result;
 
-import com.qmusic.model.TagModel;
+import com.martn.weekend.model.TagModel;
+import com.qmusic.result.BaseResult;
 
 import java.util.ArrayList;
 import java.util.List;

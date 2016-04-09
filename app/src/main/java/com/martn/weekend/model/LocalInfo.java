@@ -1,4 +1,4 @@
-//package com.qmusic.model;
+//package com.martn.weekend.model;
 //
 //import com.qmusic.common.Common;
 //import com.qmusic.uitls.SharedPreferencesUtil;

@@ -1,4 +1,4 @@
-package com.qmusic.volley;
+package com.martn.weekend.request;
 
 import android.text.TextUtils;
 import com.android.volley.NetworkResponse;
@@ -7,12 +7,12 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
-import com.qmusic.app.App;
+import com.martn.weekend.app.App;
+import com.martn.weekend.db.UserPreference;
 import com.qmusic.base.BaseApplication;
 import com.qmusic.common.Common;
-import com.qmusic.db.UserPreference;
 import com.qmusic.uitls.BLog;
-import com.qmusic.uitls.SharedPreferencesUtil;
+import com.qmusic.volley.QmusicRequest;
 import com.qmusic.volley.cache.utils.L;
 import com.socks.library.KLog;
 

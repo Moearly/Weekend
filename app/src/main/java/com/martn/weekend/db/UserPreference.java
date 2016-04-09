@@ -1,11 +1,11 @@
-package com.qmusic.db;
+package com.martn.weekend.db;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
+import com.martn.weekend.result.ToUserCenterResult;
 import com.qmusic.base.BaseApplication;
-import com.qmusic.result.ToUserCenterResult;
 import com.socks.library.KLog;
 
 
@@ -21,7 +21,6 @@ import com.socks.library.KLog;
 public class UserPreference {
 
     public static final String KEY_USER_ID = "key_user_id";
-    public static final String KEY_USER_MOBILE = "key_user_mobile";
     public static final String KEY_USER_PASSWORD = "key_user_password";
     public static final String KEY_USER_CITY = "key_user_city";
 
@@ -41,6 +40,8 @@ public class UserPreference {
     public static final String KEY_USER_BIRTHDAY = "key_user_birthday";
     public static final String KEY_USER_FAVE_COUNT = "key_user_fave_count";
     public static final String KEY_USER_FAVEME_COUNT = "key_user_faveme_count";
+    public static final String KEY_USER_MOBILE = "key_user_mobile";
+
 
 
     private ToUserCenterResult userInfo;

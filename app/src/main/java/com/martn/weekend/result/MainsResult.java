@@ -1,7 +1,8 @@
-package com.qmusic.result;
+package com.martn.weekend.result;
 
-import com.qmusic.model.GuanggaoModel;
-import com.qmusic.model.TcrModel;
+import com.martn.weekend.model.GuanggaoModel;
+import com.martn.weekend.model.TcrModel;
+import com.qmusic.result.BaseResult;
 
 import java.util.ArrayList;
 import java.util.List;

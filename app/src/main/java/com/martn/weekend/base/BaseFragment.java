@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 
 import com.martn.weekend.utility.cache.ACache;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.qmusic.app.App;
+import com.martn.weekend.app.App;
 import com.squareup.leakcanary.RefWatcher;
 
 

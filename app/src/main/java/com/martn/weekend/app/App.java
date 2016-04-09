@@ -1,4 +1,4 @@
-package com.qmusic.app;
+package com.martn.weekend.app;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.provider.Settings;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.martn.weekend.request.QMusicRequestManager;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -15,7 +16,6 @@ import com.qmusic.base.BaseApplication;
 import com.qmusic.common.BLocationManager;
 import com.qmusic.localplugin.PluginManager;
 import com.qmusic.uitls.AppUtils;
-import com.qmusic.volley.QMusicRequestManager;
 import com.socks.library.KLog;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
@@ -32,9 +32,8 @@ import com.umeng.analytics.MobclickAgent;
  * @version V1.0
  */
 public class App extends BaseApplication {
-    public static boolean DEBUG;
+
     private RefWatcher mRefWatcher;
-    static Handler handler;
     public static boolean isRefresh;
     public static final String TAG = App.class.getSimpleName();
 
@@ -46,29 +45,11 @@ public class App extends BaseApplication {
         //在这里为应用设置异常处理程序，然后我们的程序才能捕获未处理的异常
 //        CrashHandler crashHandler = CrashHandler.getInstance();
 //        crashHandler.init(this);
-        ApplicationInfo appInfo = context().getApplicationInfo();
-        if ((appInfo.flags & 2) == 0) {
-            DEBUG = false;
-        } else {
-            DEBUG = true;
-        }
+
         SDKInitializer.initialize(context());
         QMusicRequestManager.init(context());
         initImageLoader();
         AppUtils.init(context());
-        ActivityManager.RunningAppProcessInfo appProcessInfo = AppUtils.getCurProcess(context());
-        if (appProcessInfo == null) {
-            KLog.e("Should never get here");
-        } else if (appInfo.packageName.equals(appProcessInfo.processName)) {
-            handler = new Handler();
-            PluginManager.init(context());
-            BLocationManager.init(context());
-            MobclickAgent.setDebugMode(DEBUG);
-            MobclickAgent.updateOnlineConfig(context());
-            MobclickAgent.setSessionContinueMillis(60000);
-        } else {
-            KLog.w("In remote process");
-        }
 
     }
 
@@ -119,16 +100,6 @@ public class App extends BaseApplication {
 //        UploaderConfig.setBooheeUploadParams(str1, str2, str3);
     }
 
-    public static final void post(Runnable runnable) {
-        handler.post(runnable);
-    }
 
-    public static final void removePost(Runnable runnable) {
-        handler.removeCallbacks(runnable);
-    }
-
-    public static final void postDelayed(Runnable runnable, long delayMillis) {
-        handler.postDelayed(runnable, delayMillis);
-    }
 
 }

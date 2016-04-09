@@ -3,8 +3,6 @@ package com.martn.weekend.request;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.qmusic.common.BEnvironment;
-import com.qmusic.volley.QMusicJSONRequest;
-import com.qmusic.volley.QMusicRequestManager;
 import com.socks.library.KLog;
 
 import org.json.JSONException;

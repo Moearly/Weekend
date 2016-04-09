@@ -1,4 +1,4 @@
-package com.qmusic.result;
+package com.martn.weekend.result;
 
 public class ToUserCenterResult {
     public String code;

@@ -18,8 +18,8 @@ import com.martn.weekend.utility.AnimateFirstDisplayListener;
 import com.martn.weekend.view.CusTextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.qmusic.common.BEnvironment;
-import com.qmusic.db.UserPreference;
-import com.qmusic.result.ToUserCenterModel;
+import com.martn.weekend.db.UserPreference;
+import com.martn.weekend.result.ToUserCenterModel;
 import com.qmusic.uitls.Helper;
 import com.socks.library.KLog;
 

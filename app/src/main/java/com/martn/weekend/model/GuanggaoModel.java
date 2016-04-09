@@ -1,4 +1,4 @@
-package com.qmusic.model;
+package com.martn.weekend.model;
 
 import org.json.JSONException;
 import org.json.JSONObject;

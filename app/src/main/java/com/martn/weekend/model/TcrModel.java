@@ -1,10 +1,10 @@
-package com.qmusic.model;
+package com.martn.weekend.model;
 
 import org.json.JSONObject;
 
 /**
  * Title: Weekend
- * Package: com.qmusic.model
+ * Package: com.martn.weekend.model
  * Description: ("请描述功能")
  * Date 2016/3/25 10:12
  *
