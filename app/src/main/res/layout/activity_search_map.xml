@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/blue">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="27.0dip"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/screen_margin"
+            android:layout_toLeftOf="@+id/tv_cancel"
+            android:background="@drawable/bg_corner_t_white">
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:paddingLeft="@dimen/screen_margin"
+                android:paddingRight="@dimen/screen_margin"
+                android:src="@drawable/img_search_small" />
+
+            <ProgressBar
+                android:id="@+id/pb_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/iv_search"
+                android:layout_alignLeft="@+id/iv_search"
+                android:layout_alignRight="@+id/iv_search"
+                android:layout_alignTop="@+id/iv_search"
+                android:padding="3.0dip"
+                android:visibility="invisible" />
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/iv_del"
+                android:layout_toRightOf="@+id/iv_search"
+                android:background="@color/transparent"
+                android:drawablePadding="5.0dip"
+                android:focusableInTouchMode="true"
+                android:hint="搜索"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="@dimen/font_size_36" />
+
+            <ImageView
+                android:id="@+id/iv_del"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:paddingLeft="@dimen/screen_margin"
+                android:paddingRight="@dimen/screen_margin"
+                android:src="@drawable/img_x_black" />
+        </RelativeLayout>
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:drawablePadding="5.0dip"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:paddingLeft="@dimen/screen_margin"
+            android:paddingRight="@dimen/screen_margin"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_42" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/topbar"
+        android:layout_marginLeft="@dimen/screen_margin"
+        android:layout_marginRight="@dimen/screen_margin"
+        android:divider="@color/line_listview"
+        android:dividerHeight="@dimen/line_height" />
+</RelativeLayout>

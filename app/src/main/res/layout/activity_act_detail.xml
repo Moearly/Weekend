@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_main"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <include
+        android:id="@id/topbar"
+        layout="@layout/include_topbar_detail" />
+
+    <ScrollView
+        android:id="@+id/sv_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/bottom_layout"
+        android:layout_below="@id/topbar">
+
+        <RelativeLayout
+            android:id="@+id/rl_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/fl_vp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_imgs"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/ll_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="15.0dip"
+                    android:orientation="horizontal" />
+            </FrameLayout>
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/tv_page_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/fl_vp"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="11.0dip"
+                android:layout_marginRight="23.0dip"
+                android:background="@drawable/img_bg_page"
+                android:gravity="center"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/font_size_30"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/iv_fav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/fl_vp"
+                android:layout_marginLeft="30.0dip"
+                android:layout_marginRight="30.0dip"
+                android:layout_marginTop="10.0dip" />
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/tv_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/fl_vp"
+                android:layout_marginLeft="@dimen/screen_margin_l"
+                android:layout_marginTop="@dimen/screen_margin"
+                android:layout_toLeftOf="@+id/iv_fav"
+                android:ellipsize="end"
+                android:lineSpacingExtra="3.0dip"
+                android:maxLines="2"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/font_size_46" />
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/tv_title"
+                android:layout_alignRight="@id/tv_title"
+                android:layout_below="@id/tv_title"
+                android:layout_marginTop="6.0dip"
+                android:textColor="@color/main_text_gray"
+                android:textSize="@dimen/font_size_36" />
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/tv_old_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/tv_date"
+                android:layout_marginRight="@dimen/screen_margin_l"
+                android:layout_marginTop="30.0dip"
+                android:background="@drawable/line_delete"
+                android:textColor="@color/main_text_gray_light"
+                android:textSize="@dimen/font_size_30"
+                android:visibility="invisible" />
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_old_price"
+                android:layout_marginBottom="-1.7999878dip"
+                android:layout_marginRight="5.0dip"
+                android:layout_toLeftOf="@id/tv_old_price"
+                android:textColor="@color/red"
+                android:textSize="@dimen/font_size_30"
+                android:visibility="invisible" />
+
+            <View
+                android:id="@+id/line1_view"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/line_height_s"
+                android:layout_below="@id/tv_price"
+                android:layout_marginLeft="@dimen/screen_margin_l"
+                android:layout_marginRight="@dimen/screen_margin_l"
+                android:layout_marginTop="@dimen/screen_margin_l"
+                android:background="@color/line_gray_drak" />
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/tv_light_point_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line1_view"
+                android:background="@color/main_text_gray_light"
+                android:paddingLeft="@dimen/screen_margin_l"
+                android:paddingRight="@dimen/screen_margin_l"
+                android:paddingTop="@dimen/screen_margin_s"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/font_size_46"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/ll_light_point_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_light_point_title"
+                android:background="@color/main_text_gray_light"
+                android:lineSpacingExtra="1.0dip"
+                android:orientation="vertical"
+                android:paddingBottom="10.0dip"
+                android:paddingLeft="20.0dip"
+                android:paddingRight="20.0dip"
+                android:paddingTop="10.0dip"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/line2_view"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/line_height"
+                android:layout_below="@id/ll_light_point_content"
+                android:background="@color/main_text_gray_light" />
+
+            <RelativeLayout
+                android:id="@+id/rl_info"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line2_view"
+                android:layout_marginLeft="@dimen/screen_margin_l"
+                android:layout_marginRight="@dimen/screen_margin_l"
+                android:visibility="gone">
+
+                <View
+                    android:id="@id/center_view"
+                    android:layout_width="1.0dip"
+                    android:layout_height="1.0dip"
+                    android:layout_centerHorizontal="true" />
+
+                <com.martn.weekend.view.CusTextView
+                    android:id="@+id/tv_detail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/center_view"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="5.0dip"
+                    android:paddingTop="20.0dip"
+                    android:text="详情"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/font_size_42" />
+
+                <ImageView
+                    android:id="@+id/iv_detail_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="3.0dip"
+                    android:layout_alignLeft="@id/tv_detail"
+                    android:layout_alignRight="@id/tv_detail"
+                    android:layout_below="@id/tv_detail"
+                    android:paddingLeft="40.0dip"
+                    android:paddingRight="40.0dip"
+                    android:src="@color/blue" />
+
+                <com.martn.weekend.view.CusTextView
+                    android:id="@+id/tv_notice"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/center_view"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="5.0dip"
+                    android:paddingTop="20.0dip"
+                    android:text="须知"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/font_size_42" />
+
+                <ImageView
+                    android:id="@+id/iv_notice_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="3.0dip"
+                    android:layout_alignLeft="@id/tv_notice"
+                    android:layout_alignRight="@id/tv_notice"
+                    android:layout_below="@id/tv_notice"
+                    android:paddingLeft="40.0dip"
+                    android:paddingRight="40.0dip"
+                    android:src="@color/blue"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/line_height_s"
+                android:layout_below="@id/rl_info"
+                android:layout_marginLeft="@dimen/screen_margin_l"
+                android:layout_marginRight="@dimen/screen_margin_l"
+                android:background="@color/line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/rl_sender"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line2"
+                android:layout_marginLeft="@dimen/screen_margin_l"
+                android:layout_marginRight="@dimen/screen_margin_l"
+                android:paddingBottom="20.0dip"
+                android:paddingTop="20.0dip"
+                android:visibility="invisible">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_sender_head"
+                    android:layout_width="@dimen/head_size_s"
+                    android:layout_height="@dimen/head_size_s"
+                    android:layout_centerVertical="true" />
+
+                <ImageView
+                    android:id="@+id/iv_sender_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/img_arrow_right_gray_new" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_sender_info"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/screen_margin_l"
+                    android:layout_marginRight="@dimen/screen_margin_l"
+                    android:layout_toLeftOf="@id/iv_sender_arrow"
+                    android:layout_toRightOf="@id/iv_sender_head">
+
+                    <com.martn.weekend.view.CusTextView
+                        android:id="@+id/tv_sender_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="200.0dip"
+                        android:textColor="@color/main_text_gray"
+                        android:textSize="@dimen/font_size_42" />
+
+                    <com.martn.weekend.view.CusTextView
+                        android:id="@+id/tv_sender_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8.0dip"
+                        android:layout_toRightOf="@id/tv_sender_name"
+                        android:background="@color/blue"
+                        android:gravity="center"
+                        android:paddingBottom="1.0dip"
+                        android:paddingLeft="3.0dip"
+                        android:paddingRight="3.0dip"
+                        android:paddingTop="1.0dip"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_size_36" />
+
+                    <com.martn.weekend.view.CusTextView
+                        android:id="@+id/tv_sender_signature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_sender_name"
+                        android:layout_marginTop="2.0dip"
+                        android:textColor="@color/main_text_gray"
+                        android:textSize="@dimen/font_size_36" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_location"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_sender"
+                android:layout_marginTop="10.0dip">
+
+                <com.martn.weekend.view.CusTextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center_horizontal"
+                    android:lineSpacingExtra="3.0dip"
+                    android:maxLines="2"
+                    android:paddingLeft="@dimen/screen_margin_l"
+                    android:paddingRight="@dimen/screen_margin_l"
+                    android:textColor="@color/main_text_gray"
+                    android:textSize="@dimen/font_size_46"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/iv_center_location"
+                    android:layout_width="60.0dip"
+                    android:layout_height="1.0dip"
+                    android:layout_centerHorizontal="true" />
+
+                <ImageView
+                    android:id="@+id/iv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_location"
+                    android:layout_marginTop="30.0dip"
+                    android:layout_toLeftOf="@id/iv_center_location"
+                    android:clickable="true"
+                    android:onClick="onClick"
+                    android:src="@drawable/img_location_circle" />
+
+                <ImageView
+                    android:id="@+id/iv_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_location"
+                    android:layout_marginTop="30.0dip"
+                    android:layout_toRightOf="@id/iv_center_location"
+                    android:clickable="true"
+                    android:onClick="onClick"
+                    android:src="@drawable/img_phone_circle" />
+            </RelativeLayout>
+
+            <com.martn.weekend.view.CustomTextView
+                android:id="@+id/tv_description"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_location"
+                android:background="@color/white"
+                android:paddingBottom="15.0dip"
+                android:paddingTop="10.0dip"
+                android:visibility="invisible" />
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/tv_hint_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_description"
+                android:background="@color/main_text_gray_light"
+                android:paddingBottom="15.0dip"
+                android:paddingLeft="@dimen/screen_margin_l"
+                android:paddingRight="@dimen/screen_margin_l"
+                android:paddingTop="10.0dip"
+                android:text="温馨提示"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/font_size_46"
+                android:visibility="invisible" />
+
+            <LinearLayout
+                android:id="@+id/hint_content_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_hint_title"
+                android:background="@color/main_text_gray_light"
+                android:orientation="vertical"
+                android:paddingBottom="10.0dip"
+                android:paddingLeft="20.0dip"
+                android:paddingRight="20.0dip"
+                android:visibility="invisible" />
+
+            <LinearLayout
+                android:id="@+id/hint_img_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/hint_content_layout"
+                android:background="@color/main_text_gray_light"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/screen_margin" />
+
+            <ImageView
+                android:id="@+id/iv_system_line"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/line_height"
+                android:layout_below="@id/hint_img_layout"
+                android:background="@color/main_text_gray_light"
+                android:paddingLeft="@dimen/screen_margin"
+                android:paddingRight="@dimen/screen_margin"
+                android:src="@color/line_gray_drak" />
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/tv_online_system"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_system_line"
+                android:background="@color/main_text_gray_light"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingBottom="15.0dip"
+                android:paddingTop="15.0dip"
+                android:text="联系在线小秘书>>"
+                android:textColor="@color/main_text_gray"
+                android:textSize="@dimen/font_size_36" />
+
+            <RelativeLayout
+                android:id="@+id/interest_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_online_system"
+                android:visibility="gone">
+
+                <com.martn.weekend.view.CusTextView
+                    android:id="@+id/tv_interest_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30.0dip"
+                    android:layout_marginLeft="@dimen/screen_margin_l"
+                    android:layout_marginTop="10.0dip"
+                    android:text="可能遇到的人"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/font_size_46" />
+
+                <FrameLayout
+                    android:id="@+id/interest_num_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_alignBottom="@id/sv_interest_head"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@id/sv_interest_head"
+                    android:layout_marginRight="@dimen/screen_margin_l">
+
+                    <com.martn.weekend.view.CusTextView
+                        android:id="@+id/tv_interest_num"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:drawablePadding="30.0dip"
+                        android:drawableRight="@drawable/img_arrow_right_gray_new"
+                        android:gravity="center"
+                        android:paddingLeft="30.0dip"
+                        android:textColor="@color/main_text_gray_light"
+                        android:textSize="@dimen/font_size_30" />
+                </FrameLayout>
+
+                <HorizontalScrollView
+                    android:id="@+id/sv_interest_head"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/head_size_s"
+                    android:layout_below="@id/tv_interest_title"
+                    android:layout_marginLeft="@dimen/screen_margin_l"
+                    android:layout_toLeftOf="@id/interest_num_layout"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/interest_head_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/head_size_s"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/line_height"
+                    android:layout_below="@id/sv_interest_head"
+                    android:layout_marginTop="@dimen/screen_margin"
+                    android:background="@color/main_text_gray_light" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/question_title_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/interest_layout"
+                android:layout_marginLeft="@dimen/screen_margin_l"
+                android:layout_marginRight="@dimen/screen_margin_l"
+                android:paddingBottom="10.0dip"
+                android:paddingTop="10.0dip"
+                android:visibility="invisible">
+
+                <com.martn.weekend.view.CusTextView
+                    android:id="@+id/tv_question_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/info_quest"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/font_size_46" />
+
+                <com.martn.weekend.view.CusTextView
+                    android:id="@+id/tv_answer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@drawable/img_answer_one"
+                    android:drawablePadding="@dimen/screen_margin"
+                    android:gravity="center"
+                    android:text="@string/info_answer_one"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/font_size_36" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/question_user_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/question_title_layout"
+                android:layout_marginLeft="@dimen/screen_margin_l"
+                android:layout_marginRight="@dimen/screen_margin_l"
+                android:visibility="gone">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_question_head"
+                    android:layout_width="@dimen/head_size_s"
+                    android:layout_height="@dimen/head_size_s"
+                    android:layout_centerVertical="true" />
+
+                <RelativeLayout
+                    android:id="@+id/question_info_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/screen_margin_l"
+                    android:layout_toRightOf="@id/iv_question_head">
+
+                    <com.martn.weekend.view.CusTextView
+                        android:id="@+id/tv_question_name"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/main_text_gray"
+                        android:textSize="@dimen/font_size_40" />
+
+                    <com.martn.weekend.view.CusTextView
+                        android:id="@+id/tv_question_date"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_question_name"
+                        android:layout_marginTop="2.0dip"
+                        android:textColor="@color/main_text_gray_light"
+                        android:textSize="@dimen/font_size_30" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/tv_question_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/question_user_layout"
+                android:layout_marginLeft="@dimen/screen_margin_l"
+                android:layout_marginRight="@dimen/screen_margin_l"
+                android:layout_marginTop="12.0dip"
+                android:lineSpacingExtra="5.0dip"
+                android:textColor="@color/main_text_gray"
+                android:textSize="@dimen/font_size_36"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_reply_triangle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_question_content"
+                android:layout_marginLeft="36.0dip"
+                android:src="@drawable/img_triangle_gray"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/reply_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_reply_triangle"
+                android:layout_marginLeft="@dimen/screen_margin_l"
+                android:layout_marginRight="@dimen/screen_margin_l"
+                android:background="@drawable/bg_corner_gray_light"
+                android:padding="9.0dip"
+                android:visibility="gone">
+
+                <com.martn.weekend.view.CusTextView
+                    android:id="@+id/tv_reply_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/font_size_36" />
+
+                <com.martn.weekend.view.CusTextView
+                    android:id="@+id/tv_reply_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_reply_name"
+                    android:layout_marginTop="10.0dip"
+                    android:lineSpacingExtra="5.0dip"
+                    android:textColor="@color/main_text_gray_light"
+                    android:textSize="@dimen/font_size_30" />
+            </RelativeLayout>
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/tv_more_question"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reply_layout"
+                android:gravity="center"
+                android:paddingBottom="20.0dip"
+                android:paddingTop="20.0dip"
+                android:textColor="@color/main_text_gray_light"
+                android:textSize="@dimen/font_size_36" />
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/tv_recommend_act_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_more_question"
+                android:background="@color/main_text_gray_light"
+                android:paddingBottom="10.0dip"
+                android:paddingLeft="@dimen/screen_margin_l"
+                android:paddingTop="10.0dip"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/font_size_46"
+                android:visibility="invisible" />
+
+            <LinearLayout
+                android:id="@+id/recommend_act_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_recommend_act_title"
+                android:background="@color/main_text_gray_light"
+                android:orientation="vertical"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/bottom_buy_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/bottom_height"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/count_layout"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="3.0">
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/line_height"
+                    android:background="@color/line_gray_drak" />
+
+                <com.martn.weekend.view.CusTextView
+                    android:id="@+id/tv_count"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:textColor="@color/main_text_gray"
+                    android:textSize="@dimen/font_size_30" />
+            </RelativeLayout>
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/tv_sign"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="5.0"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="立即报名"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_40" />
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/packages_scrollview"
+            android:layout_width="fill_parent"
+            android:layout_height="180.0dip"
+            android:fadeScrollbars="false"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/packages_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="15.0dip"
+                android:paddingTop="15.0dip" />
+        </ScrollView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/info_top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topbar"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/screen_margin_l"
+        android:paddingRight="@dimen/screen_margin_l"
+        android:visibility="invisible">
+
+        <View
+            android:id="@+id/center_top_view"
+            android:layout_width="1.0dip"
+            android:layout_height="1.0dip"
+            android:layout_centerHorizontal="true" />
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/tv_detail_top"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/center_top_view"
+            android:gravity="center_horizontal"
+            android:paddingBottom="5.0dip"
+            android:paddingTop="20.0dip"
+            android:text="详情"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/font_size_46" />
+
+        <ImageView
+            android:id="@+id/iv_detail_line_top"
+            android:layout_width="wrap_content"
+            android:layout_height="3.0dip"
+            android:layout_alignLeft="@id/tv_detail_top"
+            android:layout_alignRight="@id/tv_detail_top"
+            android:layout_below="@id/tv_detail_top"
+            android:paddingLeft="40.0dip"
+            android:paddingRight="40.0dip"
+            android:src="@color/blue" />
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/tv_notice_top"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/center_top_view"
+            android:gravity="center_horizontal"
+            android:paddingBottom="5.0dip"
+            android:paddingTop="20.0dip"
+            android:text="须知"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/font_size_46" />
+
+        <ImageView
+            android:id="@+id/tv_notice_line_top"
+            android:layout_width="wrap_content"
+            android:layout_height="3.0dip"
+            android:layout_alignLeft="@id/tv_notice_top"
+            android:layout_alignRight="@id/tv_notice_top"
+            android:layout_below="@id/tv_notice_top"
+            android:paddingLeft="40.0dip"
+            android:paddingRight="40.0dip"
+            android:src="@color/blue"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_guide_detail"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/img_guide_detail"
+        android:visibility="gone" />
+</RelativeLayout>

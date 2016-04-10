@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/toolbar_height"
+    android:background="@color/blue">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:paddingLeft="@dimen/screen_margin"
+        android:paddingRight="@dimen/screen_margin" />
+
+    <ImageView
+        android:id="@+id/iv_topbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/img_title_fxzhoumo"
+        android:clickable="true"
+         />
+
+    <ImageView
+        android:id="@+id/iv_topbar_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20.0dip"
+        android:layout_toLeftOf="@+id/iv_topbar_message"
+        android:paddingLeft="@dimen/screen_margin" />
+
+    <ImageView
+        android:id="@+id/iv_topbar_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/screen_margin" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_topbar_unread"
+        android:layout_width="@dimen/point_size"
+        android:layout_height="@dimen/point_size"
+        android:layout_alignRight="@+id/iv_topbar_message"
+        android:layout_alignTop="@+id/iv_topbar_message"
+        android:src="#ffff0000"
+        android:visibility="gone" />
+</RelativeLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/screen_margin"
+    android:paddingTop="@dimen/screen_margin">
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_location" />
+
+    <com.martn.weekend.view.CusTextView
+        android:id="@+id/tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5.0dip"
+        android:layout_toRightOf="@+id/iv_icon"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/font_size_42" />
+
+    <com.martn.weekend.view.CusTextView
+        android:id="@+id/tv_address_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_address"
+        android:layout_below="@+id/tv_address"
+        android:textColor="@color/main_text_gray"
+        android:textSize="@dimen/font_size_36" />
+</RelativeLayout>
