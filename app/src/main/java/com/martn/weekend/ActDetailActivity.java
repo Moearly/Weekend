@@ -3,6 +3,7 @@ package com.martn.weekend;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.martn.weekend.base.BaseActivity;
 
@@ -38,4 +39,23 @@ public class ActDetailActivity extends BaseActivity {
         ((Activity) context).startActivityForResult(intent, REQUEST_CODE);
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_act_detail);
+//        MyApplication.addPayActivity(this);
+//        Uri uri = getIntent().getData();
+//        if (uri != null) {
+//            this.courseid = Integer.parseInt(uri.getQueryParameter(Key.COURSE_ID));
+//            this.inway = Integer.parseInt(uri.getQueryParameter("inway"));
+//        } else {
+//            this.courseid = getIntent().getIntExtra(Key.COURSE_ID, Common.DEFAULT_INT);
+//            this.inway = getIntent().getExtras().getInt("inway", 0);
+//        }
+//        this.pglog = new ProgressDialog(this);
+//        initView();
+//        initData();
+//        reigstNewMsgBroadcastReceiver();
+
+    }
 }
