@@ -220,6 +220,11 @@ public class AppUtils {
         return loc != null ? String.valueOf(loc.getLongitude()) :"";
     }
 
+    public static String getCity() {
+        BDLocation loc = ((BaiduMapPlug) PluginManager.getPlugin(BaiduMapPlug.class.getSimpleName())).getLocation();
+        return loc != null ? loc.getProvince() : "";
+    }
+
 
 
     public static String getChannelName(Context context) {
