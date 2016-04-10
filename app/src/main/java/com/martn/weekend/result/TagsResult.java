@@ -26,4 +26,23 @@ public class TagsResult extends BaseResult {
             }
         }
     }
+
+
+    /**
+     * 获取标签的name
+     * @param tagId
+     * @return
+     */
+    public String getTagName(int tagId) {
+        if (tagId == 0) {
+            return "类别";
+        }
+        for (int i = 0; i < tagList.size(); i++) {
+            if (tagId == tagList.get(i).id) {
+                return this.tagList.get(i).name;
+            }
+        }
+        return "类别";
+    }
+
 }

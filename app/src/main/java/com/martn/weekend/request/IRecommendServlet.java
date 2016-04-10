@@ -110,6 +110,41 @@ public class IRecommendServlet {
         KLog.e("url----->" + request.getUrl() + params);
     }
 
+    /**
+     * 范围查找
+     * @param tagId
+     * @param pageIndex
+     * @param scopeRange
+     * @param maxScopeRange
+     * @param nowx
+     * @param nowy
+     * @param scopex
+     * @param scopey
+     * @param listener
+     * @param errorListener
+     */
+    public static void findCourseForScope(int tagId, int pageIndex, double scopeRange, double maxScopeRange, double nowx, double nowy, double scopex, double scopey, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+        try {
+            HashMap<String, String> params = new HashMap();
+            JSONObject json = new JSONObject();
+            json.put("nowx", nowx);
+            json.put("nowy", nowy);
+            json.put("scopex", scopex);
+            json.put("scopey", scopey);
+            json.put("tag_id", tagId);
+            json.put("pageindex", pageIndex);
+            json.put("scope_range", scopeRange);
+            json.put("max_scope_range", maxScopeRange);
+            params.put("method", "findCourseForScope");
+            params.put("servicestr", json.toString());
+            QMusicJSONRequest request = new QMusicJSONRequest(Request.Method.POST, BEnvironment.RECOMMEND_V2_SERVLET, listener, errorListener);
+            request.setParams(params);
+            QMusicRequestManager.getInstance().getRequestQueue().add(request);
+            KLog.e("url----->" + request.getUrl() + params);
+        } catch (JSONException e) {
+        }
+    }
+
 
 
 }

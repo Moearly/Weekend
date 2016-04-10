@@ -37,4 +37,5 @@ dependencies {
     //日志管理
     compile 'com.github.zhaokaiqiang.klog:library:1.1.0'
     compile files('libs/universal-image-loader-1.9.4.jar')
+    compile files('libs/baidu_map.jar')
 }

@@ -37,6 +37,8 @@ dependencies {
     // circle image view---圆角图片
     compile 'de.hdodenhof:circleimageview:2.0.0'
     //    compile 'com.mcxiaoke.volley:library:1.0.16'
+    //重下方拖动的面板
+    compile 'com.sothree.slidinguppanel:library:3.3.0'
     compile 'com.google.code.gson:gson:2.2.4'
     compile project(':qmusic')
     compile project(path: ':volley')

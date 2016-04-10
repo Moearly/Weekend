@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/blue">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:paddingLeft="@dimen/screen_margin"
+            android:paddingRight="@dimen/screen_margin"
+            android:src="@drawable/img_arrow_left_new" />
+
+        <FrameLayout
+            android:id="@+id/fl_search"
+            android:layout_width="fill_parent"
+            android:layout_height="27.0dip"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_classily"
+            android:layout_toRightOf="@+id/iv_back"
+            android:background="@drawable/bg_corner_t_white"
+            android:clickable="true"
+            android:onClick="onClick">
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/tv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/img_search_small"
+                android:drawablePadding="5.0dip"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="搜索地点"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_36" />
+        </FrameLayout>
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/tv_classily"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:drawablePadding="5.0dip"
+            android:drawableRight="@drawable/img_arrow_down_white"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:paddingLeft="@dimen/screen_margin"
+            android:paddingRight="@dimen/screen_margin"
+            android:text="类别"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_42"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:sothree="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sliding_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/topbar"
+        android:gravity="bottom"
+        sothree:umanoDragView="@+id/act_info_layout"
+        sothree:umanoOverlay="true"
+        sothree:umanoPanelHeight="149.0dip"
+        sothree:umanoParallaxOffset="0.0dip"
+        sothree:umanoScrollableView="@+id/listview"
+        sothree:umanoShadowHeight="0.0dip">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="109.0dip">
+
+                <com.baidu.mapapi.map.MapView
+                    android:id="@+id/map_view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_drag"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="150.0dip"
+            android:background="@color/transparent"
+            android:clickable="true"
+            android:focusable="false"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5.0dip"
+                android:background="@color/transparent">
+
+                <LinearLayout
+                    android:id="@+id/ll_page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/img_map_page_bg"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tv_pre"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1.0"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:onClick="onClick"
+                        android:text="上一页"
+                        android:textSize="@dimen/font_size_36" />
+
+                    <TextView
+                        android:id="@+id/tv_next"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1.0"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:onClick="onClick"
+                        android:text="下一页"
+                        android:textSize="@dimen/font_size_36" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/tv_now_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5.0dip"
+                    android:layout_toRightOf="@+id/ll_page"
+                    android:clickable="true"
+                    android:onClick="onClick"
+                    android:src="@drawable/img_now_location" />
+
+                <ImageView
+                    android:id="@+id/iv_drag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+                    android:onClick="onClick"
+                    android:scaleType="center"
+                    android:src="@drawable/img_map_up"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_acts"
+                    android:layout_width="fill_parent"
+                    android:layout_height="109.0dip" />
+
+                <include
+                    android:id="@+id/act_info_layout"
+                    layout="@layout/item_course_small_1" />
+
+                <TextView
+                    android:id="@+id/tv_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="当前区域没有活动"
+                    android:visibility="invisible" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_gray_light_1"
+                android:padding="@dimen/screen_margin"
+                android:text="活动列表"
+                android:textColor="@color/main_text_gray" />
+
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0"
+                android:background="@color/white" />
+        </LinearLayout>
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+</RelativeLayout>

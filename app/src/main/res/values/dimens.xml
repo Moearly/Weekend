@@ -28,4 +28,5 @@
     <dimen name="line_height">1dp</dimen>
     <dimen name="main_font_ll">13sp</dimen>
     <dimen name="normal_drawable_padding">10dip</dimen>
+    <dimen name="course_small_size">83dp</dimen>
 </resources>

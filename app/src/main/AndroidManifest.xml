@@ -61,7 +61,10 @@
         <activity android:name=".LoginActivity" android:screenOrientation="portrait">
 
         </activity>
+        <activity android:name=".ActMapActivity" android:screenOrientation="portrait"/>
         <activity android:name=".UserCenterActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SearchMapActivity" android:screenOrientation="portrait"/>
+
 
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote" />
         <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="Pe4iRLcG4fcAr9HOaSmW0tQt" />

@@ -34,4 +34,6 @@
     <color name="seach_bar_bg">#ff86e4fd</color>
     <color name="text_yellow">#fffdf188</color>
     <color name="text_black">#ff333333</color>
+    <color name="bg_gray_light_1">#ffededed</color>
+    <color name="line_listview">#ffdfdfdf</color>
 </resources>
