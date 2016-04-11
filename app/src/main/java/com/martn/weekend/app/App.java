@@ -1,5 +1,6 @@
 package com.martn.weekend.app;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -21,6 +22,9 @@ import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.umeng.analytics.MobclickAgent;
 
+import java.util.LinkedList;
+import java.util.List;
+
 
 /**
  * Title: ZeaApp
@@ -32,6 +36,8 @@ import com.umeng.analytics.MobclickAgent;
  * @version V1.0
  */
 public class App extends BaseApplication {
+
+    private static List<Activity> payActivityList = new LinkedList();
 
     private RefWatcher mRefWatcher;
     public static boolean isRefresh;
@@ -99,6 +105,18 @@ public class App extends BaseApplication {
 //        String str3 = UserPreference.getToken(getContext());
 //        UploaderConfig.setBooheeUploadParams(str1, str2, str3);
     }
+
+
+    public static void addPayActivity(Activity activity) {
+        payActivityList.add(activity);
+    }
+
+    public static void exitPayActivity() {
+        for (Activity activity : payActivityList) {
+            activity.finish();
+        }
+    }
+
 
 
 
