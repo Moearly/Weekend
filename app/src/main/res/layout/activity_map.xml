@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg_gray_light_1"
+    android:fitsSystemWindows="true">
+
+    <include
+        android:id="@+id/topbar"
+        layout="@layout/include_topbar" />
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/activity_map_bmapView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/activity_map_navigation_button"
+        android:layout_below="@id/topbar" />
+
+    <Button
+        android:id="@+id/activity_map_navigation_button"
+        style="@style/MyTextViewBgBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_20"
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp"
+        android:text="其他地图导航"
+        android:textColor="#ffffffff"
+        android:textSize="14.0sp" />
+</RelativeLayout>

@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\workspace\\coding\\android\\Weekend\\lib\\pull\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_vertical.xml",
+        "source": "D:\\workspace\\coding\\android\\Weekend\\lib\\pull\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_vertical.xml"
+    },
+    {
+        "merged": "D:\\workspace\\coding\\android\\ZeaApp\\lib\\pull\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
+        "source": "D:\\workspace\\coding\\android\\ZeaApp\\lib\\pull\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_horizontal.xml"
+    },
+    {
+        "merged": "D:\\workspace\\coding\\android\\ZeaApp\\lib\\pull\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_vertical.xml",
+        "source": "D:\\workspace\\coding\\android\\ZeaApp\\lib\\pull\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_vertical.xml"
+    },
+    {
+        "merged": "D:\\workspace\\coding\\android\\Weekend\\lib\\pull\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
+        "source": "D:\\workspace\\coding\\android\\Weekend\\lib\\pull\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_horizontal.xml"
+    }
+]

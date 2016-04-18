@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_gray_light_1"
+    android:paddingBottom="@dimen/dp_20"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="@dimen/dp_10">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/quest_head_imageview"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:src="@drawable/img_default_head" />
+
+    <FrameLayout
+        android:id="@+id/quest_name_textview_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/quest_head_imageview"
+        android:layout_alignTop="@+id/quest_head_imageview"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_toRightOf="@+id/quest_head_imageview">
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/quest_name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:ellipsize="end"
+            android:maxWidth="120dp"
+            android:singleLine="true"
+            android:textColor="@color/blue_00c8c8"
+            android:textSize="13sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/quest_hint_textview_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/quest_head_imageview"
+        android:layout_alignTop="@+id/quest_head_imageview"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_toLeftOf="@+id/quest_date_textview_layout"
+        android:layout_toRightOf="@+id/quest_name_textview_layout">
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/quest_hint_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/gray_999999"
+            android:textSize="13sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/quest_date_textview_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/quest_head_imageview"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/quest_head_imageview">
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/quest_date_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:textColor="@color/gray_999999"
+            android:textSize="13sp" />
+    </FrameLayout>
+
+    <com.martn.weekend.view.CusTextView
+        android:id="@+id/quest_content_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/quest_name_textview_layout"
+        android:layout_below="@+id/quest_head_imageview"
+        android:textColor="@color/text_black"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:id="@+id/triangle_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/quest_content_textview"
+        android:layout_below="@+id/quest_content_textview"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:src="@drawable/img_triangle_white" />
+
+    <RelativeLayout
+        android:id="@+id/reply_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/quest_content_textview"
+        android:layout_below="@+id/triangle_imageview"
+        android:background="@drawable/bg_corner_15_white"
+        android:padding="@dimen/dp_20">
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/reply_head_imageview"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/img_default_head" />
+
+        <FrameLayout
+            android:id="@+id/reply_name_textview_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/reply_head_imageview"
+            android:layout_alignTop="@+id/reply_head_imageview"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_toRightOf="@+id/reply_head_imageview">
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/reply_name_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:maxWidth="80dp"
+                android:singleLine="true"
+                android:textColor="@color/gray_999999"
+                android:textSize="13sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/reply_hint_textview_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/reply_head_imageview"
+            android:layout_alignTop="@+id/reply_head_imageview"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_toLeftOf="@+id/reply_date_textview_layout"
+            android:layout_toRightOf="@+id/reply_name_textview_layout">
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/reply_hint_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:minWidth="20.0dip"
+                android:text="回答"
+                android:textColor="@color/gray_999999"
+                android:textSize="13sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/reply_date_textview_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/reply_head_imageview"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/reply_head_imageview">
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/reply_date_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/gray_999999"
+                android:textSize="13sp" />
+        </FrameLayout>
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/reply_content_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/reply_head_imageview"
+            android:layout_below="@+id/reply_head_imageview"
+            android:layout_marginTop="@dimen/dp_20"
+            android:textColor="@color/main_text_gray"
+            android:textSize="13sp" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/point_imageview"
+            android:layout_width="3.0dip"
+            android:layout_height="3.0dip"
+            android:layout_centerVertical="true"
+            android:src="@color/main_text_gray" />
+
+        <com.martn.weekend.view.CusTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3.0dip"
+            android:layout_marginLeft="5.0dip"
+            android:layout_marginTop="3.0dip"
+            android:layout_toRightOf="@id/point_imageview"
+            android:gravity="center|left"
+            android:textColor="@color/main_text_gray"
+            android:textSize="@dimen/font_size_36"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <com.martn.weekend.view.CusTextView
+        android:id="@+id/tv_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3.0dip"
+        android:layout_marginLeft="5.0dip"
+        android:layout_marginTop="3.0dip"
+        android:layout_toRightOf="@+id/rl_point"
+        android:gravity="center|left"
+        android:lineSpacingExtra="1.0dip"
+        android:textColor="@color/main_text_gray"
+        android:textSize="@dimen/font_size_36" />
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_root"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_gray_light_1"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp_20">
+
+    <ImageView
+        android:id="@+id/iv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_20"
+        android:src="@drawable/img_x_black" />
+
+    <com.martn.weekend.view.CusTextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/dp_20"
+        android:text="@string/info_answer_one"
+        android:textColor="@color/text_black"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/iv_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/dp_20"
+        android:src="@drawable/img_j_black" />
+
+    <EditText
+        android:id="@+id/et_input"
+        style="@style/MyEditTextStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:gravity="center|left|top"
+        android:singleLine="false"
+        android:textColor="@color/main_text_gray" />
+</RelativeLayout>
