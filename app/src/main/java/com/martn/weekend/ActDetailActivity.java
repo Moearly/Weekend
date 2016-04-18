@@ -29,10 +29,7 @@ import com.martn.weekend.adapter.ActImgsAdapter;
 import com.martn.weekend.app.App;
 import com.martn.weekend.base.BaseActivity;
 import com.martn.weekend.db.UserPreference;
-import com.martn.weekend.model.DescriptionModel;
 import com.martn.weekend.model.FavFocusModel;
-import com.martn.weekend.model.HintModel;
-import com.martn.weekend.model.QuestreplyModel;
 import com.martn.weekend.model.QuestreplyQuestModel;
 import com.martn.weekend.model.QuestreplyReplyModel;
 import com.martn.weekend.model.SenderModel;
@@ -309,7 +306,7 @@ public class ActDetailActivity extends BaseActivity {
             hotCourseResult = new HotCourseNewResult(response);
             KLog.json(response.toString());
             if (hotCourseResult.success) {
-                initRecommendView();
+                setupRecommendView();
             } else {
                 Helper.showToast(detailResult.description);
             }
@@ -339,14 +336,14 @@ public class ActDetailActivity extends BaseActivity {
 
 
     /**
-     * 初始化热门
+     * 设置引导介绍
      */
-    private void initRecommendView() {
-
-    }
-
-
     private void setupGuide() {
+        if (UserPreference.getInstance(ctx).isGuideDetail()) {
+            ImageView guideIV = (ImageView) findViewById(R.id.img_guide_detail);
+            guideIV.setVisibility(0);
+            guideIV.setOnTouchListener(new AnonymousClass7(guideIV));
+        }
 
     }
 
