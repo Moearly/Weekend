@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/pop_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:paddingBottom="20dp">
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/title_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="@dimen/dp_20"
+            android:text="@string/info_share_to"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp_52" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_below="@+id/title_textview"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:background="@color/line_gray" />
+
+        <LinearLayout
+            android:id="@+id/share_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:layout_marginTop="@dimen/px_86"
+            android:orientation="horizontal">
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/weixin_textview"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawablePadding="@dimen/dp_10"
+                android:drawableTop="@drawable/img_share_wx"
+                android:gravity="center"
+                android:text="@string/info_wx_friend"
+                android:textColor="@color/gray_normal_text"
+                android:textSize="@dimen/font_size_middle_s" />
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/friend_zone_textview"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawablePadding="@dimen/dp_10"
+                android:drawableTop="@drawable/img_share_friend_zone"
+                android:gravity="center"
+                android:text="@string/friend_zone"
+                android:textColor="@color/gray_normal_text"
+                android:textSize="@dimen/font_size_middle_s" />
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/sina_textview"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawablePadding="@dimen/dp_10"
+                android:drawableTop="@drawable/img_share_sina_weibo"
+                android:gravity="center"
+                android:text="@string/sina_Weibo"
+                android:textColor="@color/gray_normal_text"
+                android:textSize="@dimen/font_size_middle_s" />
+        </LinearLayout>
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/cancel_textview"
+            style="@style/MyTextViewBgBlue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/share_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px_70"
+            android:paddingLeft="@dimen/dp_100"
+            android:paddingRight="@dimen/dp_100"
+            android:text="@string/info_cancel" />
+    </RelativeLayout>
+</RelativeLayout>

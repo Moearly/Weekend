@@ -4,4 +4,4 @@
 .DS_Store
 /.idea/
 /captures
-/build/
+build

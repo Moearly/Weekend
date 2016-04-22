@@ -334,15 +334,70 @@ public class ActDetailActivity extends BaseActivity {
         }
     };
 
+    //分享按钮
+    private View.OnClickListener shareOnClick = new View.OnClickListener() {
+        @OnClick
+        public void onClick(View v) {
+            String url = "http://www.fxzhoumo.com/detail/course.html?courseid=" + ActDetailActivity.this.courseid;
+            switch (v.getId()) {
+                case R.id.weixin_textview:
+                    ActDetailActivity.this.friendZoneShare = new FriendAndZoneShare(ActDetailActivity.this, false);
+                    ActDetailActivity.this.friendZoneShare.setInformation(ActDetailActivity.this.detailResult.courseDetail.title, ActDetailActivity.this.detailResult.courseDetail.viceTitle, url);
+                    ActDetailActivity.this.friendZoneShare.setBitmap(ActDetailActivity.this.shareBit);
+                    ActDetailActivity.this.friendZoneShare.sendUrlLinkReq(1);
+                case R.id.friend_zone_textview:
+                    ActDetailActivity.this.friendZoneShare = new FriendAndZoneShare(ActDetailActivity.this, false);
+                    ActDetailActivity.this.friendZoneShare.setInformation("\u53d1\u73b0\u5468\u672bApp\u4e0a\u7684[" + ActDetailActivity.this.detailResult.courseDetail.title + "]\u5f88\u68d2\uff0c\u5feb\u6765\u53c2\u52a0\u5427\uff01", bt.b, url);
+                    ActDetailActivity.this.friendZoneShare.setBitmap(ActDetailActivity.this.shareBit);
+                    ActDetailActivity.this.friendZoneShare.sendUrlLinkReq(0);
+                case R.id.sina_textview:
+                    String sinaInfo = "\u53d1\u73b0\u5468\u672bApp\u4e0a\u7684[" + ActDetailActivity.this.detailResult.courseDetail.title + "]\u5f88\u68d2\uff0c\u8fd9\u4e2a\u5468\u672b\u8ddf\u6211\u4e00\u8d77\u53c2\u52a0\u5427\uff01";
+                    IWeiboShareAPI mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(ActDetailActivity.this, Share.SINA_APP_KEY);
+                    mWeiboShareAPI.registerApp();
+                    if (mWeiboShareAPI.isWeiboAppInstalled()) {
+                        SinaShare sinaShare = new SinaShare(ActDetailActivity.this, mWeiboShareAPI);
+                        sinaShare.setInformation(sinaInfo, sinaInfo, sinaInfo, url);
+                        sinaShare.setBitmap(ActDetailActivity.this.shareBit);
+                        sinaShare.sendMultiMessage();
+                        return;
+                    }
+                    Utils.showToast("\u60a8\u8fd8\u672a\u5b89\u88c5\u65b0\u6d6a\u5fae\u535aApp");
+                default:
+            }
+        }
+    };
+
+
+    float iKnowLeft;
+    float iKonwBottom;
+    float iKonwRight;
+    float iKonwTop;
 
     /**
-     * 设置引导介绍
+     * 设置引导介绍--是否引导了详情
      */
     private void setupGuide() {
         if (UserPreference.getInstance(ctx).isGuideDetail()) {
-            ImageView guideIV = (ImageView) findViewById(R.id.img_guide_detail);
-            guideIV.setVisibility(0);
-            guideIV.setOnTouchListener(new AnonymousClass7(guideIV));
+            ivGuideDetail.setVisibility(View.VISIBLE);
+            ivGuideDetail.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    float x = event.getX();
+                    float y = event.getY();
+                    KLog.e("x = " + x + " | y = " + y);
+                    if (iKnowLeft == 0.0f || iKonwTop == 0.0f || iKonwRight == 0.0f || iKonwBottom == 0.0f) {
+                        iKnowLeft = ((float) AppUtils.getScreenWidth()) * 0.3f;
+                        iKonwRight = ((float) AppUtils.getScreenWidth()) * 0.7f;
+                        iKonwTop = ((float) AppUtils.getScreenHeight()) * 0.75f;
+                        iKonwBottom = ((float) AppUtils.getScreenHeight()) * 0.85f;
+                    }
+                    if (x >= iKnowLeft && x <= iKonwRight && y >= iKonwTop && y <= iKonwBottom) {
+                        ivGuideDetail.setVisibility(View.GONE);
+                    }
+                    return true;
+
+                }
+            });
         }
 
     }
@@ -1038,8 +1093,16 @@ public class ActDetailActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_location, R.id.iv_location, R.id.interest_layout,R.id.rl_sender,R.id.interest_num_layout,R.id.tv_answer,R.id.tv_more_question,R.id.tv_sign})
+    @OnClick({R.id.iv_back, R.id.tv_location, R.id.iv_location, R.id.interest_layout,
+            R.id.rl_sender,R.id.interest_num_layout,R.id.tv_answer,R.id.tv_more_question,
+            R.id.tv_sign,R.id.iv_topbar_title,R.id.iv_topbar_share,R.id.iv_topbar_message})
     public void onClick(View v) {
+        //如果不能购买的话
+        if (detailResult.courseDetail.isapply == 0 && packagesLayout.getVisibility() == View.VISIBLE) {
+            packagesLayout.setVisibility(View.GONE);
+            tvSign.setText("立即报名");
+            return;
+        }
         switch (v.getId()) {
             case R.id.iv_back:
                 finish();
@@ -1096,6 +1159,27 @@ public class ActDetailActivity extends BaseActivity {
                     tvSign.setText("请选择套餐");
                 }
                 break;
+            case R.id.iv_topbar_title:
+                svContent.smoothScrollTo(0, 0);
+                break;
+            case R.id.iv_topbar_share:
+                SharePopupWindow shareWindow = new SharePopupWindow(this);
+                shareWindow.setShareUrl("http://www.fxzhoumo.com/detail/course.html?courseid=" + this.courseid);
+                shareWindow.setShareWxFriendTitle(this.detailResult.courseDetail.title);
+                shareWindow.setShareWxFriendContent(this.detailResult.courseDetail.viceTitle);
+                shareWindow.setShareWxFriendZoneTitle("\u53d1\u73b0\u5468\u672bApp\u4e0a\u7684[" + this.detailResult.courseDetail.title + "]\u5f88\u68d2\uff0c\u5feb\u6765\u53c2\u52a0\u5427\uff01");
+                shareWindow.setShareContent("\u53d1\u73b0\u5468\u672bApp\u4e0a\u7684[" + this.detailResult.courseDetail.title + "]\u5f88\u68d2\uff0c\u8fd9\u4e2a\u5468\u672b\u8ddf\u6211\u4e00\u8d77\u53c2\u52a0\u5427\uff01");
+                shareWindow.show(findViewById(R.id.main));
+                break;
+            case R.id.iv_topbar_message:
+                if (UserPreference.getInstance(ctx).isLogin()) {
+                    MessageActivity.comeBady(this);
+                    overridePendingTransition(R.anim.slide_in_from_bottom, android.R.anim.fade_out);
+                    return;
+                }
+                LoginActivity.startActivityForResult(this);
+                break;
+
         }
 
     }
