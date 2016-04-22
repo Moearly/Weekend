@@ -22,7 +22,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.martn.weekend.app.App;
 import com.martn.weekend.base.BaseActivity;
-import com.martn.weekend.db.UserPreference;
 import com.martn.weekend.request.IQueryCourseReleaseServlet;
 import com.martn.weekend.result.HotCourseNewResult;
 import com.martn.weekend.result.ToDetailNewResult;
@@ -39,7 +38,6 @@ import org.json.JSONObject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
-import me.imid.swipebacklayout.lib.Utils;
 
 /**
  * Title: Weekend
