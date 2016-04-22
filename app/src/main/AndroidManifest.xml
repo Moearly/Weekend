@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.martn.weekend">
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
@@ -44,29 +45,74 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data android:name="UMENG_APPKEY" android:value="56eb73d9e0f55a384d001340" />
-        <meta-data android:name="UMENG_CHANNEL" android:value="self" />
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="56eb73d9e0f55a384d001340" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="self" />
 
-        <activity android:name=".SplashActivity" android:launchMode="singleTop" android:screenOrientation="portrait" android:exported="true">
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity" android:launchMode="singleTop" android:screenOrientation="portrait">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
 
         </activity>
 
-        <activity android:name=".LoginActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".ActMapActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".UserCenterActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".SearchMapActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ActMapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UserCenterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchMapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewPagerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OtherPersonActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".InterestPeopleActivity"
+            android:screenOrientation="portrait" />
 
-        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote" />
-        <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="Pe4iRLcG4fcAr9HOaSmW0tQt" />
+        <activity
+            android:name=".UserEditActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".QuestReplyActivity"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="Pe4iRLcG4fcAr9HOaSmW0tQt" />
 
     </application>
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/margin_screen"
+    android:paddingRight="@dimen/margin_screen">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_head"
+        android:layout_width="@dimen/head_width_item"
+        android:layout_height="@dimen/head_height_item"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/list_top_margin"
+        android:layout_marginTop="@dimen/list_top_margin" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="9.0dip"
+        android:layout_marginRight="9.0dip"
+        android:layout_toLeftOf="@+id/tv_state"
+        android:layout_toRightOf="@+id/iv_head">
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5.0dip"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/font_size_2" />
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/tv_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_name"
+            android:layout_below="@+id/tv_name"
+            android:layout_marginTop="6.0dip"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textColor="@color/main_text_gray"
+            android:textSize="@dimen/font_size_3" />
+    </RelativeLayout>
+
+    <com.martn.weekend.view.CusTextView
+        android:id="@+id/tv_state"
+        android:layout_width="55.0dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:drawablePadding="3.0dip"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/main_text_gray"
+        android:textSize="@dimen/font_size_4" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/line_height_normal"
+        android:layout_alignParentBottom="true"
+        android:background="@color/line_listview" />
+</RelativeLayout>

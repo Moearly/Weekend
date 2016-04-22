@@ -33,4 +33,17 @@
     <dimen name="line_height_s" >1.0px</dimen>
     <dimen name="screen_margin_s">10dp</dimen>
     <dimen name="bottom_height">46dp</dimen>
+    <dimen name="font_size_1">19sp</dimen>
+    <dimen name="font_size_2">14sp</dimen>
+    <dimen name="margin_screen">18dp</dimen>
+    <dimen name="margin_left">18dp</dimen>
+    <dimen name="margin_right">18dp</dimen>
+    <dimen name="margin_50">23dp</dimen>
+    <dimen name="line_height_normal">1px</dimen>
+    <dimen name="margin_l">15dp</dimen>
+    <dimen name="font_size_3">12sp</dimen>
+    <dimen name="margin">10dp</dimen>
+    <dimen name="head_width_item">42dp</dimen>
+    <dimen name="head_height_item">42dp</dimen>
+    <dimen name="list_top_margin">13dp</dimen>
 </resources>

@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\workspace\\coding\\android\\Weekend\\lib\\pull\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
+        "source": "D:\\workspace\\coding\\android\\Weekend\\lib\\pull\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
+    },
+    {
+        "merged": "D:\\workspace\\coding\\android\\ZeaApp\\lib\\pull\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
+        "source": "D:\\workspace\\coding\\android\\ZeaApp\\lib\\pull\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
+    },
+    {
+        "merged": "D:\\workspace\\coding\\android\\ZeaApp\\lib\\pull\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
+        "source": "D:\\workspace\\coding\\android\\ZeaApp\\lib\\pull\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
+    },
+    {
+        "merged": "D:\\workspace\\coding\\android\\Weekend\\lib\\pull\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
+        "source": "D:\\workspace\\coding\\android\\Weekend\\lib\\pull\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
+    }
+]

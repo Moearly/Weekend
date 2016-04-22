@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/bg_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_bg_01"
+        android:visibility="invisible" />
+
+    <RelativeLayout
+        android:id="@+id/personal_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/bg_view"
+        android:layout_alignLeft="@+id/bg_view"
+        android:layout_alignRight="@+id/bg_view"
+        android:layout_alignTop="@+id/bg_view">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/head_imageview"
+            android:layout_width="74.0dip"
+            android:layout_height="74.0dip"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:layout_marginTop="42.0dip"
+            android:src="@drawable/img_icon_blue"
+            app:civ_border_color="#ffd0f1f1"
+            app:civ_border_width="1.0dip" />
+
+        <ImageView
+            android:id="@+id/edit_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/head_imageview"
+            android:layout_alignRight="@+id/head_imageview"
+            android:padding="3.0dip"
+            android:src="@drawable/img_edit" />
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/name_textview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/head_imageview"
+            android:layout_marginLeft="9.0dip"
+            android:layout_marginRight="@dimen/margin_right"
+            android:layout_marginTop="5.0dip"
+            android:layout_toRightOf="@+id/head_imageview"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/font_size_2" />
+
+        <RelativeLayout
+            android:id="@+id/layout_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/name_textview"
+            android:layout_below="@+id/name_textview"
+            android:layout_marginTop="5.0dip">
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/sex_textview"
+                style="@style/SexStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true" />
+
+            <com.martn.weekend.view.CusTextView
+                android:id="@+id/con_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="9.0dip"
+                android:layout_toRightOf="@+id/sex_textview"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_4" />
+        </RelativeLayout>
+
+        <com.martn.weekend.view.CusTextView
+            android:id="@+id/tag_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/name_textview"
+            android:layout_below="@+id/layout_1"
+            android:layout_marginRight="@dimen/margin_right"
+            android:layout_marginTop="5.0dip"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/font_size_4" />
+    </RelativeLayout>
+</RelativeLayout>

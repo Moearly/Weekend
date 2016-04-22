@@ -24,7 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Title: Weekend
  * Package: com.martn.weekend.view
- * Description: ("请描述功能")
+ * Description: ("图文混合的显示区域")
  * Date 2014/10/5 23:17
  *
  * @author MartnLei MartnLei_163_com

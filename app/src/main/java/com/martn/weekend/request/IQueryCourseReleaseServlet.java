@@ -3,6 +3,7 @@ package com.martn.weekend.request;
 import com.android.volley.Response.Listener;
 import com.android.volley.Response.ErrorListener;
 import com.qmusic.common.BEnvironment;
+import com.qmusic.common.Common;
 import com.qmusic.uitls.AppUtils;
 import com.socks.library.KLog;
 
@@ -71,5 +72,79 @@ public class IQueryCourseReleaseServlet {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 获取参加活动的人
+     * @param courseid
+     * @param pageindex
+     * @param listener
+     * @param errorListener
+     */
+    public void findUserForCoureFave(int courseid, int pageindex, Listener<JSONObject> listener, ErrorListener errorListener) {
+        try {
+            HashMap<String, String> params = new HashMap();
+            JSONObject json = new JSONObject();
+            json.put(Common.Key.COURSE_ID, courseid);
+            json.put("pageindex", pageindex);
+            params.put("method", "findUserForCoureFave");
+            params.put("servicestr", json.toString());
+            QMusicJSONRequest request = new QMusicJSONRequest(1, BEnvironment.I_QUERY_COURSE_RELEASE_V2_SERVLET, listener, errorListener);
+            request.setParams(params);
+            QMusicRequestManager.getInstance().getRequestQueue().add(request);
+            KLog.e("url----->" + request.getUrl() + params);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 提交问题
+     * @param courseid
+     * @param content
+     * @param listener
+     * @param errorListener
+     */
+    public static void sendSaveQuest(int courseid, String content, Listener<JSONObject> listener, ErrorListener errorListener) {
+        try {
+            HashMap<String, String> params = new HashMap();
+            JSONObject json = new JSONObject();
+            json.put(Common.Key.COURSE_ID, courseid);
+            json.put("quest_content", content);
+            params.put("method", "saveQuest");
+            params.put("servicestr", json.toString());
+            QMusicJSONRequest request = new QMusicJSONRequest(1, BEnvironment.I_QUERY_COURSE_RELEASE_V2_SERVLET, listener, errorListener);
+            request.setParams(params);
+            QMusicRequestManager.getInstance().getRequestQueue().add(request);
+            KLog.e("url----->" + request.getUrl() + params);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取更多的问题
+     * @param courseid
+     * @param pageindex
+     * @param listener
+     * @param errorListener
+     */
+    public void sendMoreQuest(int courseid, int pageindex, Listener<JSONObject> listener, ErrorListener errorListener) {
+        try {
+            HashMap<String, String> params = new HashMap();
+            JSONObject json = new JSONObject();
+            json.put(Common.Key.COURSE_ID, courseid);
+            json.put("pageindex", pageindex);
+            params.put("method", "moreQuest");
+            params.put("servicestr", json.toString());
+            QMusicJSONRequest request = new QMusicJSONRequest(1, BEnvironment.I_QUERY_COURSE_RELEASE_V2_SERVLET, listener, errorListener);
+            request.setParams(params);
+            QMusicRequestManager.getInstance().getRequestQueue().add(request);
+            KLog.e("url----->" + request.getUrl() + params);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

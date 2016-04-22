@@ -29,6 +29,7 @@
     <string name="search_hit_text">搜索活动发布人、活动名称、地点</string>
     <string name="info_quest">提问</string>
     <string name="info_answer_one">回答一个</string>
+    <string name="info_is_over">已失效</string>
 </resources>
 
 

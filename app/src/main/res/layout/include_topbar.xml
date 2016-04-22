@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/topbar_bg"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/toolbar_height"
+    android:background="@color/blue">
+
+    <com.martn.weekend.view.CusTextView
+        android:id="@+id/topbar_left_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:drawableLeft="@drawable/img_arrow_left_new"
+        android:drawablePadding="@dimen/dp_5"
+        android:gravity="center_vertical"
+        android:onClick="onClick"
+        android:paddingLeft="@dimen/screen_margin"
+        android:paddingRight="@dimen/screen_margin"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/main_font_l" />
+
+    <com.martn.weekend.view.CusTextView
+        android:id="@+id/topbar_mid_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:layout_toLeftOf="@+id/topbar_right_weight_textview"
+        android:layout_toRightOf="@+id/topbar_left_textview"
+        android:gravity="center"
+        android:padding="@dimen/dp_20"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_1" />
+
+    <com.martn.weekend.view.CusTextView
+        android:id="@+id/topbar_right_weight_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center|right"
+        android:drawableLeft="@drawable/img_arrow_left_white"
+        android:drawablePadding="@dimen/dp_5"
+        android:paddingLeft="@dimen/screen_margin"
+        android:paddingRight="@dimen/screen_margin"
+        android:textSize="@dimen/font_size_2"
+        android:visibility="invisible" />
+
+    <com.martn.weekend.view.CusTextView
+        android:id="@+id/topbar_right_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:onClick="onClick"
+        android:paddingBottom="29px"
+        android:paddingLeft="58px"
+        android:paddingRight="38px"
+        android:paddingTop="29px"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size_2" />
+</RelativeLayout>

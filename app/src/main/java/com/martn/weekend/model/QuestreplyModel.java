@@ -18,6 +18,9 @@ public class QuestreplyModel implements Serializable {
     public QuestreplyQuestModel quest;
     public QuestreplyReplyModel reply;
 
+    public QuestreplyModel() {
+    }
+
     public QuestreplyModel(JSONObject json) {
         parse(json);
     }

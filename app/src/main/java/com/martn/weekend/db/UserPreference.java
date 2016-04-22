@@ -139,6 +139,20 @@ public class UserPreference {
 
     }
 
+    public boolean isGuideDetail() {
+        boolean z = true;
+        boolean flag = getBoolean("isGuideDetail", true);
+        if (flag) {
+            String str = "isGuideDetail";
+            if (flag) {
+                z = false;
+            }
+            putBoolean(str, z);
+        }
+        return flag;
+
+    }
+
     public String getUserPhoto() {
         return getString(userId+KEY_USER_PHOTO,"");
     }

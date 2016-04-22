@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rl_main"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -8,15 +7,15 @@
     android:fitsSystemWindows="true">
 
     <include
-        android:id="@id/topbar"
+        android:id="@+id/topbar"
         layout="@layout/include_topbar_detail" />
 
     <ScrollView
         android:id="@+id/sv_content"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@id/bottom_layout"
-        android:layout_below="@id/topbar">
+        android:layout_above="@+id/bottom_layout"
+        android:layout_below="@+id/topbar">
 
         <RelativeLayout
             android:id="@+id/rl_content"
@@ -86,9 +85,9 @@
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/tv_title"
-                android:layout_alignRight="@id/tv_title"
-                android:layout_below="@id/tv_title"
+                android:layout_alignLeft="@+id/tv_title"
+                android:layout_alignRight="@+id/tv_title"
+                android:layout_below="@+id/tv_title"
                 android:layout_marginTop="6.0dip"
                 android:textColor="@color/main_text_gray"
                 android:textSize="@dimen/font_size_36" />
@@ -98,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/tv_date"
+                android:layout_below="@+id/tv_date"
                 android:layout_marginRight="@dimen/screen_margin_l"
                 android:layout_marginTop="30.0dip"
                 android:background="@drawable/line_delete"
@@ -110,10 +109,10 @@
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/tv_old_price"
+                android:layout_alignBottom="@+id/tv_old_price"
                 android:layout_marginBottom="-1.7999878dip"
                 android:layout_marginRight="5.0dip"
-                android:layout_toLeftOf="@id/tv_old_price"
+                android:layout_toLeftOf="@+id/tv_old_price"
                 android:textColor="@color/red"
                 android:textSize="@dimen/font_size_30"
                 android:visibility="invisible" />
@@ -122,7 +121,7 @@
                 android:id="@+id/line1_view"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/line_height_s"
-                android:layout_below="@id/tv_price"
+                android:layout_below="@+id/tv_price"
                 android:layout_marginLeft="@dimen/screen_margin_l"
                 android:layout_marginRight="@dimen/screen_margin_l"
                 android:layout_marginTop="@dimen/screen_margin_l"
@@ -132,7 +131,7 @@
                 android:id="@+id/tv_light_point_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/line1_view"
+                android:layout_below="@+id/line1_view"
                 android:background="@color/main_text_gray_light"
                 android:paddingLeft="@dimen/screen_margin_l"
                 android:paddingRight="@dimen/screen_margin_l"
@@ -145,7 +144,7 @@
                 android:id="@+id/ll_light_point_content"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_light_point_title"
+                android:layout_below="@+id/tv_light_point_title"
                 android:background="@color/main_text_gray_light"
                 android:lineSpacingExtra="1.0dip"
                 android:orientation="vertical"
@@ -159,20 +158,20 @@
                 android:id="@+id/line2_view"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/line_height"
-                android:layout_below="@id/ll_light_point_content"
+                android:layout_below="@+id/ll_light_point_content"
                 android:background="@color/main_text_gray_light" />
 
             <RelativeLayout
                 android:id="@+id/rl_info"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/line2_view"
+                android:layout_below="@+id/line2_view"
                 android:layout_marginLeft="@dimen/screen_margin_l"
                 android:layout_marginRight="@dimen/screen_margin_l"
                 android:visibility="gone">
 
                 <View
-                    android:id="@id/center_view"
+                    android:id="@+id/center_view"
                     android:layout_width="1.0dip"
                     android:layout_height="1.0dip"
                     android:layout_centerHorizontal="true" />
@@ -181,7 +180,7 @@
                     android:id="@+id/tv_detail"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/center_view"
+                    android:layout_toLeftOf="@+id/center_view"
                     android:gravity="center_horizontal"
                     android:paddingBottom="5.0dip"
                     android:paddingTop="20.0dip"
@@ -193,9 +192,9 @@
                     android:id="@+id/iv_detail_line"
                     android:layout_width="wrap_content"
                     android:layout_height="3.0dip"
-                    android:layout_alignLeft="@id/tv_detail"
-                    android:layout_alignRight="@id/tv_detail"
-                    android:layout_below="@id/tv_detail"
+                    android:layout_alignLeft="@+id/tv_detail"
+                    android:layout_alignRight="@+id/tv_detail"
+                    android:layout_below="@+id/tv_detail"
                     android:paddingLeft="40.0dip"
                     android:paddingRight="40.0dip"
                     android:src="@color/blue" />
@@ -204,7 +203,7 @@
                     android:id="@+id/tv_notice"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/center_view"
+                    android:layout_toRightOf="@+id/center_view"
                     android:gravity="center_horizontal"
                     android:paddingBottom="5.0dip"
                     android:paddingTop="20.0dip"
@@ -216,9 +215,9 @@
                     android:id="@+id/iv_notice_line"
                     android:layout_width="wrap_content"
                     android:layout_height="3.0dip"
-                    android:layout_alignLeft="@id/tv_notice"
-                    android:layout_alignRight="@id/tv_notice"
-                    android:layout_below="@id/tv_notice"
+                    android:layout_alignLeft="@+id/tv_notice"
+                    android:layout_alignRight="@+id/tv_notice"
+                    android:layout_below="@+id/tv_notice"
                     android:paddingLeft="40.0dip"
                     android:paddingRight="40.0dip"
                     android:src="@color/blue"
@@ -229,7 +228,7 @@
                 android:id="@+id/line2"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/line_height_s"
-                android:layout_below="@id/rl_info"
+                android:layout_below="@+id/rl_info"
                 android:layout_marginLeft="@dimen/screen_margin_l"
                 android:layout_marginRight="@dimen/screen_margin_l"
                 android:background="@color/line_gray" />
@@ -238,7 +237,7 @@
                 android:id="@+id/rl_sender"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/line2"
+                android:layout_below="@+id/line2"
                 android:layout_marginLeft="@dimen/screen_margin_l"
                 android:layout_marginRight="@dimen/screen_margin_l"
                 android:paddingBottom="20.0dip"
@@ -266,8 +265,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/screen_margin_l"
                     android:layout_marginRight="@dimen/screen_margin_l"
-                    android:layout_toLeftOf="@id/iv_sender_arrow"
-                    android:layout_toRightOf="@id/iv_sender_head">
+                    android:layout_toLeftOf="@+id/iv_sender_arrow"
+                    android:layout_toRightOf="@+id/iv_sender_head">
 
                     <com.martn.weekend.view.CusTextView
                         android:id="@+id/tv_sender_name"
@@ -282,7 +281,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8.0dip"
-                        android:layout_toRightOf="@id/tv_sender_name"
+                        android:layout_toRightOf="@+id/tv_sender_name"
                         android:background="@color/blue"
                         android:gravity="center"
                         android:paddingBottom="1.0dip"
@@ -296,7 +295,7 @@
                         android:id="@+id/tv_sender_signature"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_sender_name"
+                        android:layout_below="@+id/tv_sender_name"
                         android:layout_marginTop="2.0dip"
                         android:textColor="@color/main_text_gray"
                         android:textSize="@dimen/font_size_36" />
@@ -307,7 +306,7 @@
                 android:id="@+id/rl_location"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_sender"
+                android:layout_below="@+id/rl_sender"
                 android:layout_marginTop="10.0dip">
 
                 <com.martn.weekend.view.CusTextView
@@ -334,9 +333,9 @@
                     android:id="@+id/iv_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_location"
+                    android:layout_below="@+id/tv_location"
                     android:layout_marginTop="30.0dip"
-                    android:layout_toLeftOf="@id/iv_center_location"
+                    android:layout_toLeftOf="@+id/iv_center_location"
                     android:clickable="true"
                     android:onClick="onClick"
                     android:src="@drawable/img_location_circle" />
@@ -345,9 +344,9 @@
                     android:id="@+id/iv_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_location"
+                    android:layout_below="@+id/tv_location"
                     android:layout_marginTop="30.0dip"
-                    android:layout_toRightOf="@id/iv_center_location"
+                    android:layout_toRightOf="@+id/iv_center_location"
                     android:clickable="true"
                     android:onClick="onClick"
                     android:src="@drawable/img_phone_circle" />
@@ -357,7 +356,7 @@
                 android:id="@+id/tv_description"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_location"
+                android:layout_below="@+id/rl_location"
                 android:background="@color/white"
                 android:paddingBottom="15.0dip"
                 android:paddingTop="10.0dip"
@@ -367,7 +366,7 @@
                 android:id="@+id/tv_hint_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_description"
+                android:layout_below="@+id/tv_description"
                 android:background="@color/main_text_gray_light"
                 android:paddingBottom="15.0dip"
                 android:paddingLeft="@dimen/screen_margin_l"
@@ -382,7 +381,7 @@
                 android:id="@+id/hint_content_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_hint_title"
+                android:layout_below="@+id/tv_hint_title"
                 android:background="@color/main_text_gray_light"
                 android:orientation="vertical"
                 android:paddingBottom="10.0dip"
@@ -394,7 +393,7 @@
                 android:id="@+id/hint_img_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/hint_content_layout"
+                android:layout_below="@+id/hint_content_layout"
                 android:background="@color/main_text_gray_light"
                 android:orientation="vertical"
                 android:paddingTop="@dimen/screen_margin" />
@@ -403,7 +402,7 @@
                 android:id="@+id/iv_system_line"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/line_height"
-                android:layout_below="@id/hint_img_layout"
+                android:layout_below="@+id/hint_img_layout"
                 android:background="@color/main_text_gray_light"
                 android:paddingLeft="@dimen/screen_margin"
                 android:paddingRight="@dimen/screen_margin"
@@ -413,7 +412,7 @@
                 android:id="@+id/tv_online_system"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/iv_system_line"
+                android:layout_below="@+id/iv_system_line"
                 android:background="@color/main_text_gray_light"
                 android:clickable="true"
                 android:gravity="center"
@@ -428,7 +427,7 @@
                 android:id="@+id/interest_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_online_system"
+                android:layout_below="@+id/tv_online_system"
                 android:visibility="gone">
 
                 <com.martn.weekend.view.CusTextView
@@ -446,9 +445,9 @@
                     android:id="@+id/interest_num_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_alignBottom="@id/sv_interest_head"
+                    android:layout_alignBottom="@+id/sv_interest_head"
                     android:layout_alignParentRight="true"
-                    android:layout_alignTop="@id/sv_interest_head"
+                    android:layout_alignTop="@+id/sv_interest_head"
                     android:layout_marginRight="@dimen/screen_margin_l">
 
                     <com.martn.weekend.view.CusTextView
@@ -468,9 +467,9 @@
                     android:id="@+id/sv_interest_head"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/head_size_s"
-                    android:layout_below="@id/tv_interest_title"
+                    android:layout_below="@+id/tv_interest_title"
                     android:layout_marginLeft="@dimen/screen_margin_l"
-                    android:layout_toLeftOf="@id/interest_num_layout"
+                    android:layout_toLeftOf="@+id/interest_num_layout"
                     android:scrollbars="none">
 
                     <LinearLayout
@@ -483,7 +482,7 @@
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/line_height"
-                    android:layout_below="@id/sv_interest_head"
+                    android:layout_below="@+id/sv_interest_head"
                     android:layout_marginTop="@dimen/screen_margin"
                     android:background="@color/main_text_gray_light" />
             </RelativeLayout>
@@ -492,7 +491,7 @@
                 android:id="@+id/question_title_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/interest_layout"
+                android:layout_below="@+id/interest_layout"
                 android:layout_marginLeft="@dimen/screen_margin_l"
                 android:layout_marginRight="@dimen/screen_margin_l"
                 android:paddingBottom="10.0dip"
@@ -526,7 +525,7 @@
                 android:id="@+id/question_user_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/question_title_layout"
+                android:layout_below="@+id/question_title_layout"
                 android:layout_marginLeft="@dimen/screen_margin_l"
                 android:layout_marginRight="@dimen/screen_margin_l"
                 android:visibility="gone">
@@ -543,7 +542,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/screen_margin_l"
-                    android:layout_toRightOf="@id/iv_question_head">
+                    android:layout_toRightOf="@+id/iv_question_head">
 
                     <com.martn.weekend.view.CusTextView
                         android:id="@+id/tv_question_name"
@@ -556,7 +555,7 @@
                         android:id="@+id/tv_question_date"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_question_name"
+                        android:layout_below="@+id/tv_question_name"
                         android:layout_marginTop="2.0dip"
                         android:textColor="@color/main_text_gray_light"
                         android:textSize="@dimen/font_size_30" />
@@ -567,7 +566,7 @@
                 android:id="@+id/tv_question_content"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/question_user_layout"
+                android:layout_below="@+id/question_user_layout"
                 android:layout_marginLeft="@dimen/screen_margin_l"
                 android:layout_marginRight="@dimen/screen_margin_l"
                 android:layout_marginTop="12.0dip"
@@ -580,7 +579,7 @@
                 android:id="@+id/iv_reply_triangle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_question_content"
+                android:layout_below="@+id/tv_question_content"
                 android:layout_marginLeft="36.0dip"
                 android:src="@drawable/img_triangle_gray"
                 android:visibility="gone" />
@@ -589,7 +588,7 @@
                 android:id="@+id/reply_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/iv_reply_triangle"
+                android:layout_below="@+id/iv_reply_triangle"
                 android:layout_marginLeft="@dimen/screen_margin_l"
                 android:layout_marginRight="@dimen/screen_margin_l"
                 android:background="@drawable/bg_corner_gray_light"
@@ -607,7 +606,7 @@
                     android:id="@+id/tv_reply_content"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_reply_name"
+                    android:layout_below="@+id/tv_reply_name"
                     android:layout_marginTop="10.0dip"
                     android:lineSpacingExtra="5.0dip"
                     android:textColor="@color/main_text_gray_light"
@@ -618,7 +617,7 @@
                 android:id="@+id/tv_more_question"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/reply_layout"
+                android:layout_below="@+id/reply_layout"
                 android:gravity="center"
                 android:paddingBottom="20.0dip"
                 android:paddingTop="20.0dip"
@@ -629,7 +628,7 @@
                 android:id="@+id/tv_recommend_act_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_more_question"
+                android:layout_below="@+id/tv_more_question"
                 android:background="@color/main_text_gray_light"
                 android:paddingBottom="10.0dip"
                 android:paddingLeft="@dimen/screen_margin_l"
@@ -642,7 +641,7 @@
                 android:id="@+id/recommend_act_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_recommend_act_title"
+                android:layout_below="@+id/tv_recommend_act_title"
                 android:background="@color/main_text_gray_light"
                 android:orientation="vertical"
                 android:visibility="invisible" />
@@ -717,7 +716,7 @@
         android:id="@+id/info_top_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/topbar"
+        android:layout_below="@+id/topbar"
         android:background="@color/white"
         android:paddingLeft="@dimen/screen_margin_l"
         android:paddingRight="@dimen/screen_margin_l"
@@ -733,7 +732,7 @@
             android:id="@+id/tv_detail_top"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/center_top_view"
+            android:layout_toLeftOf="@+id/center_top_view"
             android:gravity="center_horizontal"
             android:paddingBottom="5.0dip"
             android:paddingTop="20.0dip"
@@ -745,9 +744,9 @@
             android:id="@+id/iv_detail_line_top"
             android:layout_width="wrap_content"
             android:layout_height="3.0dip"
-            android:layout_alignLeft="@id/tv_detail_top"
-            android:layout_alignRight="@id/tv_detail_top"
-            android:layout_below="@id/tv_detail_top"
+            android:layout_alignLeft="@+id/tv_detail_top"
+            android:layout_alignRight="@+id/tv_detail_top"
+            android:layout_below="@+id/tv_detail_top"
             android:paddingLeft="40.0dip"
             android:paddingRight="40.0dip"
             android:src="@color/blue" />
@@ -756,7 +755,7 @@
             android:id="@+id/tv_notice_top"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/center_top_view"
+            android:layout_toRightOf="@+id/center_top_view"
             android:gravity="center_horizontal"
             android:paddingBottom="5.0dip"
             android:paddingTop="20.0dip"
@@ -768,9 +767,9 @@
             android:id="@+id/iv_notice_line_top"
             android:layout_width="wrap_content"
             android:layout_height="3.0dip"
-            android:layout_alignLeft="@id/tv_notice_top"
-            android:layout_alignRight="@id/tv_notice_top"
-            android:layout_below="@id/tv_notice_top"
+            android:layout_alignLeft="@+id/tv_notice_top"
+            android:layout_alignRight="@+id/tv_notice_top"
+            android:layout_below="@+id/tv_notice_top"
             android:paddingLeft="40.0dip"
             android:paddingRight="40.0dip"
             android:src="@color/blue"

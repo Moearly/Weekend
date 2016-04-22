@@ -36,4 +36,11 @@
     <color name="text_black">#ff333333</color>
     <color name="bg_gray_light_1">#ffededed</color>
     <color name="line_listview">#ffdfdfdf</color>
+    <color name="gray">#fff4f4f1</color>
+    <color name="text_red">#ffff6d85</color>
+    <color name="blue_00c8c8">#ff86e4fd</color>
+    <color name="gray_999999">#ff999999</color>
+    <color name="t_black50">#99000000</color>
+    <color name="t_gray80">#99999999</color>
+    <color name="gray_new">#fff4f4f1</color>
 </resources>
