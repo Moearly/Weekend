@@ -14,6 +14,8 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -51,6 +53,7 @@ import com.martn.weekend.base.BaseActivity;
 import com.socks.library.KLog;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -172,9 +175,10 @@ public class OtherPersonActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_person);
+        ButterKnife.bind(this);
         if (VERSION.SDK_INT >= 19) {
-            getWindow().addFlags(67108864);
-            getWindow().addFlags(134217728);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintColor(getResources().getColor(R.color.transparent));
             tintManager.setStatusBarTintEnabled(true);
@@ -182,7 +186,7 @@ public class OtherPersonActivity extends BaseActivity {
         userId = getIntent().getIntExtra("userid", -1);
         pDialog = new ProgressDialog(this);
         photoMargin = (int) TypedValue.applyDimension(1, 9.0f, getResources().getDisplayMetrics());
-        photoParams = new LayoutParams(-2, -2);
+        photoParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         urllist = new ArrayList();
         toastCommom = ToastCommom.createToastConfig();
         initView();
@@ -190,7 +194,9 @@ public class OtherPersonActivity extends BaseActivity {
     }
 
     @OnClick({R.id.back_imageview, R.id.like_imageview, R.id.chat_textview, R.id.head_imageview,
-            R.id.over_layout})
+            R.id.over_layout,R.id.over_left_layout,R.id.over_right_layout,R.id.joined_layout,
+            R.id.joined_left_layout,R.id.joined_right_layout,R.id.attention_layout,R.id.attention_left_layout,
+            R.id.attention_right_layout})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back_imageview:

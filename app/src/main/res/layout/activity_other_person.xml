@@ -127,14 +127,16 @@
                 android:layout_toLeftOf="@+id/center_view"
                 android:visibility="gone">
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.martn.weekend.view.roundedimageview.RoundedImageView
+                    app:riv_corner_radius="5.0dip"
                     android:id="@+id/over_left_imageview"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:scaleType="centerCrop"
                      />
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.martn.weekend.view.roundedimageview.RoundedImageView
+                    app:riv_corner_radius="5.0dip"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:scaleType="centerCrop"
@@ -165,14 +167,16 @@
                 android:layout_toRightOf="@+id/center_view"
                 android:visibility="gone">
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.martn.weekend.view.roundedimageview.RoundedImageView
+                    app:riv_corner_radius="5.0dip"
                     android:id="@+id/over_right_imageview"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:scaleType="centerCrop"
                      />
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.martn.weekend.view.roundedimageview.RoundedImageView
+                    app:riv_corner_radius="5.0dip"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:scaleType="centerCrop"
@@ -242,21 +246,23 @@
                 android:layout_toLeftOf="@+id/center_view"
                 android:visibility="gone">
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.martn.weekend.view.roundedimageview.RoundedImageView
+                    app:riv_corner_radius="5.0dip"
                     android:id="@+id/joined_left_imageview"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:scaleType="centerCrop"
                      />
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.martn.weekend.view.roundedimageview.RoundedImageView
+                    app:riv_corner_radius="5.0dip"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/img_course_bg"
                      />
 
-                <sm.xue.view.MyTV1
+                <com.martn.weekend.view.CusTextView
                     android:id="@+id/joined_title_left_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -280,21 +286,23 @@
                 android:layout_toRightOf="@+id/center_view"
                 android:visibility="gone">
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.martn.weekend.view.roundedimageview.RoundedImageView
+                    app:riv_corner_radius="5.0dip"
                     android:id="@+id/joined_right_imageview"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:scaleType="centerCrop"
                      />
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.martn.weekend.view.roundedimageview.RoundedImageView
+                    app:riv_corner_radius="5.0dip"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/img_course_bg"
                      />
 
-                <sm.xue.view.MyTV1
+                <com.martn.weekend.view.CusTextView
                     android:id="@+id/joined_title_right_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -357,14 +365,16 @@
                 android:layout_toLeftOf="@+id/center_view"
                 android:visibility="gone">
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.martn.weekend.view.roundedimageview.RoundedImageView
                     android:id="@+id/attention_left_imageview"
                     android:layout_width="fill_parent"
+                    app:riv_corner_radius="5.0dip"
                     android:layout_height="fill_parent"
                     android:scaleType="centerCrop"
                      />
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.martn.weekend.view.roundedimageview.RoundedImageView
+                    app:riv_corner_radius="5.0dip"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:scaleType="centerCrop"
@@ -395,14 +405,16 @@
                 android:layout_toRightOf="@+id/center_view"
                 android:visibility="gone">
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.martn.weekend.view.roundedimageview.RoundedImageView
+                    app:riv_corner_radius="5.0dip"
                     android:id="@+id/attention_right_imageview"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:scaleType="centerCrop"
                      />
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.martn.weekend.view.roundedimageview.RoundedImageView
+                    app:riv_corner_radius="5.0dip"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:scaleType="centerCrop"
