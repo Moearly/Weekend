@@ -43,4 +43,5 @@
     <color name="t_black50">#99000000</color>
     <color name="t_gray80">#99999999</color>
     <color name="gray_new">#fff4f4f1</color>
+    <color name="gray_normal_text">#ff8a8a8a</color>
 </resources>

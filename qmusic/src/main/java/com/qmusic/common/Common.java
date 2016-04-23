@@ -10,9 +10,16 @@ package com.qmusic.common;
  * @version V1.0
  */
 public class Common {
+    public static boolean isPayFriendZone = false;
 
+    public class Share {
+        public static final String SINA_APP_KEY = "823243807";
+    }
 
-
+    public class WXCommon {
+        public static final String APP_ID = "wx0dd4b112da3da9f7";
+        public static final int WX_AUTH_SUCCESS = 1001;
+    }
 
     public class Key {
         public static final String CITY = "city";

@@ -11,6 +11,7 @@ import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,19 +39,25 @@ import com.martn.weekend.request.IUserCenterServlet;
 import com.martn.weekend.result.FavFocusResult;
 import com.martn.weekend.result.HotCourseNewResult;
 import com.martn.weekend.result.ToDetailNewResult;
+import com.martn.weekend.share.FriendAndZoneShare;
+import com.martn.weekend.share.SinaShare;
 import com.martn.weekend.utility.AnimateFirstDisplayListener;
 import com.martn.weekend.utility.DateHelper;
 import com.martn.weekend.utility.cache.ACache;
 import com.martn.weekend.view.CusTextView;
 import com.martn.weekend.view.CustomTextView;
 import com.martn.weekend.view.InputAnswerPopupWindow;
+import com.martn.weekend.view.SharePopupWindow;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.qmusic.common.BEnvironment;
+import com.qmusic.common.Common;
 import com.qmusic.uitls.AppUtils;
 import com.qmusic.uitls.Helper;
 import com.qmusic.uitls.TUtils;
+import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
+import com.sina.weibo.sdk.api.share.WeiboShareSDK;
 import com.socks.library.KLog;
 import com.umeng.analytics.MobclickAgent;
 
@@ -333,6 +340,7 @@ public class ActDetailActivity extends BaseActivity {
             Helper.showToast(response.optString("description"));
         }
     };
+    private FriendAndZoneShare friendZoneShare;
 
     //分享按钮
     private View.OnClickListener shareOnClick = new View.OnClickListener() {
@@ -341,18 +349,20 @@ public class ActDetailActivity extends BaseActivity {
             String url = "http://www.fxzhoumo.com/detail/course.html?courseid=" + ActDetailActivity.this.courseid;
             switch (v.getId()) {
                 case R.id.weixin_textview:
-                    ActDetailActivity.this.friendZoneShare = new FriendAndZoneShare(ActDetailActivity.this, false);
-                    ActDetailActivity.this.friendZoneShare.setInformation(ActDetailActivity.this.detailResult.courseDetail.title, ActDetailActivity.this.detailResult.courseDetail.viceTitle, url);
-                    ActDetailActivity.this.friendZoneShare.setBitmap(ActDetailActivity.this.shareBit);
-                    ActDetailActivity.this.friendZoneShare.sendUrlLinkReq(1);
+                    friendZoneShare = new FriendAndZoneShare(ActDetailActivity.this, false);
+                    friendZoneShare.setInformation(ActDetailActivity.this.detailResult.courseDetail.title, ActDetailActivity.this.detailResult.courseDetail.viceTitle, url);
+                    friendZoneShare.setBitmap(ActDetailActivity.this.shareBit);
+                    friendZoneShare.sendUrlLinkReq(1);
+                    break;
                 case R.id.friend_zone_textview:
-                    ActDetailActivity.this.friendZoneShare = new FriendAndZoneShare(ActDetailActivity.this, false);
-                    ActDetailActivity.this.friendZoneShare.setInformation("\u53d1\u73b0\u5468\u672bApp\u4e0a\u7684[" + ActDetailActivity.this.detailResult.courseDetail.title + "]\u5f88\u68d2\uff0c\u5feb\u6765\u53c2\u52a0\u5427\uff01", bt.b, url);
-                    ActDetailActivity.this.friendZoneShare.setBitmap(ActDetailActivity.this.shareBit);
-                    ActDetailActivity.this.friendZoneShare.sendUrlLinkReq(0);
+                    friendZoneShare = new FriendAndZoneShare(ActDetailActivity.this, false);
+                    friendZoneShare.setInformation("发现周末App上的[" + ActDetailActivity.this.detailResult.courseDetail.title + "]很棒，快来参加吧！", "", url);
+                    friendZoneShare.setBitmap(ActDetailActivity.this.shareBit);
+                    friendZoneShare.sendUrlLinkReq(0);
+                    break;
                 case R.id.sina_textview:
-                    String sinaInfo = "\u53d1\u73b0\u5468\u672bApp\u4e0a\u7684[" + ActDetailActivity.this.detailResult.courseDetail.title + "]\u5f88\u68d2\uff0c\u8fd9\u4e2a\u5468\u672b\u8ddf\u6211\u4e00\u8d77\u53c2\u52a0\u5427\uff01";
-                    IWeiboShareAPI mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(ActDetailActivity.this, Share.SINA_APP_KEY);
+                    String sinaInfo = "发现周末App上的[" + ActDetailActivity.this.detailResult.courseDetail.title + "]很棒，这个周末跟我一起参加吧！";
+                    IWeiboShareAPI mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(ActDetailActivity.this, Common.Share.SINA_APP_KEY);
                     mWeiboShareAPI.registerApp();
                     if (mWeiboShareAPI.isWeiboAppInstalled()) {
                         SinaShare sinaShare = new SinaShare(ActDetailActivity.this, mWeiboShareAPI);
@@ -361,7 +371,8 @@ public class ActDetailActivity extends BaseActivity {
                         sinaShare.sendMultiMessage();
                         return;
                     }
-                    Utils.showToast("\u60a8\u8fd8\u672a\u5b89\u88c5\u65b0\u6d6a\u5fae\u535aApp");
+                    Helper.showToast("您还未安装新浪微博App");
+                    break;
                 default:
             }
         }
@@ -993,6 +1004,32 @@ public class ActDetailActivity extends BaseActivity {
         MobclickAgent.onPause(this);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && resultCode == 2) {
+            IQueryCourseReleaseServlet.toDetail(courseid, toDetailListener, errorListener);
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode != KeyEvent.KEYCODE_BACK) {
+            return super.onKeyDown(keyCode, event);
+        }
+        if (this.inway == 1) {
+            startActivity(new Intent(this, MainActivity.class));
+        } else {
+            Intent intent = new Intent();
+            intent.putExtra(Common.Key.COURSE_ID, this.courseid);
+            if (this.detailResult != null) {
+                intent.putExtra("iscollect", this.detailResult.courseDetail.iscollect);
+            }
+            setResult(-1, intent);
+        }
+        finish();
+        return true;
+    }
+
 
     private void initView() {
         //设置类容区域的
@@ -1095,7 +1132,10 @@ public class ActDetailActivity extends BaseActivity {
 
     @OnClick({R.id.iv_back, R.id.tv_location, R.id.iv_location, R.id.interest_layout,
             R.id.rl_sender,R.id.interest_num_layout,R.id.tv_answer,R.id.tv_more_question,
-            R.id.tv_sign,R.id.iv_topbar_title,R.id.iv_topbar_share,R.id.iv_topbar_message})
+            R.id.tv_sign,R.id.iv_topbar_title,R.id.iv_topbar_share,R.id.iv_topbar_message,
+            R.id.iv_send,R.id.tv_online_system,R.id.tv_detail,R.id.iv_detail_line,
+            R.id.tv_detail_top, R.id.iv_detail_line_top,R.id.tv_notice,R.id.iv_notice_line,
+            R.id.tv_notice_top,R.id.iv_notice_line_top})
     public void onClick(View v) {
         //如果不能购买的话
         if (detailResult.courseDetail.isapply == 0 && packagesLayout.getVisibility() == View.VISIBLE) {
@@ -1105,7 +1145,39 @@ public class ActDetailActivity extends BaseActivity {
         }
         switch (v.getId()) {
             case R.id.iv_back:
+                if (this.inway == 1) {
+                    MainActivity.comeBady(this);
+                } else {
+                    Intent intent = new Intent();
+                    intent.putExtra(Common.Key.COURSE_ID, this.courseid);
+                    if (this.detailResult != null) {
+                        intent.putExtra("iscollect", this.detailResult.courseDetail.iscollect);
+                    }
+                    setResult(RESULT_OK, intent);
+                }
                 finish();
+                break;
+            case R.id.tv_detail:
+            case R.id.iv_detail_line:
+            case R.id.tv_detail_top:
+            case R.id.iv_detail_line_top:
+                setupDetailAndNotice(0);
+                svContent.smoothScrollTo(0, rlInfo.getTop());
+                break;
+            case R.id.tv_notice:
+            case R.id.iv_notice_line:
+            case R.id.tv_notice_top:
+            case R.id.iv_notice_line_top:
+                this.infoTopLayout.setVisibility(0);
+                setupDetailAndNotice(1);
+                svContent.smoothScrollTo(0, tvDescription.getBottom() - infoTopLayout.getHeight());
+                break;
+            case R.id.tv_online_system:
+                if (UserPreference.getInstance(ctx).isLogin()) {
+                    //ChatActivity.startActivity(this, Common.SYSTEM_USER, "\u53d1\u73b0\u5468\u672b\u5c0f\u79d8\u4e66", 1);
+                } else {
+                    LoginActivity.startActivityForResult(this);
+                }
                 break;
             case R.id.tv_location:
             case R.id.iv_location:
@@ -1113,6 +1185,11 @@ public class ActDetailActivity extends BaseActivity {
                         TextUtils.isEmpty(detailResult.courseDetail.detailPlace) ? "上课地点" : detailResult.courseDetail.detailPlace,
                         detailResult.courseDetail.placeX,
                         detailResult.courseDetail.placeY);
+                break;
+            case R.id.iv_send:
+                showLoading();
+                IQueryCourseReleaseServlet.sendSaveQuest(courseid, inputWindow.getInput(),
+                        this.saveQuestListener, this.errorListener);
                 break;
             case R.id.rl_sender:
                 //其他人
@@ -1167,8 +1244,8 @@ public class ActDetailActivity extends BaseActivity {
                 shareWindow.setShareUrl("http://www.fxzhoumo.com/detail/course.html?courseid=" + this.courseid);
                 shareWindow.setShareWxFriendTitle(this.detailResult.courseDetail.title);
                 shareWindow.setShareWxFriendContent(this.detailResult.courseDetail.viceTitle);
-                shareWindow.setShareWxFriendZoneTitle("\u53d1\u73b0\u5468\u672bApp\u4e0a\u7684[" + this.detailResult.courseDetail.title + "]\u5f88\u68d2\uff0c\u5feb\u6765\u53c2\u52a0\u5427\uff01");
-                shareWindow.setShareContent("\u53d1\u73b0\u5468\u672bApp\u4e0a\u7684[" + this.detailResult.courseDetail.title + "]\u5f88\u68d2\uff0c\u8fd9\u4e2a\u5468\u672b\u8ddf\u6211\u4e00\u8d77\u53c2\u52a0\u5427\uff01");
+                shareWindow.setShareWxFriendZoneTitle("发现周末App上的[" + this.detailResult.courseDetail.title + "]很棒，快来参加吧！");
+                shareWindow.setShareContent("发现周末App上的[" + this.detailResult.courseDetail.title + "]很棒，这个周末跟我一起参加吧！");
                 shareWindow.show(findViewById(R.id.main));
                 break;
             case R.id.iv_topbar_message:

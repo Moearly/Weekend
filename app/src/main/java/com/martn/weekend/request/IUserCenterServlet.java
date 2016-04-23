@@ -70,6 +70,27 @@ public class IUserCenterServlet {
         }
     }
 
+    /**
+     * 获取用户详情---根据课程用户id
+     * @param courseUserId
+     * @param listener
+     * @param errorListener
+     */
+    public void sendGetOtherUserDetailV3(int courseUserId, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+        try {
+            HashMap<String, String> params = new HashMap();
+            JSONObject json = new JSONObject();
+            json.put("course_user_id", courseUserId);
+            params.put("servicestr", json.toString());
+            params.put("method", "getOtherUserDetailV3");
+            QMusicJSONRequest request = new QMusicJSONRequest(1, BEnvironment.IUSER_CENTER_V2_SERVLET, listener, errorListener);
+            request.setParams(params);
+            QMusicRequestManager.getInstance().getRequestQueue().add(request);
+            KLog.e("url----->" + request.getUrl() + params);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

@@ -3,6 +3,7 @@ package com.martn.weekend.view;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,6 +12,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.martn.weekend.R;
+import com.martn.weekend.share.FriendAndZoneShare;
+import com.martn.weekend.share.SinaShare;
+import com.qmusic.common.Common;
+import com.qmusic.uitls.Helper;
+import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
+import com.sina.weibo.sdk.api.share.WeiboShareSDK;
 
 /**
  * Title: Weekend
@@ -80,13 +87,14 @@ public class SharePopupWindow extends PopupWindow implements OnClickListener {
                 toWeixinShare.setInformation(this.shareWxFriendTitle, this.shareWxFriendContent, this.shareWxFriendUrl);
                 toWeixinShare.setBitmap(this.shareBit);
                 toWeixinShare.sendUrlLinkReq(1);
+                break;
             case R.id.friend_zone_textview:
                 FriendAndZoneShare toFriendZoneShare = new FriendAndZoneShare(this.context, false);
                 toFriendZoneShare.setInformation(this.shareWxFriendZoneTitle, this.shareWxFriendZoneContent, this.shareWxFriendZoneUrl);
                 toFriendZoneShare.setBitmap(this.shareBit);
                 toFriendZoneShare.sendUrlLinkReq(0);
             case R.id.sina_textview:
-                IWeiboShareAPI mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(this.context, Share.SINA_APP_KEY);
+                IWeiboShareAPI mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(this.context, Common.Share.SINA_APP_KEY);
                 mWeiboShareAPI.registerApp();
                 if (mWeiboShareAPI.isWeiboAppInstalled()) {
                     SinaShare sinaShare = new SinaShare(this.context, mWeiboShareAPI);
@@ -95,22 +103,22 @@ public class SharePopupWindow extends PopupWindow implements OnClickListener {
                     sinaShare.sendMultiMessage();
                     return;
                 }
-                Utils.showToast("\u60a8\u8fd8\u672a\u5b89\u88c5\u65b0\u6d6a\u5fae\u535aApp");
+                Helper.showToast("您还未安装新浪微博App");
             default:
         }
     }
 
     private void initView(OnClickListener itemsOnClick) {
         if (itemsOnClick != null) {
-            ((TextView) this.view.findViewById(R.id.sina_textview)).setOnClickListener(itemsOnClick);
-            ((TextView) this.view.findViewById(R.id.weixin_textview)).setOnClickListener(itemsOnClick);
-            ((TextView) this.view.findViewById(R.id.friend_zone_textview)).setOnClickListener(itemsOnClick);
+            view.findViewById(R.id.sina_textview).setOnClickListener(itemsOnClick);
+            view.findViewById(R.id.weixin_textview).setOnClickListener(itemsOnClick);
+            view.findViewById(R.id.friend_zone_textview).setOnClickListener(itemsOnClick);
         } else {
-            ((TextView) this.view.findViewById(R.id.sina_textview)).setOnClickListener(this);
-            ((TextView) this.view.findViewById(R.id.weixin_textview)).setOnClickListener(this);
-            ((TextView) this.view.findViewById(R.id.friend_zone_textview)).setOnClickListener(this);
+            view.findViewById(R.id.sina_textview).setOnClickListener(this);
+            view.findViewById(R.id.weixin_textview).setOnClickListener(this);
+            view.findViewById(R.id.friend_zone_textview).setOnClickListener(this);
         }
-        ((TextView) this.view.findViewById(R.id.cancel_textview)).setOnClickListener(this);
+        this.view.findViewById(R.id.cancel_textview).setOnClickListener(this);
         this.view.setOnTouchListener(new OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 int height = SharePopupWindow.this.view.findViewById(R.id.pop_layout).getTop();
@@ -125,19 +133,19 @@ public class SharePopupWindow extends PopupWindow implements OnClickListener {
         setHeight(-2);
         setFocusable(true);
         setAnimationStyle(R.style.AnimBottom);
-        setBackgroundDrawable(new ColorDrawable(-1342177280));
+//        setBackgroundDrawable(new ColorDrawable(-1342177280));
         setInputMethodMode(1);
         setSoftInputMode(16);
     }
 
     public void setItemOnClickListener(OnClickListener itemsOnClick) {
-        ((TextView) this.view.findViewById(R.id.sina_textview)).setOnClickListener(itemsOnClick);
-        ((TextView) this.view.findViewById(R.id.weixin_textview)).setOnClickListener(itemsOnClick);
-        ((TextView) this.view.findViewById(R.id.friend_zone_textview)).setOnClickListener(itemsOnClick);
+        view.findViewById(R.id.sina_textview).setOnClickListener(itemsOnClick);
+        view.findViewById(R.id.weixin_textview).setOnClickListener(itemsOnClick);
+        view.findViewById(R.id.friend_zone_textview).setOnClickListener(itemsOnClick);
     }
 
     public void show(View locationIV) {
-        showAtLocation(locationIV, 81, 0, 0);
+        showAtLocation(locationIV, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
     }
 
     public void setShareUrl(String shareUrl) {

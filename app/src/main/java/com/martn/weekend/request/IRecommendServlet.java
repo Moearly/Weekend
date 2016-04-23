@@ -146,5 +146,88 @@ public class IRecommendServlet {
     }
 
 
+    /**
+     * 标签搜素
+     * @param teacherid
+     * @param pageIndex
+     * @param listener
+     * @param errorListener
+     */
+    public void sendSeachByTag(int teacherid, int pageIndex, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+        try {
+            HashMap<String, String> params = new HashMap();
+            JSONObject json = new JSONObject();
+            BDLocation loc = ((BaiduMapPlug) PluginManager.getPlugin(BaiduMapPlug.class.getSimpleName())).getLocation();
+            if (loc != null) {
+                json.put("nowx", String.valueOf(loc.getLatitude()));
+                json.put("nowy", String.valueOf(loc.getLongitude()));
+            }
+            json.put("teacherid", teacherid);
+            json.put("pageindex", pageIndex);
+            params.put("method", "seachbytagV2");
+            params.put("servicestr", json.toString());
+            QMusicJSONRequest request = new QMusicJSONRequest(1, BEnvironment.RECOMMEND_V2_SERVLET, listener, errorListener);
+            request.setParams(params);
+            QMusicRequestManager.getInstance().getRequestQueue().add(request);
+            KLog.e("url----->" + request.getUrl() + params);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 根据用户id查询---已经参加的课程
+     * @param userid
+     * @param pageIndex
+     * @param listener
+     * @param errorListener
+     */
+    public void findTakePartCourseByUserId(int userid, int pageIndex, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+        try {
+            HashMap<String, String> params = new HashMap();
+            JSONObject json = new JSONObject();
+            BDLocation loc = ((BaiduMapPlug) PluginManager.getPlugin(BaiduMapPlug.class.getSimpleName())).getLocation();
+            if (loc != null) {
+                json.put("nowx", String.valueOf(loc.getLatitude()));
+                json.put("nowy", String.valueOf(loc.getLongitude()));
+            }
+            json.put("course_user_id", userid);
+            json.put("pageindex", pageIndex);
+            params.put("method", "findTakePartCourseByUserId");
+            params.put("servicestr", json.toString());
+            QMusicJSONRequest request = new QMusicJSONRequest(1, BEnvironment.RECOMMEND_V2_SERVLET, listener, errorListener);
+            request.setParams(params);
+            QMusicRequestManager.getInstance().getRequestQueue().add(request);
+            KLog.e("url----->" + request.getUrl() + params);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void findCollectCourseByUserId(int userid, int pageIndex, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+        try {
+            HashMap<String, String> params = new HashMap();
+            JSONObject json = new JSONObject();
+            BDLocation loc = ((BaiduMapPlug) PluginManager.getPlugin(BaiduMapPlug.class.getSimpleName())).getLocation();
+            if (loc != null) {
+                json.put("nowx", String.valueOf(loc.getLatitude()));
+                json.put("nowy", String.valueOf(loc.getLongitude()));
+            }
+            json.put("course_user_id", userid);
+            json.put("pageindex", pageIndex);
+            params.put("method", "findCollectCourseByUserId");
+            params.put("servicestr", json.toString());
+            QMusicJSONRequest request = new QMusicJSONRequest(1, BEnvironment.RECOMMEND_V2_SERVLET, listener, errorListener);
+            request.setParams(params);
+            QMusicRequestManager.getInstance().getRequestQueue().add(request);
+            KLog.e("url----->" + request.getUrl() + params);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 
 }

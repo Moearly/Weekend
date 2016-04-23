@@ -46,4 +46,13 @@
     <dimen name="head_width_item">42dp</dimen>
     <dimen name="head_height_item">42dp</dimen>
     <dimen name="list_top_margin">13dp</dimen>
+    <dimen name="px_100">35dp</dimen>
+    <dimen name="dp_40">20dp</dimen>
+    <dimen name="sp_49">17sp</dimen>
+    <dimen name="sp_52">18sp</dimen>
+    <dimen name="px_86">30dp</dimen>
+    <dimen name="font_size_middle_s">13sp</dimen>
+    <dimen name="px_70">25dp</dimen>
+    <dimen name="dp_100">50dp</dimen>
+    <dimen name="dp_1">0.5dp</dimen>
 </resources>

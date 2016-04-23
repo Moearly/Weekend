@@ -1,5 +1,7 @@
 package com.martn.weekend;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -78,6 +80,11 @@ public class MainActivity extends BaseActivity {
     private RunHandler runHandler;
     private long nowTime;
     private long lastTime;
+
+    public static void comeBady(Context context) {
+        context.startActivity(new Intent(context, MainActivity.class));
+    }
+
 
     @OnClick({R.id.iv_user_head,R.id.tv_error})
     public void onClick(View v) {
