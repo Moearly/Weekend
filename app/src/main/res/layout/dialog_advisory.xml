@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginLeft="@dimen/px_100"
+    android:layout_marginRight="@dimen/px_100"
+    android:background="@drawable/bg_frame_corner_gray_bg_white"
+    android:paddingBottom="@dimen/dp_40">
+
+    <com.martn.weekend.view.CusTextView
+        android:id="@+id/title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20.0dip"
+        android:text="点此咨询"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_49" />
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="fill_parent"
+        android:layout_height="2.0dip"
+        android:layout_below="@id/title_textview"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip"
+        android:layout_marginTop="10.0dip"
+        android:background="#ff5d5d5d" />
+
+    <LinearLayout
+        android:id="@+id/advisory_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line1"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip"
+        android:orientation="vertical" />
+</RelativeLayout>
